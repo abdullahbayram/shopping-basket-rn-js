@@ -1,44 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest": true
-    },
-    "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks", "prettier", "plugin:prettier/recommended"],
-    "plugins": ["react", "react-native"],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "overrides": [
-        {
-            // Test files only
-            "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-            "extends": ["plugin:testing-library/react"]
-        }
-    ],
-    "rules": {
-        // Enforce Prettier formatting as ESLint errors
-        "prettier/prettier": "error",
-        // suppress errors for missing 'import React' in files
-        "react/react-in-jsx-scope": "off",
-        // prevent eslint to complain about the "styles" variable being used before it was defined
-        "no-use-before-define": ["error", { "variables": false }],
-        // allow .js files to contain JSX code
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react-native/no-inline-styles": "error",
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "test.{js,jsx}", // repos with a single test file
-                    "test-*.{js,jsx}", // repos with multiple top-level test files
-                    "**/*{.,_}{test,spec}.{js,jsx}", // tests where the extension or filename suffix denotes that it is a test
-                    "**/jest.config.js", // jest config
-                    "**/jest.setup.js" // jest setup
-                ],
-                "optionalDependencies": false
-            }
-        ]
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "react-native"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      // Test files only
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
     }
+  ],
+  "rules": {
+    // Enforce Prettier formatting as ESLint errors
+    "prettier/prettier": "error",
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off",
+    // prevent eslint to complain about the "styles" variable being used before it was defined
+    "no-use-before-define": ["error", { "variables": false }],
+    // allow .js files to contain JSX code
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react-native/no-inline-styles": "error",
+    "indent": ["error", 2], // If you want to enforce specific indentation (e.g., 2 spaces)
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "test.{js,jsx}", // repos with a single test file
+          "test-*.{js,jsx}", // repos with multiple top-level test files
+          "**/*{.,_}{test,spec}.{js,jsx}", // tests where the extension or filename suffix denotes that it is a test
+          "**/jest.config.js", // jest config
+          "**/jest.setup.js" // jest setup
+        ],
+        "optionalDependencies": false
+      }
+    ]
+  }
 }
