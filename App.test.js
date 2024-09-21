@@ -1,11 +1,20 @@
 import { render, screen } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+// eslint-disable-next-line import/no-unresolved
+import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 
 import App from './App';
 
+jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
+
+const initialState = {
+  basket: {
+    items: [],
+  },
+};
 const mockStore = configureStore([]);
-const store = mockStore({});
+const store = mockStore(initialState);
 
 describe('<App />', () => {
   test('Text renders correctly on App', () => {
@@ -14,7 +23,7 @@ describe('<App />', () => {
         <App />
       </Provider>,
     );
-    screen.getByTestId('SafeAreaProvider');
+    screen.getByText('Items in the basket: 0');
     expect(toJSON()).toMatchSnapshot();
   });
 });
