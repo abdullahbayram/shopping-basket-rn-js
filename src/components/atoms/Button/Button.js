@@ -10,9 +10,9 @@ const Button = ({ children, onPress, icon = '', mode = 'contained' }) => (
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
+  onPress: PropTypes.func.isRequired,
   icon: PropTypes.string,
   mode: PropTypes.string,
-  onPress: PropTypes.func.isRequired,
 };
 
 export default Button;
