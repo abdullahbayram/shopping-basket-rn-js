@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from '../components/atoms/Button/Button';
-import Header from '../components/atoms/Header/Header';
+import Header from '../components/molecules/Header/Header';
 import Text from '../components/atoms/Text/Text';
-import Card from '../components/molecules/card/ProductCard';
+import Card from '../components/molecules/ProductCard/ProductCard';
 import Screen from '../components/templetes/Screen';
 
 const DATA = [
