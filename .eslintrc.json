@@ -29,22 +29,45 @@
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     // prevent eslint to complain about the "styles" variable being used before it was defined
-    "no-use-before-define": ["error", { "variables": false }],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
+    "react/require-default-props": "off",
     // allow .js files to contain JSX code
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
     "react-native/no-inline-styles": "error",
-    "indent": ["error", 2], // If you want to enforce specific indentation (e.g., 2 spaces)
+    // "indent": ["error", 2], // If you want to enforce specific indentation (e.g., 2 spaces)
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
-          "test.{js,jsx}", // repos with a single test file
-          "test-*.{js,jsx}", // repos with multiple top-level test files
-          "**/*{.,_}{test,spec}.{js,jsx}", // tests where the extension or filename suffix denotes that it is a test
-          "**/jest.config.js", // jest config
-          "**/jest.setup.js" // jest setup
+          "test.{js,jsx}",
+          // repos with a single test file
+          "test-*.{js,jsx}",
+          // repos with multiple top-level test files
+          "**/*{.,_}{test,spec}.{js,jsx}",
+          // tests where the extension or filename suffix denotes that it is a test
+          "**/jest.config.js",
+          // jest config
+          "**/jest.setup.js"
+          // jest setup
         ],
         "optionalDependencies": false
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
       }
     ]
   }

@@ -1,22 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { MD3LightTheme, PaperProvider } from 'react-native-paper';
+import * as React from 'react';
+import store from './src/redux/store';
+import Navigator from './src/navigator';
+
+const action = (type) => store.dispatch({ type });
+
+const theme = {
+  ...MD3LightTheme, // or MD3DarkTheme
+  roundness: 2,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: '#3498db',
+    secondary: '#f1c40f',
+    tertiary: '#a1b2c3',
+  },
+};
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text> Open up App.js to start working on your app!</Text>
-      {/* eslint-disable-next-line react/style-prop-object */}
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider style={styles.container}>
+      <Provider store={store}>
+        <PaperProvider theme={theme}>
+          {/* eslint-disable-next-line react/style-prop-object */}
+          <StatusBar style="auto" />
+          <Navigator action={action} />
+        </PaperProvider>
+      </Provider>
+    </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
