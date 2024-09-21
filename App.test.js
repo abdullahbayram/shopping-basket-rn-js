@@ -1,10 +1,20 @@
 import { render, screen } from '@testing-library/react-native';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
-import Text from './src/components/atoms/Text/Text';
+import App from './App';
 
-describe('<Text />', () => {
+const mockStore = configureStore([]);
+const store = mockStore({});
+
+describe('<App />', () => {
   test('Text renders correctly on App', () => {
-    render(<Text>Open up App.js to start working on your app!</Text>);
-    screen.getByText('Open up App.js to start working on your app!');
+    const { toJSON } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
+    screen.getByTestId('SafeAreaProvider');
+    expect(toJSON()).toMatchSnapshot();
   });
 });

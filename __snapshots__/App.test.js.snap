@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> Text renders correctly on App 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "backgroundColor": "#fff",
+        "flex": 1,
+      },
+    ]
+  }
+  testID="SafeAreaProvider"
+/>
+`;

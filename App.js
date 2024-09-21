@@ -22,7 +22,7 @@ const theme = {
 
 const App = () => {
   return (
-    <SafeAreaProvider style={styles.container}>
+    <SafeAreaProvider testID="SafeAreaProvider" style={styles.container}>
       <Provider store={store}>
         <PaperProvider theme={theme}>
           {/* eslint-disable-next-line react/style-prop-object */}
