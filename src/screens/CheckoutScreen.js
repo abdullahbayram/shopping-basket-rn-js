@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../components/atoms/Button/Button';
 import Header from '../components/atoms/Header/Header';
 import Text from '../components/atoms/Text/Text';
-import Card from '../components/molecules/card/Card';
+import Card from '../components/molecules/card/ProductCard';
 import Screen from '../components/templetes/Screen';
 import Input from '../components/atoms/Input/Input';
 
