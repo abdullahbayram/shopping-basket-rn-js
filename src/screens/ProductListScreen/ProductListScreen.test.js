@@ -22,4 +22,9 @@ describe('ProductListScreen', () => {
     fireEvent.press(screen.getByText('CHECKOUT'));
     expect(mockOnPress).toHaveBeenCalledTimes(1);
   });
+  /*   // mock the state to simulate a change to CheckoutScreen
+    it('should render the CheckoutScreen when the state changes', () => {
+      // mock the `useState` to return the `CHECKOUT_SCREEN` state
+      // simulate the flow to change screens
+    }); */
 });

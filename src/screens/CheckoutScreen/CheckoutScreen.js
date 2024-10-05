@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Button from '../components/atoms/Button/Button';
-import Header from '../components/molecules/Header/Header';
-import Text from '../components/atoms/Text/Text';
-import Card from '../components/molecules/ProductCard/ProductCard';
-import Screen from '../components/templetes/Screen';
-import Input from '../components/atoms/Input/Input';
+import Button from '../../components/atoms/Button/Button';
+import Header from '../../components/molecules/Header/Header';
+import Text from '../../components/atoms/Text/Text';
+import Card from '../../components/molecules/ProductCard/ProductCard';
+import Screen from '../../components/templetes/Screen';
+import Input from '../../components/atoms/Input/Input';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';

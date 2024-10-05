@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { MD3LightTheme, PaperProvider } from 'react-native-paper';
 import * as React from 'react';
 import store from './src/redux/store';
-import Navigator from './src/navigator';
+import Navigator from './src/Navigator';
 
 const action = (type) => store.dispatch({ type });
 
