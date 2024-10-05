@@ -24,7 +24,9 @@
     "logcat": "adb logcat | grep 'shopping-basket'",
     "devices": "adb devices",
     "list-ios": "xcrun simctl list devices",
-    "check:husky": "ls -l .husky/"
+    "check:husky": "ls -l .husky/",
+    "clear-npm": "npm cache clean",
+    "clear-npm-force": "npm cache clean --force"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> matches the snapshot 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "writingDirection": "ltr",
+      },
+      [
+        {
+          "fontFamily": "System",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "letterSpacing": 0.25,
+          "lineHeight": 20,
+        },
+        undefined,
+      ],
+    ]
+  }
+>
+  Hello, World!
+</Text>
+`;
+
+exports[`<Text /> renders with the provided variant 1`] = `
+[
+  {
+    "textAlign": "left",
+  },
+  {
+    "color": "rgba(28, 27, 31, 1)",
+    "writingDirection": "ltr",
+  },
+  [
+    {
+      "fontFamily": "System",
+      "fontSize": 24,
+      "fontWeight": "400",
+      "letterSpacing": 0,
+      "lineHeight": 32,
+    },
+    undefined,
+  ],
+]
+`;
+
+exports[`<Text /> uses the default variant when not provided 1`] = `
+[
+  {
+    "textAlign": "left",
+  },
+  {
+    "color": "rgba(28, 27, 31, 1)",
+    "writingDirection": "ltr",
+  },
+  [
+    {
+      "fontFamily": "System",
+      "fontSize": 14,
+      "fontWeight": "400",
+      "letterSpacing": 0.25,
+      "lineHeight": 20,
+    },
+    undefined,
+  ],
+]
+`;
