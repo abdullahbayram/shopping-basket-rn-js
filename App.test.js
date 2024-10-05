@@ -9,9 +9,7 @@ import App from './App';
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 
 const initialState = {
-  basket: {
-    items: [],
-  },
+  count: 0,
 };
 const mockStore = configureStore([]);
 const store = mockStore(initialState);

@@ -1,10 +1,22 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react-native';
-import CheckoutScreen from './CheckoutScreen'; // Adjust the path as needed
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import CheckoutScreen from './CheckoutScreen';
+
+const initialState = {
+  count: 0,
+};
+const mockStore = configureStore([]);
+const store = mockStore(initialState);
 
 describe('CheckoutScreen', () => {
   it('should render CheckoutScreen correctly', () => {
-    render(<CheckoutScreen />);
+    render(
+      <Provider store={store}>
+        <CheckoutScreen />
+      </Provider>,
+    );
 
     expect(screen.getByText('Checkout')).toBeTruthy();
     expect(screen.getByText('Items in the basket: 0')).toBeTruthy();
@@ -13,9 +25,20 @@ describe('CheckoutScreen', () => {
     expect(screen.getByText('Product One Description')).toBeTruthy();
     expect(screen.getByText('REMOVE ITEM')).toBeTruthy();
   });
-
+  it('should match the snapshot', () => {
+    render(
+      <Provider store={store}>
+        <CheckoutScreen />
+      </Provider>,
+    );
+    expect(screen.toJSON()).toMatchSnapshot();
+  });
   it('should update credit card input value', () => {
-    render(<CheckoutScreen />);
+    render(
+      <Provider store={store}>
+        <CheckoutScreen />
+      </Provider>,
+    );
 
     const creditCardInput = screen.getByTestId('text-input-flat');
     fireEvent.changeText(creditCardInput, '1234 5678 9012 3456');
@@ -23,9 +46,5 @@ describe('CheckoutScreen', () => {
     expect(creditCardInput.props.value).toBe('1234 5678 9012 3456');
   });
 
-  it('should match the snapshot', () => {
-    render(<CheckoutScreen />);
-    expect(screen.toJSON()).toMatchSnapshot();
-  });
   // remove item
 });

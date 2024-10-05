@@ -1,15 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import reducer from './reducers';
-import rootSaga from './sagas'; // Assuming you have a rootSaga combining all sagas
+import { configureStore } from '@reduxjs/toolkit';
+import reducer from './reducers/counterSlice';
 
-// Create the saga middleware
-const sagaMiddleware = createSagaMiddleware();
-
-// Create the Redux store and apply saga middleware
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
-
-// Run the root saga
-sagaMiddleware.run(rootSaga);
+// Configure the store with reducer and middleware
+const store = configureStore({
+  reducer, // This can also be an object if you're combining multiple reducers
+  devTools: process.env.NODE_ENV !== 'production', // Optional: Enable Redux DevTools in development mode
+});
 
 export default store;
