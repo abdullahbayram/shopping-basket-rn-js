@@ -1,8 +1,8 @@
-export default function reducer(state = {}, action = '') {
-  console.log('Action received:', action);
+const defaultState = { itemCount: 0 };
+
+export default function reducer(state = defaultState, action = '') {
   switch (action.type) {
     case 'INCREMENT':
-      console.log('Item count before increment:', state.itemCount);
       return {
         ...state,
         itemCount: state.itemCount + 1,
