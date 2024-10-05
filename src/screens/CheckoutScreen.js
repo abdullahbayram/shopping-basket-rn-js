@@ -6,8 +6,8 @@ import Card from '../components/molecules/ProductCard/ProductCard';
 import Screen from '../components/templetes/Screen';
 import Input from '../components/atoms/Input/Input';
 
-const CREDIT_CARD_CHECK = 'credit-ProductCard-check';
-const CREDIT_CARD = 'credit-ProductCard';
+const CREDIT_CARD_CHECK = 'credit-card-check';
+const CREDIT_CARD = 'credit-card';
 
 const CheckoutScreen = () => {
   const [itemCount] = useState(0);
@@ -20,7 +20,7 @@ const CheckoutScreen = () => {
       <Card title="Product One" subtitle="Product One Description" buttonTitle="Add to basket" price="$1" />
       <Input
         value={creditCardNumber}
-        onChange={setCreditCardNumber}
+        onChangeText={setCreditCardNumber}
         icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
         label="Credit Card"
       />
