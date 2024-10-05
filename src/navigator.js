@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import ProductListScreen from './screens/ProductListScreen';
+import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 import ErrorScreen from './screens/ErrorScreen';
 

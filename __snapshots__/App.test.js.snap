@@ -210,15 +210,15 @@ exports[`<App /> Text renders correctly on App 1`] = `
             },
             {
               "id": "1",
-              "title": "First Item",
+              "title": "4th Item",
             },
             {
               "id": "2",
-              "title": "Second Item",
+              "title": "5th Item",
             },
             {
               "id": "3",
-              "title": "Third Item",
+              "title": "6th Item",
             },
           ]
         }
@@ -1429,7 +1429,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                           ]
                         }
                       >
-                        First Item
+                        4th Item
                       </Text>
                       <Text
                         numberOfLines={1}
@@ -1787,7 +1787,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                           ]
                         }
                       >
-                        Second Item
+                        5th Item
                       </Text>
                       <Text
                         numberOfLines={1}
@@ -2145,7 +2145,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                           ]
                         }
                       >
-                        Third Item
+                        6th Item
                       </Text>
                       <Text
                         numberOfLines={1}
