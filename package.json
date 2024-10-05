@@ -14,7 +14,7 @@
     "fix:lint": "eslint . --fix",
     "fix:all": "npm run fix:prettier && npm run fix:lint",
     "test": "jest",
-    "test:related": "jest --bail --findRelatedTests",
+    "test:related": "jest --bail --findRelatedTests --passWithNoTests",
     "coverage": "jest --coverage -u && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
     "watch": "jest --watch",
     "watch-all": "jest --watchAll",
@@ -70,59 +70,10 @@
     "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.6"
   },
-  "jest": {
-    "preset": "jest-expo",
-    "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg|react-redux)"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ]
-  },
   "lint-staged": {
     "*.js": [
       "npm run validate"
     ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "body-max-length": [
-        2,
-        "always",
-        400
-      ],
-      "subject-case": [
-        2,
-        "never",
-        [
-          "start-case",
-          "pascal-case"
-        ]
-      ],
-      "type-enum": [
-        2,
-        "always",
-        [
-          "ci",
-          "chore",
-          "docs",
-          "feat",
-          "fix",
-          "perf",
-          "refactor",
-          "revert",
-          "style",
-          "test",
-          "build"
-        ]
-      ]
-    }
   },
   "private": true
 }
