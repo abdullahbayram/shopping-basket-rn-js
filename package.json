@@ -21,6 +21,7 @@
     "clear-jest": "jest --clearCache",
     "test detect": "jest --runInBand --detectOpenHandles",
     "validate": "npm run fix:all && npm run test:related",
+    "validate:coverage": "npm run fix:all && npm run coverage",
     "prepare": "husky",
     "logcat": "adb logcat | grep 'shopping-basket'",
     "devices": "adb devices",
