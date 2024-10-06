@@ -6,7 +6,7 @@ import Text from '../../components/atoms/Text/Text';
 import Screen from '../../components/templetes/Screen';
 import Input from '../../components/atoms/Input/Input';
 import ProductCard from '../../components/molecules/ProductCard/ProductCard';
-import { removeItemFromBasket, clearBasket } from '../../redux/slices/basketSlice';
+import { removeItemFromBasket, clearBasket, updateItemQuantity } from '../../redux/slices/basketSlice';
 import validateCreditCard from '../../utils/validateCreditCard'; //
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
@@ -49,10 +49,11 @@ const CheckoutScreen = () => {
         Alert.alert('Order Failed', err?.data || 'Failed to place order');
       }
     }
-    // Dispatch an action to place the order, dispatch(placeOrder(items, creditCardNumber));
   };
 
-  console.log(isCreditCardValid, 'isCreditCardValid');
+  const onQuantityChange = (item, newQuantity) => {
+    dispatch(updateItemQuantity({ sku: item.sku, quantity: newQuantity })); // Dispatch action to update quantity
+  };
 
   React.useEffect(() => {
     setIsCreditCardValid(validateCreditCard(creditCardNumber));
@@ -73,6 +74,8 @@ const CheckoutScreen = () => {
             price={`${(item.price * item.quantity).toFixed(2)}`}
             onButtonPress={() => onRemoveItem(item)}
             keyExtractor={() => item.sku}
+            quantity={item.quantity}
+            onQuantityChange={(newQuantity) => onQuantityChange(item, newQuantity)}
           />
         )}
         keyExtractor={(item) => item.sku}
@@ -88,8 +91,8 @@ const CheckoutScreen = () => {
         icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
         label="Credit Card"
         placeholder="Enter your credit card number"
-        maxLength={16} // Restrict the input to 16 characters
-        keyboardType="numeric" // Ensure numeric keyboard input for mobile devices
+        maxLength={16}
+        keyboardType="numeric"
       />
 
       <Button

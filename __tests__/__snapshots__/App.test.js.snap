@@ -341,32 +341,41 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 </Text>
                               </View>
                               <View>
-                                <Text
+                                <View
                                   style={
-                                    [
-                                      {
-                                        "textAlign": "left",
-                                      },
-                                      {
-                                        "color": "rgba(28, 27, 31, 1)",
-                                        "writingDirection": "ltr",
-                                      },
-                                      [
-                                        {
-                                          "fontFamily": "System",
-                                          "fontSize": 14,
-                                          "fontWeight": "500",
-                                          "letterSpacing": 0.1,
-                                          "lineHeight": 20,
-                                        },
-                                        undefined,
-                                      ],
-                                    ]
+                                    {
+                                      "alignItems": "flex-end",
+                                      "justifyContent": "space-between",
+                                    }
                                   }
                                 >
-                                  $
-                                  1.11
-                                </Text>
+                                  <Text
+                                    style={
+                                      [
+                                        {
+                                          "textAlign": "left",
+                                        },
+                                        {
+                                          "color": "rgba(28, 27, 31, 1)",
+                                          "writingDirection": "ltr",
+                                        },
+                                        [
+                                          {
+                                            "fontFamily": "System",
+                                            "fontSize": 14,
+                                            "fontWeight": "500",
+                                            "letterSpacing": 0.1,
+                                            "lineHeight": 20,
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    $
+                                    1.11
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                             <View
@@ -700,32 +709,41 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 </Text>
                               </View>
                               <View>
-                                <Text
+                                <View
                                   style={
-                                    [
-                                      {
-                                        "textAlign": "left",
-                                      },
-                                      {
-                                        "color": "rgba(28, 27, 31, 1)",
-                                        "writingDirection": "ltr",
-                                      },
-                                      [
-                                        {
-                                          "fontFamily": "System",
-                                          "fontSize": 14,
-                                          "fontWeight": "500",
-                                          "letterSpacing": 0.1,
-                                          "lineHeight": 20,
-                                        },
-                                        undefined,
-                                      ],
-                                    ]
+                                    {
+                                      "alignItems": "flex-end",
+                                      "justifyContent": "space-between",
+                                    }
                                   }
                                 >
-                                  $
-                                  2.22
-                                </Text>
+                                  <Text
+                                    style={
+                                      [
+                                        {
+                                          "textAlign": "left",
+                                        },
+                                        {
+                                          "color": "rgba(28, 27, 31, 1)",
+                                          "writingDirection": "ltr",
+                                        },
+                                        [
+                                          {
+                                            "fontFamily": "System",
+                                            "fontSize": 14,
+                                            "fontWeight": "500",
+                                            "letterSpacing": 0.1,
+                                            "lineHeight": 20,
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    $
+                                    2.22
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                             <View
@@ -1059,32 +1077,41 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 </Text>
                               </View>
                               <View>
-                                <Text
+                                <View
                                   style={
-                                    [
-                                      {
-                                        "textAlign": "left",
-                                      },
-                                      {
-                                        "color": "rgba(28, 27, 31, 1)",
-                                        "writingDirection": "ltr",
-                                      },
-                                      [
-                                        {
-                                          "fontFamily": "System",
-                                          "fontSize": 14,
-                                          "fontWeight": "500",
-                                          "letterSpacing": 0.1,
-                                          "lineHeight": 20,
-                                        },
-                                        undefined,
-                                      ],
-                                    ]
+                                    {
+                                      "alignItems": "flex-end",
+                                      "justifyContent": "space-between",
+                                    }
                                   }
                                 >
-                                  $
-                                  3.33
-                                </Text>
+                                  <Text
+                                    style={
+                                      [
+                                        {
+                                          "textAlign": "left",
+                                        },
+                                        {
+                                          "color": "rgba(28, 27, 31, 1)",
+                                          "writingDirection": "ltr",
+                                        },
+                                        [
+                                          {
+                                            "fontFamily": "System",
+                                            "fontSize": 14,
+                                            "fontWeight": "500",
+                                            "letterSpacing": 0.1,
+                                            "lineHeight": 20,
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    $
+                                    3.33
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                             <View
@@ -1418,32 +1445,41 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 </Text>
                               </View>
                               <View>
-                                <Text
+                                <View
                                   style={
-                                    [
-                                      {
-                                        "textAlign": "left",
-                                      },
-                                      {
-                                        "color": "rgba(28, 27, 31, 1)",
-                                        "writingDirection": "ltr",
-                                      },
-                                      [
-                                        {
-                                          "fontFamily": "System",
-                                          "fontSize": 14,
-                                          "fontWeight": "500",
-                                          "letterSpacing": 0.1,
-                                          "lineHeight": 20,
-                                        },
-                                        undefined,
-                                      ],
-                                    ]
+                                    {
+                                      "alignItems": "flex-end",
+                                      "justifyContent": "space-between",
+                                    }
                                   }
                                 >
-                                  $
-                                  4.44
-                                </Text>
+                                  <Text
+                                    style={
+                                      [
+                                        {
+                                          "textAlign": "left",
+                                        },
+                                        {
+                                          "color": "rgba(28, 27, 31, 1)",
+                                          "writingDirection": "ltr",
+                                        },
+                                        [
+                                          {
+                                            "fontFamily": "System",
+                                            "fontSize": 14,
+                                            "fontWeight": "500",
+                                            "letterSpacing": 0.1,
+                                            "lineHeight": 20,
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    $
+                                    4.44
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                             <View
@@ -1777,32 +1813,41 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 </Text>
                               </View>
                               <View>
-                                <Text
+                                <View
                                   style={
-                                    [
-                                      {
-                                        "textAlign": "left",
-                                      },
-                                      {
-                                        "color": "rgba(28, 27, 31, 1)",
-                                        "writingDirection": "ltr",
-                                      },
-                                      [
-                                        {
-                                          "fontFamily": "System",
-                                          "fontSize": 14,
-                                          "fontWeight": "500",
-                                          "letterSpacing": 0.1,
-                                          "lineHeight": 20,
-                                        },
-                                        undefined,
-                                      ],
-                                    ]
+                                    {
+                                      "alignItems": "flex-end",
+                                      "justifyContent": "space-between",
+                                    }
                                   }
                                 >
-                                  $
-                                  5.55
-                                </Text>
+                                  <Text
+                                    style={
+                                      [
+                                        {
+                                          "textAlign": "left",
+                                        },
+                                        {
+                                          "color": "rgba(28, 27, 31, 1)",
+                                          "writingDirection": "ltr",
+                                        },
+                                        [
+                                          {
+                                            "fontFamily": "System",
+                                            "fontSize": 14,
+                                            "fontWeight": "500",
+                                            "letterSpacing": 0.1,
+                                            "lineHeight": 20,
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    $
+                                    5.55
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                             <View
