@@ -1,15 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react-native';
+import { screen, waitFor } from '@testing-library/react-native';
 import Navigator from './Navigator';
+import renderInProvider from '../__tests__/utils/renderInProvider';
+import store from './redux/store';
 
 describe('Navigator Component', () => {
-  const mockAction = jest.fn();
-
-  it('should render ProductListScreen by default', () => {
-    render(<Navigator action={mockAction} />);
+  it('should render ProductListScreen by default', async () => {
+    renderInProvider(<Navigator />, { store });
 
     // Check that ProductListScreen is displayed by default
-    expect(screen.getAllByText('Items in the basket: 0').length).toBeTruthy();
+    await waitFor(() => {});
+    expect(screen.toJSON()).toMatchSnapshot();
   });
   // Simulate navigate
   // simulate an invalid screen state

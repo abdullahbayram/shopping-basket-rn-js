@@ -1,55 +1,40 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
 import Card from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-  {
-    id: '1',
-    title: '4th Item',
-  },
-  {
-    id: '2',
-    title: '5th Item',
-  },
-  {
-    id: '3',
-    title: '6th Item',
-  },
-];
+import { useGetProductsQuery } from '../../redux/api/apiSlice';
 
 const ProductListScreen = ({ navigation }) => {
+  const { data: products, error, isLoading } = useGetProductsQuery();
   const [itemCount] = useState(0);
   const onCheckoutPress = () => {
     navigation.navigate('Checkout');
   };
 
+  if (isLoading) {
+    return <ActivityIndicator size="large" color="#0000ff" />;
+  }
+
+  if (error) {
+    return <Text>Error loading products</Text>;
+  }
+
   return (
     <Screen>
       <Text variant="titleMedium">Items in the basket: {itemCount}</Text>
+
       <FlatList
-        data={DATA}
+        data={products}
         renderItem={({ item }) => (
           <Card
-            id={item.id}
-            title={item.title}
-            subtitle="Product One Description"
+            id={item?.sku}
+            title={item.name}
+            subtitle={item.description}
             buttonTitle="Add to basket"
-            price="$1"
+            price={item.price}
           />
         )}
         keyExtractor={(item) => item.id}
@@ -70,7 +55,3 @@ const styles = StyleSheet.create({
     height: 100,
   },
 });
-
-ProductListScreen.propTypes = {
-  // onPress: PropTypes.func.isRequired,
-};

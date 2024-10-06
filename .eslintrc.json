@@ -11,10 +11,7 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react",
-    "react-native"
-  ],
+  "plugins": ["react", "react-native"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -22,13 +19,8 @@
   "overrides": [
     {
       // Test files only
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "extends": [
-        "plugin:testing-library/react"
-      ]
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
     }
   ],
   "rules": {
@@ -45,9 +37,7 @@
     "react/prop-types": [
       "error",
       {
-        "ignore": [
-          "navigation"
-        ]
+        "ignore": ["navigation"]
       }
     ],
     // Enforce Prettier formatting as ESLint errors
@@ -66,10 +56,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "react-native/no-inline-styles": "error",

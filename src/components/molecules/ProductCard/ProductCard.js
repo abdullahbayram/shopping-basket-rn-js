@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import Card from '../../atoms/Card/Card';
 
-const renderRightContent = (price) => <Text variant="titleSmall">{price}</Text>;
+const renderRightContent = (price) => <Text variant="titleSmall">${price}</Text>;
 
 const ProductCard = ({ buttonTitle, subtitle, title, price }) => (
   <Card style={styles.container}>
@@ -21,7 +21,7 @@ ProductCard.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 const styles = StyleSheet.create({

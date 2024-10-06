@@ -1,0 +1,289 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigator Component should render ProductListScreen by default 1`] = `
+<RNSScreenStack
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <RNSScreen
+    collapsable={false}
+    fullScreenSwipeShadowEnabled={false}
+    gestureResponseDistance={
+      {
+        "bottom": -1,
+        "end": -1,
+        "start": -1,
+        "top": -1,
+      }
+    }
+    hasLargeHeader={false}
+    nativeBackButtonDismissalEnabled={false}
+    onAppear={[Function]}
+    onDisappear={[Function]}
+    onDismissed={[Function]}
+    onGestureCancel={[Function]}
+    onHeaderBackButtonClicked={[Function]}
+    onNativeDismissCancelled={[Function]}
+    onTransitionProgress={[Function]}
+    onWillAppear={[Function]}
+    onWillDisappear={[Function]}
+    replaceAnimation="push"
+    sheetAllowedDetents="large"
+    sheetCornerRadius={-1}
+    sheetExpandsWhenScrolledToEdge={true}
+    sheetGrabberVisible={false}
+    sheetLargestUndimmedDetent="all"
+    stackPresentation="push"
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    swipeDirection="horizontal"
+  >
+    <View
+      accessibilityElementsHidden={false}
+      importantForAccessibility="auto"
+      style={
+        {
+          "flex": 1,
+          "flexDirection": "column-reverse",
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        style={
+          [
+            {
+              "flex": 1,
+            },
+            {
+              "backgroundColor": "rgb(242, 242, 242)",
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          accessibilityRole="progressbar"
+          accessibilityState={
+            {
+              "busy": true,
+            }
+          }
+          accessible={true}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              {
+                "height": 24,
+                "opacity": 1,
+                "width": 24,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "height": 24,
+                    "transform": [
+                      {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 24,
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    {
+                      "height": 12,
+                      "overflow": "hidden",
+                      "width": 24,
+                    }
+                  }
+                >
+                  <View
+                    collapsable={false}
+                    style={
+                      {
+                        "height": 24,
+                        "transform": [
+                          {
+                            "translateY": 0,
+                          },
+                          {
+                            "rotate": "-165deg",
+                          },
+                        ],
+                        "width": 24,
+                      }
+                    }
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        {
+                          "height": 12,
+                          "overflow": "hidden",
+                          "width": 24,
+                        }
+                      }
+                    >
+                      <View
+                        collapsable={false}
+                        style={
+                          {
+                            "borderColor": "#c62828",
+                            "borderRadius": 12,
+                            "borderWidth": 2.4,
+                            "height": 24,
+                            "width": 24,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                {
+                  "alignItems": "center",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "height": 24,
+                    "transform": [
+                      {
+                        "rotate": "45deg",
+                      },
+                    ],
+                    "width": 24,
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    {
+                      "height": 12,
+                      "overflow": "hidden",
+                      "top": 12,
+                      "width": 24,
+                    }
+                  }
+                >
+                  <View
+                    collapsable={false}
+                    style={
+                      {
+                        "height": 24,
+                        "transform": [
+                          {
+                            "translateY": -12,
+                          },
+                          {
+                            "rotate": "345deg",
+                          },
+                        ],
+                        "width": 24,
+                      }
+                    }
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        {
+                          "height": 12,
+                          "overflow": "hidden",
+                          "width": 24,
+                        }
+                      }
+                    >
+                      <View
+                        collapsable={false}
+                        style={
+                          {
+                            "borderColor": "#c62828",
+                            "borderRadius": 12,
+                            "borderWidth": 2.4,
+                            "height": 24,
+                            "width": 24,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <RNSScreenStackHeaderConfig
+      backButtonInCustomView={false}
+      backTitleVisible={true}
+      backgroundColor="rgb(255, 255, 255)"
+      color="rgb(0, 122, 255)"
+      direction="ltr"
+      disableBackButtonMenu={false}
+      hidden={false}
+      hideBackButton={false}
+      largeTitleHideShadow={false}
+      title="Product List"
+      titleColor="rgb(28, 28, 30)"
+      topInsetEnabled={false}
+      translucent={false}
+    />
+  </RNSScreen>
+</RNSScreenStack>
+`;

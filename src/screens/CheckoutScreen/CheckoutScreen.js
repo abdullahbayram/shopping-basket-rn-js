@@ -5,13 +5,13 @@ import Text from '../../components/atoms/Text/Text';
 import Card from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
 import Input from '../../components/atoms/Input/Input';
-import { increment } from '../../redux/reducers/counterSlice';
+import { increment } from '../../redux/slices/counterSlice';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
 
 const CheckoutScreen = () => {
-  const count = useSelector((state) => state.count);
+  const count = useSelector((state) => state.counter.count);
   const dispatch = useDispatch();
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
   const [isCreditCardValid] = React.useState(false);
