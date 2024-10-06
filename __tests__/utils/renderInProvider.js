@@ -4,15 +4,19 @@ import { Provider } from 'react-redux';
 import { setupApiStore } from './testUtil';
 import { apiSlice } from '../../src/redux/api/apiSlice';
 import counterSlice from '../../src/redux/slices/counterSlice';
+import basketSlice from '../../src/redux/slices/basketSlice';
 
 const renderInProvider = (
   ui,
   {
-    initialState = { counter: { count: 0 } }, // Default initial state if not provided
+    initialState = {
+      counter: { count: 0 },
+      basket: { items: [] },
+    }, // Default initial state if not provided
   } = {},
 ) => {
   // const refObj = setupApiStore(apiSlice, counterSlice, initialState);
-  const { store } = setupApiStore(apiSlice, { counter: counterSlice }, initialState);
+  const { store } = setupApiStore(apiSlice, { counter: counterSlice, basket: basketSlice }, initialState);
   // Wrapper component to provide the Redux store to the component under test
   const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
 

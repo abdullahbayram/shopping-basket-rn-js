@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
-import Card from '../../components/molecules/ProductCard/ProductCard';
+import ProductCard from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
+import { addItemToBasket } from '../../redux/slices/basketSlice';
 
 const ProductListScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.basket.items);
   const { data: products, error, isLoading } = useGetProductsQuery();
-  const [itemCount] = useState(0);
+
   const onCheckoutPress = () => {
     navigation.navigate('Checkout');
+  };
+
+  const onAddToBasket = (item) => {
+    const existingItem = items.find((basketItem) => basketItem.sku === item.sku);
+    if (existingItem && existingItem.quantity >= 15) {
+      Alert.alert('Limit Reached', 'You can only add a maximum of 15 items.');
+      return;
+    }
+    dispatch(addItemToBasket(item));
   };
 
   if (isLoading) {
@@ -19,25 +32,25 @@ const ProductListScreen = ({ navigation }) => {
   }
 
   if (error) {
+    console.log(error);
     return <Text>Error loading products</Text>;
   }
 
   return (
     <Screen>
-      <Text variant="titleMedium">Items in the basket: {itemCount}</Text>
-
+      <Text variant="titleMedium">Items in the basket: {items.length}</Text>
       <FlatList
         data={products}
         renderItem={({ item }) => (
-          <Card
-            id={item?.sku}
+          <ProductCard
             title={item.name}
             subtitle={item.description}
             buttonTitle="Add to basket"
             price={item.price}
+            onButtonPress={() => onAddToBasket(item)}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.sku}
       />
       <View style={styles.buttonContainer}>
         <Button icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
