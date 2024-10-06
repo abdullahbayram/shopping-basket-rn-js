@@ -1,19 +1,53 @@
 import * as React from 'react';
 import { Button, Text } from 'react-native-paper';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import Card from '../../atoms/Card/Card';
+import Input from '../../atoms/Input/Input';
 
-const renderRightContent = (price) => <Text variant="titleSmall">${price}</Text>;
+const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange) => {
+  const num = Number(e.nativeEvent.text);
+  if (num >= 1 && num <= 15) {
+    onQuantityChange(num);
+  } else {
+    Alert.alert('Invalid Quantity', 'Quantity must be between 1 and 15.');
+    setQuantity(firstQuantity);
+  }
+};
 
-const ProductCard = ({ buttonTitle, subtitle, title, price, onButtonPress }) => (
-  <Card style={styles.container}>
-    <Card.Title style={styles.title} title={title} right={() => renderRightContent(price)} subtitle={subtitle} />
-    <Card.Actions>
-      <Button onPress={onButtonPress}>{buttonTitle}</Button>
-    </Card.Actions>
-  </Card>
+const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firstQuantity) => (
+  <View style={styles.row}>
+    {onQuantityChange && (
+      <Input
+        style={styles.quantityInput}
+        value={quantity.toString()}
+        keyboardType="numeric"
+        onChangeText={(text) => setQuantity(Number(text))}
+        onEndEditing={(e) => handleEndEditing(e, firstQuantity, setQuantity, onQuantityChange)}
+        maxLength={2}
+      />
+    )}
+    <Text variant="titleSmall">${price}</Text>
+  </View>
 );
+
+const ProductCard = ({ buttonTitle, subtitle, title, price, onButtonPress, onQuantityChange, quantity }) => {
+  const [localQuantity, setLocalQuantity] = React.useState(quantity);
+
+  return (
+    <Card style={styles.container}>
+      <Card.Title
+        style={styles.title}
+        title={title}
+        right={() => renderRightContent(price, localQuantity, setLocalQuantity, onQuantityChange, quantity)}
+        subtitle={subtitle}
+      />
+      <Card.Actions>
+        <Button onPress={onButtonPress}>{buttonTitle}</Button>
+      </Card.Actions>
+    </Card>
+  );
+};
 
 export default ProductCard;
 
@@ -22,7 +56,9 @@ ProductCard.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
   onButtonPress: PropTypes.func.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -32,5 +68,14 @@ const styles = StyleSheet.create({
   title: {
     flexDirection: 'row',
     paddingHorizontal: 16,
+  },
+  row: {
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  quantityInput: {
+    width: 40,
+    height: 25,
+    textAlign: 'center',
   },
 });

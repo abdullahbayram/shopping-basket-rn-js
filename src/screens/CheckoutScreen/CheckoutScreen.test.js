@@ -23,7 +23,10 @@ describe('CheckoutScreen', () => {
   it('should update credit card input value', () => {
     renderInProvider(<CheckoutScreen />, { initialState });
 
-    const creditCardInput = screen.getByTestId('text-input-flat');
+    // const creditCardInput = screen.getByLabelText('Credit Card');
+    // const creditCardInput = screen.getByPlaceholderText('Enter your credit card number');
+    const inputs = screen.getAllByTestId('text-input-flat');
+    const creditCardInput = inputs[inputs.length - 1];
     fireEvent.changeText(creditCardInput, '1234 5678 9012 3456');
 
     expect(creditCardInput.props.value).toBe('1234 5678 9012 3456');

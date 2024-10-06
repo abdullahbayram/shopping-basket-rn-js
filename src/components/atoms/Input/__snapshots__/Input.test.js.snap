@@ -74,13 +74,13 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
           {
             "bottom": 0,
             "left": 0,
-            "opacity": 1,
+            "opacity": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
             "transform": [
               {
-                "translateX": 0,
+                "translateX": 4,
               },
             ],
             "width": 750,
@@ -91,7 +91,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
         <View
           style={
             {
-              "width": 73,
+              "width": 97.33333333333333,
             }
           }
         >
@@ -110,7 +110,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                 "left": 0,
                 "letterSpacing": 0.15,
                 "lineHeight": undefined,
-                "maxWidth": 73,
+                "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
                 "paddingRight": 56,
@@ -122,10 +122,10 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                     "translateX": 0,
                   },
                   {
-                    "translateY": 0,
+                    "translateY": -12,
                   },
                   {
-                    "scale": 1,
+                    "scale": 0.75,
                   },
                 ],
                 "writingDirection": "ltr",
@@ -148,7 +148,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                 "left": 0,
                 "letterSpacing": 0.15,
                 "lineHeight": undefined,
-                "maxWidth": 73,
+                "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
                 "paddingRight": 56,
@@ -160,10 +160,10 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                     "translateX": 0,
                   },
                   {
-                    "translateY": 0,
+                    "translateY": -12,
                   },
                   {
-                    "scale": 1,
+                    "scale": 0.75,
                   },
                 ],
                 "writingDirection": "ltr",
@@ -221,6 +221,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
       }
       testID="text-input-flat"
       underlineColorAndroid="transparent"
+      value="1234 5678 9012 3456"
     />
   </View>
   <View
@@ -458,13 +459,13 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
           {
             "bottom": 0,
             "left": 0,
-            "opacity": 1,
+            "opacity": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
             "transform": [
               {
-                "translateX": 0,
+                "translateX": 4,
               },
             ],
             "width": 750,
@@ -475,7 +476,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
         <View
           style={
             {
-              "width": 73,
+              "width": 97.33333333333333,
             }
           }
         >
@@ -494,7 +495,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                 "left": 0,
                 "letterSpacing": 0.15,
                 "lineHeight": undefined,
-                "maxWidth": 73,
+                "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
                 "paddingRight": 56,
@@ -506,10 +507,10 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                     "translateX": 0,
                   },
                   {
-                    "translateY": 0,
+                    "translateY": -12,
                   },
                   {
-                    "scale": 1,
+                    "scale": 0.75,
                   },
                 ],
                 "writingDirection": "ltr",
@@ -532,7 +533,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                 "left": 0,
                 "letterSpacing": 0.15,
                 "lineHeight": undefined,
-                "maxWidth": 73,
+                "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
                 "paddingRight": 56,
@@ -544,10 +545,10 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                     "translateX": 0,
                   },
                   {
-                    "translateY": 0,
+                    "translateY": -12,
                   },
                   {
-                    "scale": 1,
+                    "scale": 0.75,
                   },
                 ],
                 "writingDirection": "ltr",
@@ -605,6 +606,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
       }
       testID="text-input-flat"
       underlineColorAndroid="transparent"
+      value="1234 5678 9012 3456"
     />
   </View>
   <View

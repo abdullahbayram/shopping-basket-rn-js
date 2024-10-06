@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
-  totalCount: 0,
 };
 
 const basketSlice = createSlice({
@@ -28,8 +27,15 @@ const basketSlice = createSlice({
     clearBasket: (state) => {
       state.items = [];
     },
+    updateItemQuantity: (state, action) => {
+      const { sku, quantity } = action.payload;
+      const existingItem = state.items.find((item) => item.sku === sku);
+      if (existingItem) {
+        existingItem.quantity = quantity;
+      }
+    },
   },
 });
 
-export const { addItemToBasket, removeItemFromBasket, clearBasket } = basketSlice.actions;
+export const { addItemToBasket, removeItemFromBasket, clearBasket, updateItemQuantity } = basketSlice.actions;
 export default basketSlice.reducer;
