@@ -1,9 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { http, HttpResponse } from 'msw';
 
-// eslint-disable-next-line import/prefer-default-export
 export const handlers = [
-  // Mock the /products API endpoint
   http.get('http://localhost:9001/products', () => {
     console.warn('WELCOME');
     return HttpResponse.json([
