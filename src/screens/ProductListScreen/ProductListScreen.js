@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
 import Button from '../../components/atoms/Button/Button';
-import Header from '../../components/molecules/Header/Header';
 import Text from '../../components/atoms/Text/Text';
 import Card from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
@@ -34,12 +32,14 @@ const DATA = [
   },
 ];
 
-const ProductListScreen = ({ onPress }) => {
+const ProductListScreen = ({ navigation }) => {
   const [itemCount] = useState(0);
+  const onCheckoutPress = () => {
+    navigation.navigate('Checkout');
+  };
 
   return (
     <Screen>
-      <Header title="Product List" dark />
       <Text variant="titleMedium">Items in the basket: {itemCount}</Text>
       <FlatList
         data={DATA}
@@ -55,7 +55,7 @@ const ProductListScreen = ({ onPress }) => {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.buttonContainer}>
-        <Button icon="cart-arrow-down" mode="contained" onPress={onPress}>
+        <Button icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
           CHECKOUT
         </Button>
       </View>
@@ -72,5 +72,5 @@ const styles = StyleSheet.create({
 });
 
 ProductListScreen.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  // onPress: PropTypes.func.isRequired,
 };

@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
 import ErrorScreen from './screens/ErrorScreen/ErrorScreen';
 
-const CHECKOUT_SCREEN = 'CheckoutScreen';
-const PRODUCT_LIST_SCREEN = 'ProductListScreen';
+const Stack = createNativeStackNavigator();
 
-const Navigator = ({ action }) => {
-  const [currentScreen] = useState(PRODUCT_LIST_SCREEN);
-
+const Navigator = () => {
   return (
-    <>
-      {currentScreen === PRODUCT_LIST_SCREEN ? (
-        <ProductListScreen onPress={() => action('INCREMENT_ASYNC')} />
-      ) : (
-        <View />
-      )}
-      {currentScreen === CHECKOUT_SCREEN ? <CheckoutScreen /> : <View />}
-      {!(currentScreen === CHECKOUT_SCREEN || currentScreen === PRODUCT_LIST_SCREEN) && <ErrorScreen />}
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Product List">
+        <Stack.Screen name="Product List" component={ProductListScreen} />
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="Error" component={ErrorScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 export default Navigator;
-
-Navigator.propTypes = {
-  action: PropTypes.func.isRequired,
-};

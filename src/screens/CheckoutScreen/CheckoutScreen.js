@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/atoms/Button/Button';
-import Header from '../../components/molecules/Header/Header';
 import Text from '../../components/atoms/Text/Text';
 import Card from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
@@ -14,14 +13,12 @@ const CREDIT_CARD = 'credit-card';
 const CheckoutScreen = () => {
   const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
-  // const [itemCount] = useState(0);
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
   const [isCreditCardValid] = React.useState(false);
   return (
     <Screen>
-      <Header onBackPress={() => {}} title="Checkout" dark />
       <Text variant="titleMedium">Items in the basket: {count}</Text>
-      <Card title="Product One" subtitle="Product One Description" buttonTitle="Add to basket" price="$1" />
+      <Card title="Product One" subtitle="Product One Description" buttonTitle="Remove Item" price="$1" />
       <Input
         value={creditCardNumber}
         onChangeText={setCreditCardNumber}
@@ -29,7 +26,7 @@ const CheckoutScreen = () => {
         label="Credit Card"
       />
       <Button icon="cart-arrow-down" mode="contained" onPress={() => dispatch(increment())}>
-        REMOVE ITEM
+        ORDER
       </Button>
     </Screen>
   );

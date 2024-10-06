@@ -7,8 +7,6 @@ import * as React from 'react';
 import store from './src/redux/store';
 import Navigator from './src/Navigator';
 
-const action = (type) => store.dispatch({ type });
-
 const theme = {
   ...MD3LightTheme, // or MD3DarkTheme
   roundness: 2,
@@ -27,7 +25,7 @@ const App = () => {
         <PaperProvider theme={theme}>
           {/* eslint-disable-next-line react/style-prop-object */}
           <StatusBar style="auto" />
-          <Navigator action={action} />
+          <Navigator />
         </PaperProvider>
       </Provider>
     </SafeAreaProvider>

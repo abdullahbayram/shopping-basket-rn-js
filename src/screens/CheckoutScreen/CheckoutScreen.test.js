@@ -18,12 +18,12 @@ describe('CheckoutScreen', () => {
       </Provider>,
     );
 
-    expect(screen.getByText('Checkout')).toBeTruthy();
     expect(screen.getByText('Items in the basket: 0')).toBeTruthy();
     expect(screen.getAllByText('Credit Card').length).toBe(2); // active and inactive text
     expect(screen.getByText('Product One')).toBeTruthy();
     expect(screen.getByText('Product One Description')).toBeTruthy();
-    expect(screen.getByText('REMOVE ITEM')).toBeTruthy();
+    expect(screen.getByText('Remove Item')).toBeTruthy();
+    expect(screen.getByText('ORDER')).toBeTruthy();
   });
   it('should match the snapshot', () => {
     render(
