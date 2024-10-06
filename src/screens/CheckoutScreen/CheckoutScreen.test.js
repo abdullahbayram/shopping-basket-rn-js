@@ -9,7 +9,7 @@ const initialState = { basket: { items: sampleBasket } };
 describe('CheckoutScreen', () => {
   it('should render CheckoutScreen correctly', () => {
     renderInProvider(<CheckoutScreen />, { initialState });
-    expect(screen.getByText('Items in the basket: 5')).toBeTruthy();
+    expect(screen.getByText('Items in the basket: 14')).toBeTruthy();
     expect(screen.getAllByText('Credit Card').length).toBe(2); // active and inactive text
     expect(screen.getByText('Product Two')).toBeTruthy();
     expect(screen.getByText('Product One description (x3)')).toBeTruthy();

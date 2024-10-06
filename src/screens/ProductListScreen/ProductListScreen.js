@@ -8,9 +8,11 @@ import ProductCard from '../../components/molecules/ProductCard/ProductCard';
 import Screen from '../../components/templetes/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
+import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 
 const ProductListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const totalCount = useSelector(selectTotalItemCount);
   const items = useSelector((state) => state.basket.items);
   const { data: products, error, isLoading } = useGetProductsQuery();
 
@@ -38,7 +40,7 @@ const ProductListScreen = ({ navigation }) => {
 
   return (
     <Screen>
-      <Text variant="titleMedium">Items in the basket: {items.length}</Text>
+      <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
       <FlatList
         data={products}
         renderItem={({ item }) => (

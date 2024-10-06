@@ -9,13 +9,15 @@ import ProductCard from '../../components/molecules/ProductCard/ProductCard';
 import { removeItemFromBasket, clearBasket } from '../../redux/slices/basketSlice';
 import validateCreditCard from '../../utils/validateCreditCard'; //
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
+import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
 
 const CheckoutScreen = () => {
-  const items = useSelector((state) => state.basket?.items);
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const items = useSelector(selectBasketItems);
+  const totalCount = useSelector(selectTotalItemCount);
+  const total = useSelector(selectTotalPrice);
   const dispatch = useDispatch();
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
   const [isCreditCardValid, setIsCreditCardValid] = React.useState(false);
@@ -58,7 +60,7 @@ const CheckoutScreen = () => {
 
   return (
     <Screen>
-      <Text variant="titleMedium">Items in the basket: {items.length}</Text>
+      <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
 
       <FlatList
         data={items}

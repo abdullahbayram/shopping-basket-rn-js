@@ -17,19 +17,16 @@ const basketSlice = createSlice({
       } else {
         state.items.push({ ...product, quantity: 1 });
       }
-      state.totalCount += 1;
     },
     removeItemFromBasket: (state, action) => {
       const productId = action.payload;
       const existingItem = state.items.find((item) => item.sku === productId);
       if (existingItem) {
-        state.totalCount -= existingItem.quantity;
         state.items = state.items.filter((item) => item.sku !== productId);
       }
     },
     clearBasket: (state) => {
       state.items = [];
-      state.totalCount = 0;
     },
   },
 });
