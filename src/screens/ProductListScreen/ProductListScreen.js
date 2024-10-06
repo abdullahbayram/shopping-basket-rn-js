@@ -46,7 +46,7 @@ const ProductListScreen = ({ navigation }) => {
             title={item.name}
             subtitle={item.description}
             buttonTitle="Add to basket"
-            price={item.price}
+            price={`${item.price.toFixed(2)}`}
             onButtonPress={() => onAddToBasket(item)}
           />
         )}

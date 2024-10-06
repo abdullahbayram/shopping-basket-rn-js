@@ -27,8 +27,12 @@ const basketSlice = createSlice({
         state.items = state.items.filter((item) => item.sku !== productId);
       }
     },
+    clearBasket: (state) => {
+      state.items = [];
+      state.totalCount = 0;
+    },
   },
 });
 
-export const { addItemToBasket, removeItemFromBasket } = basketSlice.actions;
+export const { addItemToBasket, removeItemFromBasket, clearBasket } = basketSlice.actions;
 export default basketSlice.reducer;

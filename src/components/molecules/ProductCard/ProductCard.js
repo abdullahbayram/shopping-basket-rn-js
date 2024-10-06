@@ -21,7 +21,7 @@ ProductCard.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   onButtonPress: PropTypes.func.isRequired,
 };
 
