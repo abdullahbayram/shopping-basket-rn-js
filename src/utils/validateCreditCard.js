@@ -1,4 +1,4 @@
-// Thttps://gist.github.com/DiegoSalazar/4075533
+// https://gist.github.com/DiegoSalazar/4075533
 function validateCreditCard(value) {
   // Accept only digits, dashes or spaces
   if (value === '') return false;

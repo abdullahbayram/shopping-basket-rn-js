@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { Button, Text } from 'react-native-paper';
 import PropTypes from 'prop-types';
-import { Alert, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Card from '../../atoms/Card/Card';
 import Input from '../../atoms/Input/Input';
+import showToast from '../../../utils/showToast';
+import messages from '../../../constants/strings';
 
 const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange) => {
   const num = Number(e.nativeEvent.text);
   if (num >= 1 && num <= 15) {
     onQuantityChange(num);
   } else {
-    Alert.alert('Invalid Quantity', 'Quantity must be between 1 and 15.');
+    showToast(messages.invalidCQuantity);
     setQuantity(firstQuantity);
   }
 };
@@ -56,9 +58,9 @@ ProductCard.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
   onButtonPress: PropTypes.func.isRequired,
-  onQuantityChange: PropTypes.func.isRequired,
+  onQuantityChange: PropTypes.func,
+  quantity: PropTypes.number,
 };
 
 const styles = StyleSheet.create({

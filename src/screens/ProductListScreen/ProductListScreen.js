@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/atoms/Button/Button';
@@ -9,6 +9,9 @@ import Screen from '../../components/templetes/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
+import validateBasket from '../../utils/validateBasket';
+import showToast from '../../utils/showToast';
+import messages from '../../constants/strings';
 
 const ProductListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -17,13 +20,17 @@ const ProductListScreen = ({ navigation }) => {
   const { data: products, error, isLoading } = useGetProductsQuery();
 
   const onCheckoutPress = () => {
+    if (!validateBasket(items)) {
+      showToast(messages.basketError);
+      return;
+    }
     navigation.navigate('Checkout');
   };
 
   const onAddToBasket = (item) => {
     const existingItem = items.find((basketItem) => basketItem.sku === item.sku);
     if (existingItem && existingItem.quantity >= 15) {
-      Alert.alert('Limit Reached', 'You can only add a maximum of 15 items.');
+      showToast(messages.limitReached);
       return;
     }
     dispatch(addItemToBasket(item));
@@ -34,7 +41,6 @@ const ProductListScreen = ({ navigation }) => {
   }
 
   if (error) {
-    console.log(error);
     return <Text>Error loading products</Text>;
   }
 
@@ -55,7 +61,7 @@ const ProductListScreen = ({ navigation }) => {
         keyExtractor={(item) => item.sku}
       />
       <View style={styles.buttonContainer}>
-        <Button icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
+        <Button disabled={!validateBasket(items)} icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
           CHECKOUT
         </Button>
       </View>

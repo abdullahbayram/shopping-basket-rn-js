@@ -6,9 +6,15 @@ import { sampleBasket } from '../../../__tests__/mocks/handlers';
 
 const initialState = { basket: { items: sampleBasket } };
 
+const mockNavigation = {
+  navigate: jest.fn(),
+  goBack: jest.fn(),
+  setParams: jest.fn(),
+};
+
 describe('CheckoutScreen', () => {
   it('should render CheckoutScreen correctly', () => {
-    renderInProvider(<CheckoutScreen />, { initialState });
+    renderInProvider(<CheckoutScreen navigation={mockNavigation} />, { initialState });
     expect(screen.getByText('Items in the basket: 14')).toBeTruthy();
     expect(screen.getAllByText('Credit Card').length).toBe(2); // active and inactive text
     expect(screen.getByText('Product Two')).toBeTruthy();
@@ -17,11 +23,11 @@ describe('CheckoutScreen', () => {
     expect(screen.getByText('ORDER')).toBeTruthy();
   });
   it('should match the snapshot', () => {
-    renderInProvider(<CheckoutScreen />);
+    renderInProvider(<CheckoutScreen navigation={mockNavigation} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should update credit card input value', () => {
-    renderInProvider(<CheckoutScreen />, { initialState });
+    renderInProvider(<CheckoutScreen navigation={mockNavigation} />, { initialState });
 
     // const creditCardInput = screen.getByLabelText('Credit Card');
     // const creditCardInput = screen.getByPlaceholderText('Enter your credit card number');

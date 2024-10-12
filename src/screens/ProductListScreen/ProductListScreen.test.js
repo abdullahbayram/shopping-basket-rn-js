@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 import ProductListScreen from './ProductListScreen';
 import renderInProvider from '../../../__tests__/utils/renderInProvider';
+import { sampleBasket, sampleResponse } from '../../../__tests__/mocks/handlers';
 
 const mockOnPress = jest.fn();
 const mockNavigation = {
@@ -9,6 +10,8 @@ const mockNavigation = {
   goBack: jest.fn(),
   setParams: jest.fn(),
 };
+
+const initialState = { items: { items: sampleResponse }, basket: { items: sampleBasket } };
 
 describe('ProductListScreen', () => {
   it('should render the product list with the correct number of items', async () => {
@@ -24,7 +27,7 @@ describe('ProductListScreen', () => {
   });
 
   it('should call onPress when the checkout button is pressed', async () => {
-    renderInProvider(<ProductListScreen navigation={mockNavigation} onPress={mockOnPress} />);
+    renderInProvider(<ProductListScreen navigation={mockNavigation} onPress={mockOnPress} />, { initialState });
     let button;
     await waitFor(() => {
       button = screen.getByText('CHECKOUT');

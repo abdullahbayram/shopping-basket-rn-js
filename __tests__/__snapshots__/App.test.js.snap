@@ -2041,7 +2041,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                     collapsable={false}
                     style={
                       {
-                        "backgroundColor": "#3498db",
+                        "backgroundColor": "rgba(28, 27, 31, 0.12)",
                         "borderRadius": 10,
                         "shadowColor": "#000",
                         "shadowOffset": {
@@ -2058,7 +2058,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                       collapsable={false}
                       style={
                         {
-                          "backgroundColor": "#3498db",
+                          "backgroundColor": "rgba(28, 27, 31, 0.12)",
                           "borderColor": "transparent",
                           "borderRadius": 10,
                           "borderStyle": "solid",
@@ -2082,7 +2082,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                           {
                             "busy": undefined,
                             "checked": undefined,
-                            "disabled": false,
+                            "disabled": true,
                             "expanded": undefined,
                             "selected": undefined,
                           }
@@ -2156,7 +2156,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               style={
                                 [
                                   {
-                                    "color": "rgba(255, 255, 255, 1)",
+                                    "color": "rgba(28, 27, 31, 0.38)",
                                     "fontSize": 18,
                                   },
                                   [
@@ -2218,7 +2218,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                     undefined,
                                     false,
                                     {
-                                      "color": "rgba(255, 255, 255, 1)",
+                                      "color": "rgba(28, 27, 31, 0.38)",
                                       "fontFamily": "System",
                                       "fontSize": 14,
                                       "fontWeight": "500",

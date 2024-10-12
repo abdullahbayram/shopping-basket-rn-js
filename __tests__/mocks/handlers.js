@@ -73,7 +73,6 @@ export const sampleBasket = [
 
 export const handlers = [
   http.get('http://localhost:9001/products', () => {
-    console.warn('WELCOME');
     return HttpResponse.json(sampleResponse);
   }),
 

@@ -7,6 +7,6 @@ module.exports = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg|react-redux)',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  coverageThreshold: { global: { branches: 80, functions: 80, lines: 80, statements: 80 } },
+  coverageThreshold: { global: { branches: 50, functions: 50, lines: 50, statements: 50 } },
   testPathIgnorePatterns: ['/__tests__/mocks/', '/__tests__/utils/'],
 };

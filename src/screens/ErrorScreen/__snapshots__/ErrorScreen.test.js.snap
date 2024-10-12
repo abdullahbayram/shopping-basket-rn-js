@@ -45,7 +45,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
         ]
       }
     >
-      Unexpected Error
+      Snapshot Error Test
     </Text>
   </View>
 </View>

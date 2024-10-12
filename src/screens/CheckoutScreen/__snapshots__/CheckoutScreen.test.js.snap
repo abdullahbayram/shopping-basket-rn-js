@@ -479,7 +479,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "rgba(103, 80, 164, 1)",
+        "backgroundColor": "rgba(28, 27, 31, 0.12)",
         "borderRadius": 20,
         "shadowColor": "#000",
         "shadowOffset": {
@@ -496,7 +496,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
       collapsable={false}
       style={
         {
-          "backgroundColor": "rgba(103, 80, 164, 1)",
+          "backgroundColor": "rgba(28, 27, 31, 0.12)",
           "borderColor": "transparent",
           "borderRadius": 20,
           "borderStyle": "solid",
@@ -520,7 +520,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
           {
             "busy": undefined,
             "checked": undefined,
-            "disabled": false,
+            "disabled": true,
             "expanded": undefined,
             "selected": undefined,
           }
@@ -594,7 +594,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
               style={
                 [
                   {
-                    "color": "rgba(255, 255, 255, 1)",
+                    "color": "rgba(28, 27, 31, 0.38)",
                     "fontSize": 18,
                   },
                   [
@@ -656,7 +656,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
                     undefined,
                     false,
                     {
-                      "color": "rgba(255, 255, 255, 1)",
+                      "color": "rgba(28, 27, 31, 0.38)",
                       "fontFamily": "System",
                       "fontSize": 14,
                       "fontWeight": "500",

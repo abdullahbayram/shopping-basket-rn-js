@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
@@ -10,11 +10,14 @@ import { removeItemFromBasket, clearBasket, updateItemQuantity } from '../../red
 import validateCreditCard from '../../utils/validateCreditCard'; //
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
+import validateBasket from '../../utils/validateBasket';
+import showToast from '../../utils/showToast';
+import messages from '../../constants/strings';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
 
-const CheckoutScreen = () => {
+const CheckoutScreen = ({ navigation }) => {
   const items = useSelector(selectBasketItems);
   const totalCount = useSelector(selectTotalItemCount);
   const total = useSelector(selectTotalPrice);
@@ -22,31 +25,36 @@ const CheckoutScreen = () => {
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
   const [isCreditCardValid, setIsCreditCardValid] = React.useState(false);
 
-  const [placeOrder, { isLoading, isSuccess, isError, error }] = usePlaceOrderMutation();
+  const [placeOrder, { isLoading, isSuccess }] = usePlaceOrderMutation();
   const onRemoveItem = (item) => {
     dispatch(removeItemFromBasket(item.sku));
   };
 
   const onPlaceOrder = async () => {
+    if (!validateBasket(items)) {
+      showToast(messages.basketError);
+      return;
+    }
     if (!isCreditCardValid) {
-      Alert.alert('Invalid Credit Card', 'Please enter a valid credit card number.');
+      showToast(messages.invalidCard);
     } else {
       try {
-        const response = await placeOrder({
+        await placeOrder({
           basket: items,
           cardNumber: creditCardNumber,
         }).unwrap();
+
         if (isSuccess) {
-          Alert.alert('Order Success', response.msg);
           dispatch(clearBasket());
           setCreditCardNumber('');
-        }
-        if (isError) {
-          console.log(error);
-          Alert.alert('Error', error);
+          navigation.navigate('Success');
         }
       } catch (err) {
-        Alert.alert('Order Failed', err?.data || 'Failed to place order');
+        const errorMessage =
+          Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
+            ? err?.data?.errors[0].msg
+            : 'An unexpected error occurred. Please try again later.';
+        navigation.navigate('Error', { errorMessage }); // Navigate to ErrorScreen with error details
       }
     }
   };

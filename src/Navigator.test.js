@@ -2,6 +2,9 @@ import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 import Navigator from './Navigator';
 import renderInProvider from '../__tests__/utils/renderInProvider';
+import { sampleBasket } from '../__tests__/mocks/handlers';
+
+const initialState = { basket: { items: sampleBasket } };
 
 describe('Navigator Component', () => {
   it('should render ProductListScreen by default', async () => {
@@ -16,7 +19,7 @@ describe('Navigator Component', () => {
     expect(buttons.length).toBe(6);
   });
   it('should navigate to CheckoutScreen when CHECKOUT button is pressed', async () => {
-    renderInProvider(<Navigator />);
+    renderInProvider(<Navigator />, { initialState });
 
     const checkoutButton = await screen.findByText('CHECKOUT');
     fireEvent.press(checkoutButton);

@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import Text from '../../components/atoms/Text/Text';
 import Screen from '../../components/templetes/Screen';
 
 const ErrorScreen = () => {
+  const route = useRoute();
+  const { errorMessage = 'Unexpected Error' } = route.params || {};
   return (
     <Screen>
       <View style={[styles.container]}>
-        <Text>Unexpected Error</Text>
+        <Text>{errorMessage}</Text>
       </View>
     </Screen>
   );
