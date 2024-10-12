@@ -16,8 +16,15 @@ export const apiSlice = createApi({
         body: orderData,
       }),
     }),
+    validatePromoCode: builder.mutation({
+      query: (promoCode) => ({
+        url: 'promocode',
+        method: 'POST',
+        body: { promoCode },
+      }),
+    }),
   }),
 });
 
 // Export the hooks for usage in components
-export const { useGetProductsQuery, usePlaceOrderMutation } = apiSlice;
+export const { useGetProductsQuery, usePlaceOrderMutation, useValidatePromoCodeMutation } = apiSlice;
