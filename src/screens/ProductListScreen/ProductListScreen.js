@@ -49,15 +49,20 @@ const ProductListScreen = ({ navigation }) => {
       <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
       <FlatList
         data={products}
-        renderItem={({ item }) => (
-          <ProductCard
-            title={item.name}
-            subtitle={item.description}
-            buttonTitle="Add to basket"
-            price={`${item.price.toFixed(2)}`}
-            onButtonPress={() => onAddToBasket(item)}
-          />
-        )}
+        renderItem={({ item }) => {
+          const existingItem = items.find((basketItem) => basketItem.sku === item.sku);
+          const isDisabled = existingItem && existingItem.quantity >= 15;
+          return (
+            <ProductCard
+              title={item.name}
+              subtitle={item.description}
+              buttonTitle="Add to basket"
+              price={`${item.price.toFixed(2)}`}
+              onButtonPress={() => onAddToBasket(item)}
+              isButtonDisabled={isDisabled}
+            />
+          );
+        }}
         keyExtractor={(item) => item.sku}
       />
       <View style={styles.buttonContainer}>

@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Button, Text } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import Card from '../../atoms/Card/Card';
 import Input from '../../atoms/Input/Input';
+import Button from '../../atoms/Button/Button';
+import Text from '../../atoms/Text/Text';
+import HelperText from '../../atoms/HelperText/HelperText';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/strings';
 
@@ -33,7 +35,16 @@ const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firs
   </View>
 );
 
-const ProductCard = ({ buttonTitle, subtitle, title, price, onButtonPress, onQuantityChange, quantity }) => {
+const ProductCard = ({
+  buttonTitle,
+  subtitle,
+  title,
+  price,
+  onButtonPress,
+  onQuantityChange,
+  quantity,
+  isButtonDisabled,
+}) => {
   const [localQuantity, setLocalQuantity] = React.useState(quantity);
 
   return (
@@ -45,8 +56,16 @@ const ProductCard = ({ buttonTitle, subtitle, title, price, onButtonPress, onQua
         subtitle={subtitle}
       />
       <Card.Actions>
-        <Button onPress={onButtonPress}>{buttonTitle}</Button>
+        <Button onPress={onButtonPress} disabled={isButtonDisabled}>
+          {buttonTitle}
+        </Button>
       </Card.Actions>
+      {isButtonDisabled && (
+        <HelperText type="error" visible={isButtonDisabled}>
+          You reached the max quantity per product!
+        </HelperText>
+      )}
+      {!isButtonDisabled && <View style={styles.fixedView} />}
     </Card>
   );
 };
@@ -61,11 +80,13 @@ ProductCard.propTypes = {
   onButtonPress: PropTypes.func.isRequired,
   onQuantityChange: PropTypes.func,
   quantity: PropTypes.number,
+  isButtonDisabled: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
+    borderRadius: 10,
   },
   title: {
     flexDirection: 'row',
@@ -80,4 +101,5 @@ const styles = StyleSheet.create({
     height: 25,
     textAlign: 'center',
   },
+  fixedView: { height: 25 },
 });
