@@ -6,7 +6,8 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     {
       "backgroundColor": "#fff",
       "flex": 1,
-      "paddingHorizontal": 16,
+      "paddingLeft": 16,
+      "paddingRight": 9,
     }
   }
 >
@@ -37,6 +38,11 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     0
   </Text>
   <RCTScrollView
+    contentContainerStyle={
+      {
+        "paddingRight": 10,
+      }
+    }
     data={[]}
     getItem={[Function]}
     getItemCount={[Function]}
@@ -48,6 +54,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    refreshControl={null}
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={0.0001}

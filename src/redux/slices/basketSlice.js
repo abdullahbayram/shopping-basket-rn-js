@@ -27,6 +27,7 @@ const basketSlice = createSlice({
     },
     clearBasket: (state) => {
       state.items = [];
+      state.discount = 0;
     },
     setDiscount: (state, action) => {
       state.discount = action.payload;

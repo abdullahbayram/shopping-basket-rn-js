@@ -106,7 +106,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   {
                     "backgroundColor": "#fff",
                     "flex": 1,
-                    "paddingHorizontal": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 9,
                   }
                 }
               >
@@ -137,6 +138,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   0
                 </Text>
                 <RCTScrollView
+                  contentContainerStyle={
+                    {
+                      "paddingRight": 10,
+                    }
+                  }
                   data={
                     [
                       {
@@ -181,12 +187,19 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   onScroll={[Function]}
                   onScrollBeginDrag={[Function]}
                   onScrollEndDrag={[Function]}
+                  refreshControl={
+                    <RefreshControlMock
+                      onRefresh={[Function]}
+                      refreshing={false}
+                    />
+                  }
                   removeClippedSubviews={false}
                   renderItem={[Function]}
                   scrollEventThrottle={0.0001}
                   stickyHeaderIndices={[]}
                   viewabilityConfigCallbackPairs={[]}
                 >
+                  <RCTRefreshControl />
                   <View>
                     <View
                       onFocusCapture={[Function]}
@@ -331,7 +344,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             "minHeight": 20,
                                             "paddingRight": 16,
                                           },
-                                          undefined,
+                                          {
+                                            "color": "#666",
+                                            "fontSize": 14,
+                                            "marginVertical": 4,
+                                          },
                                         ],
                                       ],
                                     ]
@@ -345,6 +362,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   style={
                                     {
                                       "alignItems": "flex-end",
+                                      "fontSize": 18,
+                                      "fontWeight": "bold",
                                       "justifyContent": "space-between",
                                     }
                                   }
@@ -724,7 +743,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             "minHeight": 20,
                                             "paddingRight": 16,
                                           },
-                                          undefined,
+                                          {
+                                            "color": "#666",
+                                            "fontSize": 14,
+                                            "marginVertical": 4,
+                                          },
                                         ],
                                       ],
                                     ]
@@ -738,6 +761,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   style={
                                     {
                                       "alignItems": "flex-end",
+                                      "fontSize": 18,
+                                      "fontWeight": "bold",
                                       "justifyContent": "space-between",
                                     }
                                   }
@@ -1117,7 +1142,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             "minHeight": 20,
                                             "paddingRight": 16,
                                           },
-                                          undefined,
+                                          {
+                                            "color": "#666",
+                                            "fontSize": 14,
+                                            "marginVertical": 4,
+                                          },
                                         ],
                                       ],
                                     ]
@@ -1131,6 +1160,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   style={
                                     {
                                       "alignItems": "flex-end",
+                                      "fontSize": 18,
+                                      "fontWeight": "bold",
                                       "justifyContent": "space-between",
                                     }
                                   }
@@ -1510,7 +1541,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             "minHeight": 20,
                                             "paddingRight": 16,
                                           },
-                                          undefined,
+                                          {
+                                            "color": "#666",
+                                            "fontSize": 14,
+                                            "marginVertical": 4,
+                                          },
                                         ],
                                       ],
                                     ]
@@ -1524,6 +1559,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   style={
                                     {
                                       "alignItems": "flex-end",
+                                      "fontSize": 18,
+                                      "fontWeight": "bold",
                                       "justifyContent": "space-between",
                                     }
                                   }
@@ -1903,7 +1940,11 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             "minHeight": 20,
                                             "paddingRight": 16,
                                           },
-                                          undefined,
+                                          {
+                                            "color": "#666",
+                                            "fontSize": 14,
+                                            "marginVertical": 4,
+                                          },
                                         ],
                                       ],
                                     ]
@@ -1917,6 +1958,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   style={
                                     {
                                       "alignItems": "flex-end",
+                                      "fontSize": 18,
+                                      "fontWeight": "bold",
                                       "justifyContent": "space-between",
                                     }
                                   }

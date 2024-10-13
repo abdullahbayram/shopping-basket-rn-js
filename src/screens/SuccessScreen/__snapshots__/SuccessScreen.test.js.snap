@@ -6,7 +6,8 @@ exports[`SuccessScreen Component should match the snapshot 1`] = `
     {
       "backgroundColor": "#fff",
       "flex": 1,
-      "paddingHorizontal": 16,
+      "paddingLeft": 16,
+      "paddingRight": 9,
     }
   }
 >

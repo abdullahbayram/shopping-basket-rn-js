@@ -14,7 +14,7 @@ const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange) => {
   if (num >= 1 && num <= 15) {
     onQuantityChange(num);
   } else {
-    showToast(messages.invalidCQuantity);
+    showToast(messages.invalidQuantity);
     setQuantity(firstQuantity);
   }
 };
@@ -54,6 +54,7 @@ const ProductCard = ({
         title={title}
         right={() => renderRightContent(price, localQuantity, setLocalQuantity, onQuantityChange, quantity)}
         subtitle={subtitle}
+        subtitleStyle={styles.subtitle}
       />
       <Card.Actions>
         <Button onPress={onButtonPress} disabled={isButtonDisabled}>
@@ -69,8 +70,6 @@ const ProductCard = ({
     </Card>
   );
 };
-
-export default ProductCard;
 
 ProductCard.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
@@ -95,11 +94,20 @@ const styles = StyleSheet.create({
   row: {
     alignItems: 'flex-end',
     justifyContent: 'space-between',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   quantityInput: {
     width: 40,
     height: 25,
     textAlign: 'center',
   },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+    marginVertical: 4,
+  },
   fixedView: { height: 25 },
 });
+
+export default ProductCard;
