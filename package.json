@@ -1,7 +1,7 @@
 {
   "name": "shopping-basket",
   "version": "1.0.0",
-  "main": "expo/AppEntry.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -29,7 +29,8 @@
     "list-ios": "xcrun simctl list devices",
     "check:husky": "ls -l .husky/",
     "clear-npm": "npm cache clean",
-    "clear-npm-force": "npm cache clean --force"
+    "clear-npm-force": "npm cache clean --force",
+    "cross-env": "npx cross-env NODE_ENV=development expo start -c"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
@@ -54,6 +55,7 @@
     "@commitlint/config-conventional": "^19.5.0",
     "@testing-library/react-native": "^12.7.2",
     "@types/jest": "^29.5.13",
+    "@welldone-software/why-did-you-render": "^8.0.3",
     "babel-jest": "^29.7.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",

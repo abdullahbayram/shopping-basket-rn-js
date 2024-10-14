@@ -24,7 +24,7 @@ const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firs
     {onQuantityChange && (
       <Input
         style={styles.quantityInput}
-        value={quantity.toString()}
+        value={quantity ? quantity.toString() : ''}
         keyboardType="numeric"
         onChangeText={(text) => setQuantity(Number(text))}
         onEndEditing={(e) => handleEndEditing(e, firstQuantity, setQuantity, onQuantityChange)}
@@ -71,6 +71,10 @@ const ProductCard = ({
   );
 };
 
+ProductCard.whyDidYouRender = true;
+
+export default ProductCard;
+
 ProductCard.propTypes = {
   buttonTitle: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
@@ -109,5 +113,3 @@ const styles = StyleSheet.create({
   },
   fixedView: { height: 25 },
 });
-
-export default ProductCard;
