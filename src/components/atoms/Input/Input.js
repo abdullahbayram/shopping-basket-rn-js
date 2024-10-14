@@ -25,7 +25,7 @@ Input.propTypes = {
   onEndEditing: PropTypes.func,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   maxLength: PropTypes.oneOfType([PropTypes.number]),
-  style: PropTypes.oneOfType([PropTypes.object]),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 

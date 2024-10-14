@@ -12,6 +12,7 @@ import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
 import ProductList from '../../components/molecules/ProductList/ProductList';
+import HelperText from '../../components/atoms/HelperText/HelperText';
 
 const ProductListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -40,13 +41,15 @@ const ProductListScreen = ({ navigation }) => {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
-  if (error) {
-    return <Text>Error loading products</Text>;
-  }
-
   return (
     <Screen>
-      <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
+      {error ? (
+        <HelperText style={styles.errorText} type="error">
+          Error loading products. Pull to refresh
+        </HelperText>
+      ) : (
+        <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
+      )}
       <ProductList products={products} items={items} onAddOrRemoveItem={onAddToBasket} refetch={refetch} />
       <View style={styles.buttonContainer}>
         <Button disabled={!validateBasket(items)} icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
@@ -58,9 +61,11 @@ const ProductListScreen = ({ navigation }) => {
 };
 
 export default ProductListScreen;
+ProductListScreen.whyDidYouRender = true;
 
 const styles = StyleSheet.create({
   buttonContainer: {
     height: 100,
   },
+  errorText: { alignSelf: 'center' },
 });
