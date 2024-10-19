@@ -5,6 +5,8 @@ if (__DEV__ && process.env.NODE_ENV !== 'test') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   whyDidYouRender(React, {
     trackAllPureComponents: true,
+    collapseGroups: true,
+    exclude: [/Pressable/, /VirtualizedList/],
   });
 
   console.log('whyDidYouRender enabled');
