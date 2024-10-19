@@ -16,6 +16,7 @@ import ProductList from '../../components/molecules/ProductList/ProductList';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
+const DEFAULT_ERROR_MESSAGE = 'An unexpected error occurred. Please try again later.';
 
 const CheckoutScreen = ({ navigation }) => {
   const items = useSelector(selectBasketItems);
@@ -26,7 +27,7 @@ const CheckoutScreen = ({ navigation }) => {
   const [isCreditCardValid, setIsCreditCardValid] = React.useState(false);
   const total = useSelector(selectTotalPrice);
 
-  const [placeOrder, { isLoading, isSuccess }] = usePlaceOrderMutation();
+  const [placeOrder, { isLoading }] = usePlaceOrderMutation();
   const [validatePromoCode] = useValidatePromoCodeMutation();
 
   const onRemoveItem = (item) => {
@@ -45,19 +46,26 @@ const CheckoutScreen = ({ navigation }) => {
         await placeOrder({
           basket: items,
           cardNumber: creditCardNumber,
-        }).unwrap();
-
-        if (isSuccess) {
-          dispatch(clearBasket());
-          setCreditCardNumber('');
-          setPromoCode('');
-          navigation.navigate('Success');
-        }
+        })
+          .unwrap()
+          .then((response) => {
+            if (response) {
+              dispatch(clearBasket());
+              setCreditCardNumber('');
+              setPromoCode('');
+              navigation.navigate('Success');
+            }
+          })
+          .catch((err) => {
+            console.log('err', err);
+            const errorMessage =
+              Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
+                ? err?.data?.errors[0].msg
+                : DEFAULT_ERROR_MESSAGE;
+            navigation.navigate('Error', { errorMessage });
+          });
       } catch (err) {
-        const errorMessage =
-          Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
-            ? err?.data?.errors[0].msg
-            : 'An unexpected error occurred. Please try again later.';
+        const errorMessage = DEFAULT_ERROR_MESSAGE;
         navigation.navigate('Error', { errorMessage });
       }
     }

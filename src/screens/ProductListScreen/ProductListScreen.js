@@ -50,7 +50,13 @@ const ProductListScreen = ({ navigation }) => {
       ) : (
         <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
       )}
-      <ProductList products={products} items={items} onAddOrRemoveItem={onAddToBasket} refetch={refetch} />
+      <ProductList
+        products={products}
+        items={items}
+        onAddOrRemoveItem={onAddToBasket}
+        refetch={refetch}
+        isCheckout={false}
+      />
       <View style={styles.buttonContainer}>
         <Button disabled={!validateBasket(items)} icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
           CHECKOUT

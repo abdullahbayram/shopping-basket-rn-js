@@ -75,7 +75,7 @@ ProductCard.propTypes = {
   isCheckout: PropTypes.bool.isRequired,
   product: PropTypes.shape({
     sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    quantity: PropTypes.number.isRequired,
+    quantity: PropTypes.number,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
