@@ -12,13 +12,10 @@ const ProductList = ({ products, items, onAddOrRemoveItem, refetch, isCheckout, 
       // Simply passing the inline function without wrapping it in another useCallback
       return (
         <ProductCard
-          title={item.name}
-          subtitle={isCheckout ? `${item.description} (x${item.quantity})` : item.description}
-          price={(item.price * (isCheckout ? item.quantity : 1)).toFixed(2)}
-          buttonTitle={isCheckout ? 'Remove Item' : 'Add to basket'}
+          product={item}
+          isCheckout={isCheckout}
           onButtonPress={() => onAddOrRemoveItem(item)}
           isButtonDisabled={isDisabled}
-          quantity={isCheckout ? item.quantity : undefined}
           onQuantityChange={onQuantityChange}
         />
       );

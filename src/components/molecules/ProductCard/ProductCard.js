@@ -9,17 +9,17 @@ import HelperText from '../../atoms/HelperText/HelperText';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/strings';
 
-const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange) => {
+const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange, product) => {
   const num = Number(e.nativeEvent.text);
   if (num >= 1 && num <= 15) {
-    onQuantityChange(num);
+    onQuantityChange(product, num);
   } else {
     showToast(messages.invalidQuantity);
     setQuantity(firstQuantity);
   }
 };
 
-const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firstQuantity) => (
+const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firstQuantity, product) => (
   <View style={styles.row}>
     {onQuantityChange && (
       <Input
@@ -27,7 +27,7 @@ const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firs
         value={quantity ? quantity.toString() : ''}
         keyboardType="numeric"
         onChangeText={(text) => setQuantity(Number(text))}
-        onEndEditing={(e) => handleEndEditing(e, firstQuantity, setQuantity, onQuantityChange)}
+        onEndEditing={(e) => handleEndEditing(e, firstQuantity, setQuantity, onQuantityChange, product)}
         maxLength={2}
       />
     )}
@@ -35,24 +35,20 @@ const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firs
   </View>
 );
 
-const ProductCard = ({
-  buttonTitle,
-  subtitle,
-  title,
-  price,
-  onButtonPress,
-  onQuantityChange,
-  quantity,
-  isButtonDisabled,
-}) => {
-  const [localQuantity, setLocalQuantity] = React.useState(quantity);
+const ProductCard = ({ product, isCheckout, onButtonPress, onQuantityChange, isButtonDisabled }) => {
+  const [localQuantity, setLocalQuantity] = React.useState(isCheckout ? product.quantity : undefined);
+  const title = product.name;
+  const subtitle = isCheckout ? `${product.description} (x${product.quantity})` : product.description;
+  const price = (product.price * (isCheckout ? product.quantity : 1)).toFixed(2);
+  const quantity = isCheckout ? product.quantity : localQuantity;
+  const buttonTitle = isCheckout ? 'Remove Item' : 'Add to basket';
 
   return (
     <Card style={styles.container}>
       <Card.Title
         style={styles.title}
         title={title}
-        right={() => renderRightContent(price, localQuantity, setLocalQuantity, onQuantityChange, quantity)}
+        right={() => renderRightContent(price, localQuantity, setLocalQuantity, onQuantityChange, quantity, product)}
         subtitle={subtitle}
         subtitleStyle={styles.subtitle}
       />
@@ -76,13 +72,16 @@ ProductCard.whyDidYouRender = true;
 export default ProductCard;
 
 ProductCard.propTypes = {
-  buttonTitle: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  isCheckout: PropTypes.bool.isRequired,
+  product: PropTypes.shape({
+    sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    quantity: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
   onButtonPress: PropTypes.func.isRequired,
   onQuantityChange: PropTypes.func,
-  quantity: PropTypes.number,
   isButtonDisabled: PropTypes.bool,
 };
 
