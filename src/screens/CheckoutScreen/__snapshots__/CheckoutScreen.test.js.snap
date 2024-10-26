@@ -30,7 +30,9 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
             "letterSpacing": 0.15,
             "lineHeight": 24,
           },
-          undefined,
+          {
+            "color": "rgba(125, 82, 96, 1)",
+          },
         ],
       ]
     }
@@ -60,6 +62,11 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     renderItem={[Function]}
     scrollEventThrottle={0.0001}
     stickyHeaderIndices={[]}
+    style={
+      {
+        "marginTop": 7,
+      }
+    }
     viewabilityConfigCallbackPairs={[]}
   >
     <View />
@@ -89,7 +96,9 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
               "letterSpacing": 0.15,
               "lineHeight": 24,
             },
-            undefined,
+            {
+              "color": "rgba(125, 82, 96, 1)",
+            },
           ],
         ]
       }
@@ -493,7 +502,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
       collapsable={false}
       style={
         {
-          "backgroundColor": "rgba(103, 80, 164, 1)",
+          "backgroundColor": "rgba(98, 91, 113, 1)",
           "borderRadius": 20,
           "shadowColor": "#000",
           "shadowOffset": {
@@ -510,7 +519,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(103, 80, 164, 1)",
+            "backgroundColor": "rgba(98, 91, 113, 1)",
             "borderColor": "transparent",
             "borderRadius": 20,
             "borderStyle": "solid",
@@ -608,7 +617,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
                 style={
                   [
                     {
-                      "color": "rgba(255, 255, 255, 1)",
+                      "color": "rgba(125, 82, 96, 1)",
                       "fontSize": 18,
                     },
                     [
@@ -670,7 +679,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
                       undefined,
                       false,
                       {
-                        "color": "rgba(255, 255, 255, 1)",
+                        "color": "rgba(125, 82, 96, 1)",
                         "fontFamily": "System",
                         "fontSize": 14,
                         "fontWeight": "500",

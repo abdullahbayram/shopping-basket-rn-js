@@ -15,8 +15,8 @@ const theme = {
   colors: {
     ...MD3LightTheme.colors,
     primary: '#3498db',
-    secondary: '#f1c40f',
-    tertiary: '#a1b2c3',
+    secondary: '#FED034',
+    tertiary: '#34300F',
   },
 };
 

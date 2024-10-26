@@ -35,6 +35,7 @@ const ProductList = ({ products, items, onAddOrRemoveItem, refetch, isCheckout, 
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       refreshControl={refreshControl}
+      style={styles.flatList}
       contentContainerStyle={styles.flatListPadding}
     />
   );
@@ -67,6 +68,9 @@ ProductList.propTypes = {
 const styles = StyleSheet.create({
   flatListPadding: {
     paddingRight: 10,
+  },
+  flatList: {
+    marginTop: 7,
   },
 });
 

@@ -1,12 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Button as PaperButton } from 'react-native-paper';
+import { Button as PaperButton, useTheme } from 'react-native-paper';
 
-const Button = ({ children, onPress, icon = '', mode = 'contained', disabled = false }) => (
-  <PaperButton onPress={onPress} icon={icon} mode={mode} disabled={disabled}>
-    {children}
-  </PaperButton>
-);
+const Button = ({ children, onPress, icon = '', mode = 'outlined', disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <PaperButton
+      onPress={onPress}
+      textColor={theme.colors.tertiary}
+      buttonColor={theme.colors.secondary}
+      icon={icon}
+      mode={mode}
+      disabled={disabled}
+    >
+      {children}
+    </PaperButton>
+  );
+};
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

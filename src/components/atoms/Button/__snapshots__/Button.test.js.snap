@@ -5,7 +5,7 @@ exports[`<Button /> matches the snapshot 1`] = `
   collapsable={false}
   style={
     {
-      "backgroundColor": "transparent",
+      "backgroundColor": "rgba(98, 91, 113, 1)",
       "borderRadius": 20,
       "shadowColor": "#000",
       "shadowOffset": {
@@ -22,7 +22,7 @@ exports[`<Button /> matches the snapshot 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "transparent",
+        "backgroundColor": "rgba(98, 91, 113, 1)",
         "borderColor": "rgba(121, 116, 126, 1)",
         "borderRadius": 20,
         "borderStyle": "solid",
@@ -147,7 +147,7 @@ exports[`<Button /> matches the snapshot 1`] = `
                   undefined,
                   false,
                   {
-                    "color": "rgba(103, 80, 164, 1)",
+                    "color": "rgba(125, 82, 96, 1)",
                     "fontFamily": "System",
                     "fontSize": 14,
                     "fontWeight": "500",
@@ -174,7 +174,7 @@ exports[`<Button /> matches the snapshot(defaultProps) 1`] = `
   collapsable={false}
   style={
     {
-      "backgroundColor": "rgba(103, 80, 164, 1)",
+      "backgroundColor": "rgba(98, 91, 113, 1)",
       "borderRadius": 20,
       "shadowColor": "#000",
       "shadowOffset": {
@@ -191,11 +191,11 @@ exports[`<Button /> matches the snapshot(defaultProps) 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "rgba(103, 80, 164, 1)",
-        "borderColor": "transparent",
+        "backgroundColor": "rgba(98, 91, 113, 1)",
+        "borderColor": "rgba(121, 116, 126, 1)",
         "borderRadius": 20,
         "borderStyle": "solid",
-        "borderWidth": 0,
+        "borderWidth": 1,
         "flex": undefined,
         "minWidth": 64,
         "shadowColor": "#000",
@@ -298,7 +298,7 @@ exports[`<Button /> matches the snapshot(defaultProps) 1`] = `
                   undefined,
                   false,
                   {
-                    "color": "rgba(255, 255, 255, 1)",
+                    "color": "rgba(125, 82, 96, 1)",
                     "fontFamily": "System",
                     "fontSize": 14,
                     "fontWeight": "500",

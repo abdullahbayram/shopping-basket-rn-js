@@ -19,7 +19,9 @@ exports[`<Text /> matches the snapshot 1`] = `
           "letterSpacing": 0.25,
           "lineHeight": 20,
         },
-        undefined,
+        {
+          "color": "rgba(125, 82, 96, 1)",
+        },
       ],
     ]
   }
@@ -45,7 +47,9 @@ exports[`<Text /> renders with the provided variant 1`] = `
       "letterSpacing": 0,
       "lineHeight": 32,
     },
-    undefined,
+    {
+      "color": "rgba(125, 82, 96, 1)",
+    },
   ],
 ]
 `;
@@ -67,7 +71,9 @@ exports[`<Text /> uses the default variant when not provided 1`] = `
       "letterSpacing": 0.25,
       "lineHeight": 20,
     },
-    undefined,
+    {
+      "color": "rgba(125, 82, 96, 1)",
+    },
   ],
 ]
 `;
