@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingLeft: 16,
     paddingRight: 9,
+    paddingTop: 10,
   },
 });
 

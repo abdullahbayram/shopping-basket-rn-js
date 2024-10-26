@@ -78,6 +78,45 @@ exports[`<App /> Text renders correctly on App 1`] = `
           swipeDirection="horizontal"
         >
           <View
+            style={
+              [
+                {
+                  "overflow": "hidden",
+                },
+                null,
+                {
+                  "height": 44,
+                },
+              ]
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4285515996,
+                  4287354055,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                }
+              }
+            />
+          </View>
+          <View
             accessibilityElementsHidden={false}
             importantForAccessibility="auto"
             style={
@@ -108,6 +147,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                     "flex": 1,
                     "paddingLeft": 16,
                     "paddingRight": 9,
+                    "paddingTop": 10,
                   }
                 }
               >
@@ -2412,18 +2452,19 @@ exports[`<App /> Text renders correctly on App 1`] = `
           </View>
           <RNSScreenStackHeaderConfig
             backButtonInCustomView={false}
-            backTitleVisible={true}
-            backgroundColor="rgb(255, 255, 255)"
-            color="rgb(0, 122, 255)"
+            backTitleVisible={false}
+            backgroundColor="transparent"
+            color="#004f6b"
             direction="ltr"
             disableBackButtonMenu={false}
             hidden={false}
             hideBackButton={false}
+            hideShadow={true}
             largeTitleHideShadow={false}
             title="Product List"
-            titleColor="rgb(28, 28, 30)"
+            titleColor="#004f6b"
             topInsetEnabled={false}
-            translucent={false}
+            translucent={true}
           />
         </RNSScreen>
       </RNSScreenStack>
