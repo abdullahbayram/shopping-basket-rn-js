@@ -3,24 +3,17 @@ import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard/ProductCard';
 
-const ProductList = ({ products, items, onAddOrRemoveItem, refetch, isCheckout, onQuantityChange }) => {
+const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
   const renderItem = useCallback(
     ({ item }) => {
-      const existingItem = items.find((basketItem) => basketItem.sku === item.sku);
-      const isDisabled = !isCheckout && existingItem && existingItem.quantity >= 15;
+      const existingItem =
+        (!!basketItems && Array.isArray(basketItems) && basketItems.length > 0) ||
+        basketItems.find((basketItem) => basketItem.sku === item.sku);
+      const isDisabled = existingItem && existingItem.quantity >= 15;
 
-      // Simply passing the inline function without wrapping it in another useCallback
-      return (
-        <ProductCard
-          product={item}
-          isCheckout={isCheckout}
-          onButtonPress={() => onAddOrRemoveItem(item)}
-          isButtonDisabled={isDisabled}
-          onQuantityChange={onQuantityChange}
-        />
-      );
+      return <ProductCard product={item} onButtonPress={() => onAddItem(item)} isButtonDisabled={isDisabled} />;
     },
-    [isCheckout, items, onAddOrRemoveItem, onQuantityChange],
+    [basketItems, onAddItem],
   );
 
   const keyExtractor = useMemo((item) => item?.sku, []);
@@ -48,21 +41,18 @@ ProductList.propTypes = {
     PropTypes.shape({
       sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       name: PropTypes.string.isRequired,
-      description: PropTypes.string,
+      description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      quantity: PropTypes.number,
     }),
   ).isRequired,
-  items: PropTypes.arrayOf(
+  basketItems: PropTypes.arrayOf(
     PropTypes.shape({
       sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  onAddOrRemoveItem: PropTypes.func.isRequired,
-  refetch: PropTypes.func,
-  onQuantityChange: PropTypes.func,
-  isCheckout: PropTypes.bool,
+  onAddItem: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

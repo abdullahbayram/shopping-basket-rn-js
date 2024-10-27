@@ -2259,6 +2259,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   style={
                     {
                       "height": 100,
+                      "paddingTop": 10,
                     }
                   }
                 >

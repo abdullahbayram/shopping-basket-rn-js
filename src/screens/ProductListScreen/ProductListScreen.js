@@ -17,11 +17,11 @@ import HelperText from '../../components/atoms/HelperText/HelperText';
 const ProductListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const totalCount = useSelector(selectTotalItemCount);
-  const items = useSelector((state) => state.basket.items);
+  const basketItems = useSelector((state) => state.basket.items);
   const { data: products, error, isLoading, refetch } = useGetProductsQuery();
 
   const onCheckoutPress = () => {
-    if (!validateBasket(items)) {
+    if (!validateBasket(basketItems)) {
       showToast(messages.basketError);
       return;
     }
@@ -29,7 +29,7 @@ const ProductListScreen = ({ navigation }) => {
   };
 
   const onAddToBasket = (item) => {
-    const existingItem = items.find((basketItem) => basketItem.sku === item.sku);
+    const existingItem = basketItems.find((basketItem) => basketItem.sku === item.sku);
     if (existingItem && existingItem.quantity >= 15) {
       showToast(messages.limitReached);
       return;
@@ -50,15 +50,14 @@ const ProductListScreen = ({ navigation }) => {
       ) : (
         <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
       )}
-      <ProductList
-        products={products}
-        items={items}
-        onAddOrRemoveItem={onAddToBasket}
-        refetch={refetch}
-        isCheckout={false}
-      />
+      <ProductList products={products} basketItems={basketItems} onAddItem={onAddToBasket} refetch={refetch} />
       <View style={styles.buttonContainer}>
-        <Button disabled={!validateBasket(items)} icon="cart-arrow-down" mode="contained" onPress={onCheckoutPress}>
+        <Button
+          disabled={!validateBasket(basketItems)}
+          icon="cart-arrow-down"
+          mode="contained"
+          onPress={onCheckoutPress}
+        >
           CHECKOUT
         </Button>
       </View>
@@ -67,10 +66,12 @@ const ProductListScreen = ({ navigation }) => {
 };
 
 export default ProductListScreen;
+
 ProductListScreen.whyDidYouRender = true;
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    paddingTop: 10,
     height: 100,
   },
   errorText: { alignSelf: 'center' },

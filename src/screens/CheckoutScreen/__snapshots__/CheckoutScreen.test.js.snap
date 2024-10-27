@@ -57,7 +57,6 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
-    refreshControl={null}
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={0.0001}

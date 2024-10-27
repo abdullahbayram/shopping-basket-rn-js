@@ -12,14 +12,14 @@ import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../..
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
-import ProductList from '../../components/molecules/ProductList/ProductList';
+import CheckoutList from '../../components/molecules/CheckoutList/CheckoutList';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
 const DEFAULT_ERROR_MESSAGE = 'An unexpected error occurred. Please try again later.';
 
 const CheckoutScreen = ({ navigation }) => {
-  const items = useSelector(selectBasketItems);
+  const basketItems = useSelector(selectBasketItems);
   const totalCount = useSelector(selectTotalItemCount);
   const dispatch = useDispatch();
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
@@ -35,7 +35,7 @@ const CheckoutScreen = ({ navigation }) => {
   };
 
   const onPlaceOrder = async () => {
-    if (!validateBasket(items)) {
+    if (!validateBasket(basketItems)) {
       showToast(messages.basketError);
       return;
     }
@@ -44,7 +44,7 @@ const CheckoutScreen = ({ navigation }) => {
     } else {
       try {
         await placeOrder({
-          basket: items,
+          basket: basketItems,
           cardNumber: creditCardNumber,
         })
           .unwrap()
@@ -97,12 +97,11 @@ const CheckoutScreen = ({ navigation }) => {
     <Screen>
       <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
 
-      <ProductList
-        products={items}
+      <CheckoutList
+        products={basketItems}
         onQuantityChange={onQuantityChange}
-        items={items}
-        onAddOrRemoveItem={onRemoveItem}
-        isCheckout
+        basketItems={basketItems}
+        onRemoveItem={onRemoveItem}
       />
 
       <View style={styles.totalContainer}>
@@ -137,7 +136,7 @@ const CheckoutScreen = ({ navigation }) => {
           icon="cart-arrow-down"
           mode="contained"
           onPress={onPlaceOrder}
-          disabled={items.length === 0 || isLoading}
+          disabled={basketItems.length === 0 || isLoading}
         >
           ORDER
         </Button>
