@@ -8,11 +8,9 @@ const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
     ({ item, index }) => {
       const existingItem =
         !!basketItems && Array.isArray(basketItems) && basketItems.length > 0
-          ? basketItems.find((basketItem) => basketItem.sku === item.sku)
+          ? basketItems.find((basketItem) => basketItem.id === item.id)
           : {};
       const isMaxQuantityPerProductReached = existingItem && existingItem.quantity >= 5;
-      console.log(isMaxQuantityPerProductReached, 'isButtonDisabled');
-      console.log(existingItem, 'existingItem');
 
       return (
         <ProductCard
@@ -26,7 +24,7 @@ const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
     [basketItems, onAddItem],
   );
 
-  const keyExtractor = useMemo((item) => item?.sku, []);
+  const keyExtractor = useMemo((item) => item?.id, []);
   const refreshControl = useMemo(
     () => (refetch ? <RefreshControl refreshing={false} onRefresh={refetch} /> : null),
     [refetch],
@@ -51,15 +49,15 @@ ProductList.whyDidYouRender = true;
 ProductList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
     }),
   ).isRequired,
   basketItems: PropTypes.arrayOf(
     PropTypes.shape({
-      sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,

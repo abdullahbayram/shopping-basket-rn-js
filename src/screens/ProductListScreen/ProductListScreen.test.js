@@ -14,16 +14,16 @@ const mockNavigation = {
 const initialState = { items: { items: sampleResponse }, basket: { items: sampleBasket } };
 
 describe('ProductListScreen', () => {
-  it('should render the product list with the correct number of items', async () => {
+  it('should render the first two items', async () => {
     renderInProvider(<ProductListScreen navigation={mockNavigation} onPress={mockOnPress} />);
 
     // expect(screen.getByText('Items in the basket: 0')).toBeTruthy();
 
     // Check that product titles are rendered
     await waitFor(() => {
-      expect(screen.getByText('Product One')).toBeTruthy();
+      expect(screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops')).toBeTruthy();
     });
-    expect(screen.getByText('Product Two')).toBeTruthy();
+    expect(screen.getByText('Mens Casual Premium Slim Fit T-Shirts ')).toBeTruthy();
   });
 
   it('should call onPress when the checkout button is pressed', async () => {

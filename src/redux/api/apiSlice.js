@@ -1,24 +1,24 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = 'http://localhost:9001/';
+const baseUrl = 'http://';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => 'products',
+      query: () => 'fakestoreapi.com/products',
     }),
     placeOrder: builder.mutation({
       query: (orderData) => ({
-        url: 'checkout',
+        url: 'localhost:9001/checkout',
         method: 'POST',
         body: orderData,
       }),
     }),
     validatePromoCode: builder.mutation({
       query: (promoCode) => ({
-        url: 'promocode',
+        url: 'localhost:9001/promocode',
         method: 'POST',
         body: { promoCode },
       }),

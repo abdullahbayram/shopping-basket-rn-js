@@ -16,7 +16,7 @@ describe('Navigator Component', () => {
       buttons = screen.getAllByRole('button');
     });
     expect(button).toBeTruthy();
-    expect(buttons.length).toBe(6);
+    expect(buttons.length).toBe(9);
   });
   it('should navigate to CheckoutScreen when CHECKOUT button is pressed', async () => {
     renderInProvider(<Navigator />, { initialState });

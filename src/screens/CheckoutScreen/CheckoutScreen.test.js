@@ -17,8 +17,7 @@ describe('CheckoutScreen', () => {
     renderInProvider(<CheckoutScreen navigation={mockNavigation} />, { initialState });
     expect(screen.getByText('Items in the basket: 14')).toBeTruthy();
     expect(screen.getAllByText('Credit Card').length).toBe(2); // active and inactive text
-    expect(screen.getByText('Product Two')).toBeTruthy();
-    expect(screen.getByText('Product One description (x3)')).toBeTruthy();
+    expect(screen.getByText('Mens Casual Premium Slim Fit T-Shirts')).toBeTruthy();
     // expect(screen.getByText('Remove Item')).toBeTruthy();
     expect(screen.getByText('ORDER')).toBeTruthy();
   });

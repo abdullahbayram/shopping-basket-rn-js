@@ -32,7 +32,7 @@ const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firs
 
 const CheckoutCard = ({ product, onButtonPress, onQuantityChange }) => {
   const [localQuantity, setLocalQuantity] = React.useState(product.quantity);
-  const title = product.name;
+  const { title } = product;
   const subtitle = `${product.description} (x${product.quantity})`;
   const price = (product.price * product.quantity).toFixed(2);
   const { quantity } = product;
@@ -59,10 +59,10 @@ export default CheckoutCard;
 
 CheckoutCard.propTypes = {
   product: PropTypes.shape({
-    sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     quantity: PropTypes.number,
     price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
   onButtonPress: PropTypes.func.isRequired,

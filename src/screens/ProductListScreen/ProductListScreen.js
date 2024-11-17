@@ -29,7 +29,7 @@ const ProductListScreen = ({ navigation }) => {
   };
 
   const onAddToBasket = (item) => {
-    const existingItem = basketItems.find((basketItem) => basketItem.sku === item.sku);
+    const existingItem = basketItems.find((basketItem) => basketItem.id === item.id);
     if (existingItem && existingItem.quantity >= 15) {
       showToast(messages.limitReached);
       return;

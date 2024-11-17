@@ -11,7 +11,7 @@ const basketSlice = createSlice({
   reducers: {
     addItemToBasket: (state, action) => {
       const product = action.payload;
-      const existingItem = state.items.find((item) => item.sku === product.sku);
+      const existingItem = state.items.find((item) => item.id === product.id);
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
@@ -20,9 +20,9 @@ const basketSlice = createSlice({
     },
     removeItemFromBasket: (state, action) => {
       const productId = action.payload;
-      const existingItem = state.items.find((item) => item.sku === productId);
+      const existingItem = state.items.find((item) => item.id === productId);
       if (existingItem) {
-        state.items = state.items.filter((item) => item.sku !== productId);
+        state.items = state.items.filter((item) => item.id !== productId);
       }
     },
     clearBasket: (state) => {
@@ -33,8 +33,8 @@ const basketSlice = createSlice({
       state.discount = action.payload;
     },
     updateItemQuantity: (state, action) => {
-      const { sku, quantity } = action.payload;
-      const existingItem = state.items.find((item) => item.sku === sku);
+      const { id, quantity } = action.payload;
+      const existingItem = state.items.find((item) => item.id === id);
       if (existingItem) {
         existingItem.quantity = quantity;
       }

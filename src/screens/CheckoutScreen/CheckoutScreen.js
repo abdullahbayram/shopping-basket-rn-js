@@ -31,7 +31,7 @@ const CheckoutScreen = ({ navigation }) => {
   const [validatePromoCode] = useValidatePromoCodeMutation();
 
   const onRemoveItem = (item) => {
-    dispatch(removeItemFromBasket(item.sku));
+    dispatch(removeItemFromBasket(item.id));
   };
 
   const onPlaceOrder = async () => {
@@ -86,7 +86,7 @@ const CheckoutScreen = ({ navigation }) => {
   };
 
   const onQuantityChange = (item, newQuantity) => {
-    dispatch(updateItemQuantity({ sku: item.sku, quantity: newQuantity }));
+    dispatch(updateItemQuantity({ id: item.id, quantity: newQuantity }));
   };
 
   React.useEffect(() => {

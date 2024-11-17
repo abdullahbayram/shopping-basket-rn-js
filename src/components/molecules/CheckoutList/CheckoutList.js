@@ -13,7 +13,7 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
     [onRemoveItem, onQuantityChange],
   );
 
-  const keyExtractor = useMemo((item) => item?.sku, []);
+  const keyExtractor = useMemo((item) => item?.id, []);
 
   return (
     <FlatList
@@ -31,8 +31,8 @@ CheckoutList.whyDidYouRender = true;
 CheckoutList.propTypes = {
   basketItems: PropTypes.arrayOf(
     PropTypes.shape({
-      sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired,

@@ -20,16 +20,15 @@ const generateCardMargin = (index) => {
 };
 
 const ProductCard = ({ product, onButtonPress, isMaxQuantityPerProductReached, index }) => {
-  const title = product.name;
-  // const subtitle = product.description;
+  const { title } = product;
   const { price } = product;
-  const randomImageX = 400 + Math.floor(Math.random() * 5);
-  const randomImageY = 300 + Math.floor(Math.random() * 5);
-  const randomRating = Math.floor(Math.random() * 5) + 1;
-  const stars = '★'.repeat(randomRating) + '☆'.repeat(5 - randomRating);
+  const rating = product.rating.rate;
+  const filledStars = Math.round((rating / 5) * 5); // Round to the nearest integer for stars
+  const stars = '★'.repeat(filledStars) + '☆'.repeat(5 - filledStars);
+
   return (
     <Card style={[styles.container, generateCardMargin(index)]}>
-      <Card.Cover source={{ uri: `https://picsum.photos/${randomImageX}/${randomImageY}` }} />
+      <Card.Cover source={{ uri: product.image }} />
       <Card.Title style={styles.title} title={title} subtitle={stars} subtitleStyle={styles.rating} />
       <View style={styles.feedbackAndPrice}>
         <Text style={styles.price}>€{price}</Text>
@@ -57,12 +56,16 @@ export default ProductCard;
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    sku: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    quantity: PropTypes.number,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, // ID can be number or string
+    title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    rating: PropTypes.number,
+    category: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    rating: PropTypes.shape({
+      rate: PropTypes.number.isRequired,
+      count: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
   onButtonPress: PropTypes.func.isRequired,
   isMaxQuantityPerProductReached: PropTypes.bool.isRequired,
