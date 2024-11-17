@@ -42,9 +42,12 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
               "letterSpacing": 0.25,
               "lineHeight": 20,
             },
-            {
-              "color": "rgba(125, 82, 96, 1)",
-            },
+            [
+              {
+                "color": "rgba(125, 82, 96, 1)",
+              },
+              undefined,
+            ],
           ],
         ]
       }

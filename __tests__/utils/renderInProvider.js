@@ -3,7 +3,6 @@ import { render } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { setupApiStore } from './testUtil';
 import { apiSlice } from '../../src/redux/api/apiSlice';
-import counterSlice from '../../src/redux/slices/counterSlice';
 import basketSlice from '../../src/redux/slices/basketSlice';
 
 const renderInProvider = (
@@ -16,7 +15,7 @@ const renderInProvider = (
   } = {},
 ) => {
   // const refObj = setupApiStore(apiSlice, counterSlice, initialState);
-  const { store } = setupApiStore(apiSlice, { counter: counterSlice, basket: basketSlice }, initialState);
+  const { store } = setupApiStore(apiSlice, { basket: basketSlice }, initialState);
   // Wrapper component to provide the Redux store to the component under test
   const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
 
