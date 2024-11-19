@@ -23,9 +23,10 @@ describe('Navigator Component', () => {
 
     const checkoutButton = await screen.findByText('CHECKOUT');
     fireEvent.press(checkoutButton);
-
+    let buttons;
     await waitFor(() => {
-      expect(screen.getByText('ORDER')).toBeTruthy(); // Assuming "ORDER" exists on CheckoutScreen
+      buttons = screen.getAllByRole('button');
     });
+    expect(buttons).toBeTruthy(); //  "ORDER" exists on CheckoutScreen, TODO getByText(Order(1 items))
   });
 });

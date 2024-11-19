@@ -1,20 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Button from '../../atoms/Button/Button';
+import Text from '../../atoms/Text/Text';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/strings';
+import styles from './CheckoutCard.style';
 
-const CheckoutCard = ({ product, onQuantityChange, onButtonPress }) => {
+const CheckoutCard = ({ product, onQuantityChange, onRemoveButtonPress }) => {
   const [localQuantity, setLocalQuantity] = React.useState(product.quantity);
+
+  const isQuantityEqualsToOne = localQuantity === 1;
+  const leftButtonIcon = isQuantityEqualsToOne ? 'delete' : 'remove';
 
   const handleDecrease = () => {
     if (localQuantity > 1) {
       setLocalQuantity(localQuantity - 1);
       onQuantityChange(product, localQuantity - 1);
     } else {
-      showToast(messages.invalidQuantity);
+      onRemoveButtonPress();
     }
   };
 
@@ -47,7 +52,7 @@ const CheckoutCard = ({ product, onQuantityChange, onButtonPress }) => {
       <View style={styles.bottomSection}>
         <View style={styles.quantityContainer}>
           <Button onPress={handleDecrease} style={styles.quantityMinButton}>
-            <MaterialIcons name="remove" size={18} color="#FFA500" />
+            <MaterialIcons name={leftButtonIcon} size={18} color="#FFA500" />
           </Button>
           <View style={styles.quantityTextContainer}>
             <Text style={styles.quantityText}>{localQuantity}</Text>
@@ -56,7 +61,7 @@ const CheckoutCard = ({ product, onQuantityChange, onButtonPress }) => {
             <MaterialIcons name="add" size={18} color="#FFA500" />
           </Button>
         </View>
-        <Button onPress={onButtonPress} style={styles.transparentButton}>
+        <Button onPress={onRemoveButtonPress} style={styles.transparentButton}>
           Remove Item
         </Button>
       </View>
@@ -74,96 +79,7 @@ CheckoutCard.propTypes = {
     image: PropTypes.string.isRequired,
   }).isRequired,
   onQuantityChange: PropTypes.func.isRequired,
-  onButtonPress: PropTypes.func.isRequired,
+  onRemoveButtonPress: PropTypes.func.isRequired,
 };
 
 export default CheckoutCard;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F9F9F9', // Light gray background
-    marginVertical: 10,
-    borderRadius: 10,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4, // For Android shadow
-  },
-  topSection: {
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    resizeMode: 'cover',
-  },
-  infoContainer: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  bottomSection: {
-    flexDirection: 'row',
-    flex: 1,
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-  },
-  quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    // justifyContent: 'space-between',
-  },
-  quantityMinButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#FFA500',
-    borderRadius: 8,
-    maxWidth: 50,
-  },
-  quantityPlusButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#FFA500',
-    borderRadius: 8,
-    maxWidth: 50,
-  },
-  quantityText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#000',
-  },
-  transparentButton: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#FFA500',
-    borderRadius: 20,
-    // paddingHorizontal: 20,
-  },
-  quantityTextContainer: {
-    width: 30,
-  },
-});

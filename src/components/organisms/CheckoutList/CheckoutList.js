@@ -7,7 +7,11 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   const renderItem = useCallback(
     ({ item }) => {
       return (
-        <CheckoutCard product={item} onButtonPress={() => onRemoveItem(item)} onQuantityChange={onQuantityChange} />
+        <CheckoutCard
+          product={item}
+          onRemoveButtonPress={() => onRemoveItem(item)}
+          onQuantityChange={onQuantityChange}
+        />
       );
     },
     [onRemoveItem, onQuantityChange],

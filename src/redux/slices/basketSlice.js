@@ -32,6 +32,9 @@ const basketSlice = createSlice({
     setDiscount: (state, action) => {
       state.discount = action.payload;
     },
+    clearDiscount: (state) => {
+      state.discount = 0;
+    },
     updateItemQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
@@ -42,6 +45,6 @@ const basketSlice = createSlice({
   },
 });
 
-export const { addItemToBasket, removeItemFromBasket, clearBasket, updateItemQuantity, setDiscount } =
+export const { addItemToBasket, removeItemFromBasket, clearBasket, clearDiscount, updateItemQuantity, setDiscount } =
   basketSlice.actions;
 export default basketSlice.reducer;

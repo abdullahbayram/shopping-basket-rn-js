@@ -8,13 +8,14 @@ import Text from '../../components/atoms/Text/Text';
 import Screen from '../../components/templetes/Screen/Screen';
 import Input from '../../components/molecules/Input/Input';
 import TextInput from '../../components/atoms/TextInput/TextInput';
-import { clearBasket } from '../../redux/slices/basketSlice';
+import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
 import validateCreditCard from '../../utils/validateCreditCard';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
+import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
@@ -27,6 +28,7 @@ const PaymentScreen = ({ navigation }) => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
       creditCardNumber: '',
@@ -62,10 +64,13 @@ const PaymentScreen = ({ navigation }) => {
         .then((response) => {
           if (response) {
             dispatch(clearBasket());
+            dispatch(clearDiscount());
+            reset();
             navigation.navigate('Success');
           }
         })
         .catch((err) => {
+          console.log(err);
           const errorMessage =
             Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
               ? err?.data?.errors[0].msg
@@ -74,12 +79,14 @@ const PaymentScreen = ({ navigation }) => {
         });
     } catch (err) {
       const errorMessage = DEFAULT_ERROR_MESSAGE;
+      console.log(err);
       navigation.navigate('Error', { errorMessage });
     }
   };
 
   return (
     <Screen>
+      <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
       <View style={styles.totalContainer}>
         <Text variant="titleMedium">Total: ${total.toFixed(2)}</Text>

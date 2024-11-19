@@ -14,6 +14,7 @@ import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
 import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';
+import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
 
 const CheckoutScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -34,7 +35,7 @@ const CheckoutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const total = useSelector(selectTotalPrice);
 
-  const [validatePromoCode] = useValidatePromoCodeMutation();
+  const [validatePromoCode, { isLoading }] = useValidatePromoCodeMutation();
 
   const onRemoveItem = (item) => {
     dispatch(removeItemFromBasket(item.id));
@@ -49,7 +50,6 @@ const CheckoutScreen = ({ navigation }) => {
   };
 
   const onApplyPromoCode = async (data) => {
-    console.log(data);
     try {
       const response = await validatePromoCode(data.promoCode).unwrap();
       if (response?.amount) {
@@ -59,6 +59,7 @@ const CheckoutScreen = ({ navigation }) => {
         showToast(messages.invalidPromo);
       }
     } catch (err) {
+      console.log(err);
       showToast(messages.promoError);
     }
   };
@@ -69,21 +70,19 @@ const CheckoutScreen = ({ navigation }) => {
 
   return (
     <Screen>
-      <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
-
-      <CheckoutList
-        products={basketItems}
-        onQuantityChange={onQuantityChange}
-        basketItems={basketItems}
-        onRemoveItem={onRemoveItem}
-      />
-
+      <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
         <Text variant="titleMedium">Total: ${total.toFixed(2)}</Text>
       </View>
 
-      <View style={styles.bottomContainer}>
-        <View>
+      <View style={styles.topContainer}>
+        <View style={styles.orderButtonContainer}>
+          <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmtpy}>
+            ORDER ({totalCount} items)
+          </Button>
+        </View>
+
+        <View style={styles.promoContainer}>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -109,11 +108,13 @@ const CheckoutScreen = ({ navigation }) => {
             APPLY PROMO CODE
           </Button>
         </View>
-
-        <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmtpy}>
-          ORDER
-        </Button>
       </View>
+      <CheckoutList
+        products={basketItems}
+        onQuantityChange={onQuantityChange}
+        basketItems={basketItems}
+        onRemoveItem={onRemoveItem}
+      />
     </Screen>
   );
 };
@@ -122,11 +123,15 @@ export default CheckoutScreen;
 
 const styles = StyleSheet.create({
   totalContainer: {
-    marginVertical: 16,
+    marginBottom: 7,
+    paddingLeft: 2,
   },
-  bottomContainer: {
-    height: 275,
+  topContainer: {
+    height: 200,
     justifyContent: 'space-between',
-    paddingBottom: 30,
   },
+  orderButtonContainer: {
+    flex: 4,
+  },
+  promoContainer: { flex: 6 },
 });
