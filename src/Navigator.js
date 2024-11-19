@@ -7,6 +7,7 @@ import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
 import ErrorScreen from './screens/ErrorScreen/ErrorScreen';
 import SuccessScreen from './screens/SuccessScreen/SuccessScreen';
+import PaymentScreen from './screens/PaymentScreen/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const Navigator = () => {
       <Stack.Navigator initialRouteName="Product List">
         <Stack.Screen options={screenOptions} name="Product List" component={ProductListScreen} />
         <Stack.Screen options={screenOptions} name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen options={screenOptions} name="Payment" component={PaymentScreen} />
         <Stack.Screen name="Error" component={ErrorScreen} />
         <Stack.Screen name="Success" component={SuccessScreen} />
       </Stack.Navigator>

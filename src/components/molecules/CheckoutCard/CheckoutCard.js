@@ -9,7 +9,7 @@ import messages from '../../../constants/strings';
 
 const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange, product) => {
   const num = Number(e.nativeEvent.text);
-  if (num >= 1 && num <= 15) {
+  if (num >= 1 && num <= 5) {
     onQuantityChange(product, num);
   } else {
     showToast(messages.invalidQuantity);
