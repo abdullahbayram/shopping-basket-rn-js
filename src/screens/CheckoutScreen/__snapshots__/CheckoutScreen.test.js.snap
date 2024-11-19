@@ -474,7 +474,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
                   style={
                     [
                       {
-                        "color": "rgba(73, 69, 79, 1)",
+                        "color": "rgba(103, 80, 164, 1)",
                         "fontSize": 24,
                       },
                       [

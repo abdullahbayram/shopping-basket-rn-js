@@ -113,7 +113,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                 "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
-                "paddingRight": 56,
+                "paddingRight": 16,
                 "position": "absolute",
                 "textAlign": "left",
                 "top": 30,
@@ -151,7 +151,7 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
                 "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
-                "paddingRight": 56,
+                "paddingRight": 16,
                 "position": "absolute",
                 "textAlign": "left",
                 "top": 30,
@@ -207,15 +207,14 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
             "lineHeight": undefined,
             "minWidth": 65,
             "paddingLeft": 16,
-            "paddingRight": 56,
+            "paddingRight": 16,
             "textAlign": "left",
             "textAlignVertical": "center",
           },
           false,
-          {
-            "marginRight": 40,
-            "paddingRight": 16,
-          },
+          [
+            {},
+          ],
           undefined,
         ]
       }
@@ -223,164 +222,6 @@ exports[`<Input /> match the snapshot without an icon 1`] = `
       underlineColorAndroid="transparent"
       value="1234 5678 9012 3456"
     />
-  </View>
-  <View
-    style={
-      [
-        {
-          "alignItems": "center",
-          "height": 24,
-          "justifyContent": "center",
-          "position": "absolute",
-          "width": 24,
-        },
-        {
-          "right": 16,
-          "top": 16,
-        },
-      ]
-    }
-  >
-    <View
-      collapsable={false}
-      style={
-        {
-          "backgroundColor": "transparent",
-          "borderRadius": 20,
-          "height": 40,
-          "margin": 0,
-          "shadowColor": "#000",
-          "shadowOffset": {
-            "height": 0,
-            "width": 0,
-          },
-          "shadowOpacity": 0,
-          "shadowRadius": 0,
-          "width": 40,
-        }
-      }
-      testID="right-icon-adornment-container-outer-layer"
-    >
-      <View
-        collapsable={false}
-        style={
-          {
-            "backgroundColor": "transparent",
-            "borderColor": "rgba(121, 116, 126, 1)",
-            "borderRadius": 20,
-            "borderWidth": 0,
-            "elevation": 0,
-            "flex": 1,
-            "overflow": "hidden",
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 0,
-            "shadowRadius": 0,
-          }
-        }
-        testID="right-icon-adornment-container"
-      >
-        <View
-          accessibilityComponentType="button"
-          accessibilityRole="button"
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": false,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityTraits="button"
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          centered={true}
-          collapsable={false}
-          focusable={true}
-          hitSlop={
-            {
-              "bottom": 6,
-              "left": 6,
-              "right": 6,
-              "top": 6,
-            }
-          }
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            [
-              {
-                "overflow": "hidden",
-              },
-              [
-                {
-                  "alignItems": "center",
-                  "flexGrow": 1,
-                  "justifyContent": "center",
-                },
-                {
-                  "borderRadius": 20,
-                },
-              ],
-            ]
-          }
-          testID="right-icon-adornment"
-        >
-          <Text
-            accessibilityElementsHidden={true}
-            allowFontScaling={false}
-            importantForAccessibility="no-hide-descendants"
-            pointerEvents="none"
-            selectable={false}
-            style={
-              [
-                {
-                  "color": "rgba(73, 69, 79, 1)",
-                  "fontSize": 24,
-                },
-                [
-                  {
-                    "lineHeight": 24,
-                    "transform": [
-                      {
-                        "scaleX": 1,
-                      },
-                    ],
-                  },
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                ],
-                {
-                  "fontFamily": "material-community",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                {},
-              ]
-            }
-          />
-        </View>
-      </View>
-    </View>
   </View>
 </View>
 `;
@@ -498,7 +339,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                 "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
-                "paddingRight": 56,
+                "paddingRight": 16,
                 "position": "absolute",
                 "textAlign": "left",
                 "top": 30,
@@ -536,7 +377,7 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
                 "maxWidth": 97.33333333333333,
                 "opacity": 0,
                 "paddingLeft": 16,
-                "paddingRight": 56,
+                "paddingRight": 16,
                 "position": "absolute",
                 "textAlign": "left",
                 "top": 30,
@@ -592,15 +433,14 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
             "lineHeight": undefined,
             "minWidth": 65,
             "paddingLeft": 16,
-            "paddingRight": 56,
+            "paddingRight": 16,
             "textAlign": "left",
             "textAlignVertical": "center",
           },
           false,
-          {
-            "marginRight": 40,
-            "paddingRight": 16,
-          },
+          [
+            {},
+          ],
           undefined,
         ]
       }
@@ -608,131 +448,6 @@ exports[`<Input /> matches the snapshot with label and icon 1`] = `
       underlineColorAndroid="transparent"
       value="1234 5678 9012 3456"
     />
-  </View>
-  <View
-    style={
-      [
-        {
-          "alignItems": "center",
-          "height": 24,
-          "justifyContent": "center",
-          "position": "absolute",
-          "width": 24,
-        },
-        {
-          "right": 16,
-          "top": 16,
-        },
-      ]
-    }
-  >
-    <View
-      collapsable={false}
-      style={
-        {
-          "backgroundColor": "transparent",
-          "borderRadius": 20,
-          "height": 40,
-          "margin": 0,
-          "shadowColor": "#000",
-          "shadowOffset": {
-            "height": 0,
-            "width": 0,
-          },
-          "shadowOpacity": 0,
-          "shadowRadius": 0,
-          "width": 40,
-        }
-      }
-      testID="right-icon-adornment-container-outer-layer"
-    >
-      <View
-        collapsable={false}
-        style={
-          {
-            "backgroundColor": "transparent",
-            "borderColor": "rgba(121, 116, 126, 1)",
-            "borderRadius": 20,
-            "borderWidth": 0,
-            "elevation": 0,
-            "flex": 1,
-            "overflow": "hidden",
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 0,
-            "shadowRadius": 0,
-          }
-        }
-        testID="right-icon-adornment-container"
-      >
-        <View
-          accessibilityComponentType="button"
-          accessibilityRole="button"
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": false,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityTraits="button"
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          centered={true}
-          collapsable={false}
-          focusable={true}
-          hitSlop={
-            {
-              "bottom": 6,
-              "left": 6,
-              "right": 6,
-              "top": 6,
-            }
-          }
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            [
-              {
-                "overflow": "hidden",
-              },
-              [
-                {
-                  "alignItems": "center",
-                  "flexGrow": 1,
-                  "justifyContent": "center",
-                },
-                {
-                  "borderRadius": 20,
-                },
-              ],
-            ]
-          }
-          testID="right-icon-adornment"
-        >
-          <Text />
-        </View>
-      </View>
-    </View>
   </View>
 </View>
 `;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import Card from '../../atoms/Card/Card';
-import Input from '../../atoms/Input/Input';
+import Input from '../Input/Input';
 import Button from '../../atoms/Button/Button';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/strings';

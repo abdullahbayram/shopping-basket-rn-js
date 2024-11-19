@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import CheckoutCard from '../CheckoutCard/CheckoutCard';
+import CheckoutCard from '../../molecules/CheckoutCard/CheckoutCard';
 
 const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   const renderItem = useCallback(

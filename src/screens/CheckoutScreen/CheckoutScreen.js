@@ -1,20 +1,22 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { TextInput, useTheme } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
-import Screen from '../../components/templetes/Screen';
-import Input from '../../components/atoms/Input/Input';
+import Screen from '../../components/templetes/Screen/Screen';
+import Input from '../../components/molecules/Input/Input';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
-import CheckoutList from '../../components/molecules/CheckoutList/CheckoutList';
+import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';
 
 const CheckoutScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   const {
     control,
     handleSubmit,
@@ -25,8 +27,6 @@ const CheckoutScreen = ({ navigation }) => {
       promoCode: '',
     },
   });
-
-  console.log(errors, 'errors');
 
   const basketItems = useSelector(selectBasketItems);
   const isBasketEmtpy = basketItems.length === 0;
@@ -98,7 +98,7 @@ const CheckoutScreen = ({ navigation }) => {
                 label="Promo Code"
                 placeholder="Enter your promo code"
                 keyboardType="default"
-                icon="percent"
+                right={<TextInput.Icon icon="percent" color={errors.promoCode ? colors.error : colors.primary} />}
               />
             )}
             name="promoCode"

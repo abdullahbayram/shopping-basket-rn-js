@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
-import Screen from '../../components/templetes/Screen';
+import Screen from '../../components/templetes/Screen/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
-import ProductList from '../../components/molecules/ProductList/ProductList';
+import ProductList from '../../components/organisms/ProductList/ProductList';
 import HelperText from '../../components/atoms/HelperText/HelperText';
 
 const ProductListScreen = ({ navigation }) => {

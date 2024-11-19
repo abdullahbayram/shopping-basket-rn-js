@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Text from '../../components/atoms/Text/Text';
-import Screen from '../../components/templetes/Screen';
+import Screen from '../../components/templetes/Screen/Screen';
 
 const SuccessScreen = () => {
   return (
