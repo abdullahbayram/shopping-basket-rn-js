@@ -27,10 +27,11 @@ const PaymentScreen = ({ navigation }) => {
   } = useForm({
     defaultValues: {
       creditCardNumber: '',
+      cardholderName: '',
+      expirationDate: '',
+      cvv: '',
     },
   });
-
-  console.log(errors, 'errors');
 
   const basketItems = useSelector(selectBasketItems);
   const totalCount = useSelector(selectTotalItemCount);
@@ -42,7 +43,6 @@ const PaymentScreen = ({ navigation }) => {
   const [placeOrder, { isLoading }] = usePlaceOrderMutation();
 
   const onPlaceOrder = async (data) => {
-    console.log(data, 'onPlaceOrder');
     if (!validateBasket(basketItems)) {
       showToast(messages.basketError);
       return;
@@ -51,17 +51,18 @@ const PaymentScreen = ({ navigation }) => {
       await placeOrder({
         basket: basketItems,
         cardNumber: data.creditCardNumber,
+        cardholderName: data.cardholderName,
+        expirationDate: data.expirationDate,
+        cvv: data.cvv,
       })
         .unwrap()
         .then((response) => {
           if (response) {
             dispatch(clearBasket());
-            // TODO clear hook promo form and creditcard
             navigation.navigate('Success');
           }
         })
         .catch((err) => {
-          console.log('err', err);
           const errorMessage =
             Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
               ? err?.data?.errors[0].msg
@@ -81,14 +82,34 @@ const PaymentScreen = ({ navigation }) => {
         <Text variant="titleMedium">Total: ${total.toFixed(2)}</Text>
       </View>
 
-      <View style={styles.bottomContainer}>
+      <View style={styles.formContainer}>
+        {/* Cardholder Name */}
         <Controller
           control={control}
           rules={{
-            required: 'Credit card can not be empty',
+            required: 'Cardholder name is required',
+            minLength: { value: 3, message: 'Name must be at least 3 characters' },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Cardholder Name"
+              placeholder="Enter the name on your card"
+            />
+          )}
+          name="cardholderName"
+        />
+        {errors.cardholderName && <Text>{errors.cardholderName.message}</Text>}
+
+        <Controller
+          control={control}
+          rules={{
+            required: 'Credit card number is required',
             validate: {
               isExactLength: (value) => /^[0-9]{16}$/.test(value) || 'Credit card must be 16 digits',
-              isValidCreditCard: (value) => validateCreditCard(value) || 'Credit card number is invalid',
+              isValidCreditCard: (value) => validateCreditCard(value) || 'Invalid credit card number',
             },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -97,7 +118,7 @@ const PaymentScreen = ({ navigation }) => {
               onBlur={onBlur}
               onChangeText={onChange}
               icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
-              label="Credit Card"
+              label="Credit Card Number"
               placeholder="Enter your credit card number"
               maxLength={16}
               keyboardType="numeric"
@@ -107,6 +128,53 @@ const PaymentScreen = ({ navigation }) => {
         />
         {errors.creditCardNumber && <Text>{errors.creditCardNumber.message}</Text>}
 
+        <Controller
+          control={control}
+          rules={{
+            required: 'Expiration date is required',
+            pattern: {
+              value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
+              message: 'Invalid expiration date (MM/YY)',
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Expiration Date"
+              placeholder="MM/YY"
+              maxLength={5}
+              keyboardType="numeric"
+            />
+          )}
+          name="expirationDate"
+        />
+        {errors.expirationDate && <Text>{errors.expirationDate.message}</Text>}
+
+        <Controller
+          control={control}
+          rules={{
+            required: 'CVV is required',
+            minLength: { value: 3, message: 'CVV must be 3 digits' },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="CVV"
+              placeholder="CVV"
+              maxLength={3}
+              keyboardType="numeric"
+            />
+          )}
+          name="cvv"
+        />
+        {errors.cvv && <Text>{errors.cvv.message}</Text>}
+      </View>
+
+      <View style={styles.bottomContainer}>
         <Button
           icon="cart-arrow-down"
           mode="contained"
@@ -126,7 +194,12 @@ const styles = StyleSheet.create({
   totalContainer: {
     marginVertical: 16,
   },
+  formContainer: {
+    marginBottom: 16,
+  },
   bottomContainer: {
     height: 275,
+    justifyContent: 'flex-end',
+    paddingBottom: 30,
   },
 });

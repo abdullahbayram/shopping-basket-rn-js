@@ -35,6 +35,12 @@
     }
   ],
   "rules": {
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "exceptions": ["Input"]
+      }
+    ],
     "no-param-reassign": [
       "error",
       {
