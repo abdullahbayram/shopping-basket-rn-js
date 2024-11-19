@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
+import { useTheme } from 'react-native-paper';
 import Button from '../../components/atoms/Button/Button';
 import Text from '../../components/atoms/Text/Text';
 import Screen from '../../components/templetes/Screen/Screen';
 import Input from '../../components/molecules/Input/Input';
+import TextInput from '../../components/atoms/TextInput/TextInput';
 import { clearBasket } from '../../redux/slices/basketSlice';
 import validateCreditCard from '../../utils/validateCreditCard';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
@@ -19,6 +21,7 @@ const CREDIT_CARD = 'credit-card';
 const DEFAULT_ERROR_MESSAGE = 'An unexpected error occurred. Please try again later.';
 
 const PaymentScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   const {
     control,
     handleSubmit,
@@ -83,7 +86,6 @@ const PaymentScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.formContainer}>
-        {/* Cardholder Name */}
         <Controller
           control={control}
           rules={{
@@ -97,11 +99,17 @@ const PaymentScreen = ({ navigation }) => {
               onChangeText={onChange}
               label="Cardholder Name"
               placeholder="Enter the name on your card"
+              errorObject={errors.cardholderName}
+              right={
+                <TextInput.Icon
+                  icon={!errors.cardholderName ? 'account-check' : 'account'}
+                  color={errors.cardholderName ? colors.error : colors.primary}
+                />
+              }
             />
           )}
           name="cardholderName"
         />
-        {errors.cardholderName && <Text>{errors.cardholderName.message}</Text>}
 
         <Controller
           control={control}
@@ -117,16 +125,21 @@ const PaymentScreen = ({ navigation }) => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
               label="Credit Card Number"
               placeholder="Enter your credit card number"
               maxLength={16}
               keyboardType="numeric"
+              right={
+                <TextInput.Icon
+                  icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
+                  color={errors.creditCardNumber ? colors.error : colors.primary}
+                />
+              }
+              errorObject={errors.creditCardNumber}
             />
           )}
           name="creditCardNumber"
         />
-        {errors.creditCardNumber && <Text>{errors.creditCardNumber.message}</Text>}
 
         <Controller
           control={control}
@@ -146,11 +159,17 @@ const PaymentScreen = ({ navigation }) => {
               placeholder="MM/YY"
               maxLength={5}
               keyboardType="numeric"
+              errorObject={errors.expirationDate}
+              right={
+                <TextInput.Icon
+                  icon={!errors.expirationDate ? 'calendar-check' : 'calendar-alert'}
+                  color={errors.expirationDate ? colors.error : colors.primary}
+                />
+              }
             />
           )}
           name="expirationDate"
         />
-        {errors.expirationDate && <Text>{errors.expirationDate.message}</Text>}
 
         <Controller
           control={control}
@@ -167,11 +186,17 @@ const PaymentScreen = ({ navigation }) => {
               placeholder="CVV"
               maxLength={3}
               keyboardType="numeric"
+              errorObject={errors.cvv}
+              right={
+                <TextInput.Icon
+                  icon={!errors.cvv ? 'shield-check' : 'shield-alert'}
+                  color={errors.cvv ? colors.error : colors.primary}
+                />
+              }
             />
           )}
           name="cvv"
         />
-        {errors.cvv && <Text>{errors.cvv.message}</Text>}
       </View>
 
       <View style={styles.bottomContainer}>

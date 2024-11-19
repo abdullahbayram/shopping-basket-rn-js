@@ -17,6 +17,7 @@ const theme = {
     primary: '#3498db',
     secondary: '#FED034',
     tertiary: '#34300F',
+    error: '#FF6B6B',
   },
 };
 

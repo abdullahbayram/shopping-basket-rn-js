@@ -1,98 +1,169 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
-import Card from '../../atoms/Card/Card';
-import Input from '../Input/Input';
+import { StyleSheet, View, Image, Text } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import Button from '../../atoms/Button/Button';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/strings';
 
-const handleEndEditing = (e, firstQuantity, setQuantity, onQuantityChange, product) => {
-  const num = Number(e.nativeEvent.text);
-  if (num >= 1 && num <= 5) {
-    onQuantityChange(product, num);
-  } else {
-    showToast(messages.invalidQuantity);
-    setQuantity(firstQuantity);
-  }
-};
-
-const renderRightContent = (price, quantity, setQuantity, onQuantityChange, firstQuantity, product) => (
-  <View style={styles.row}>
-    <Input
-      style={styles.quantityInput}
-      value={quantity ? quantity.toString() : ''}
-      keyboardType="numeric"
-      onChangeText={(text) => setQuantity(Number(text))}
-      onEndEditing={(e) => handleEndEditing(e, firstQuantity, setQuantity, onQuantityChange, product)}
-      maxLength={2}
-    />
-  </View>
-);
-
-const CheckoutCard = ({ product, onButtonPress, onQuantityChange }) => {
+const CheckoutCard = ({ product, onQuantityChange, onButtonPress }) => {
   const [localQuantity, setLocalQuantity] = React.useState(product.quantity);
-  const { title } = product;
-  const subtitle = `${product.description} (x${product.quantity})`;
-  const price = (product.price * product.quantity).toFixed(2);
-  const { quantity } = product;
+
+  const handleDecrease = () => {
+    if (localQuantity > 1) {
+      setLocalQuantity(localQuantity - 1);
+      onQuantityChange(product, localQuantity - 1);
+    } else {
+      showToast(messages.invalidQuantity);
+    }
+  };
+
+  const handleIncrease = () => {
+    if (localQuantity < 5) {
+      setLocalQuantity(localQuantity + 1);
+      onQuantityChange(product, localQuantity + 1);
+    } else {
+      showToast(messages.invalidQuantity);
+    }
+  };
+
+  const formattedPrice = (product.price * localQuantity).toFixed(2);
 
   return (
-    <Card style={styles.container}>
-      <Card.Title
-        style={styles.title}
-        title={title}
-        right={() => renderRightContent(price, localQuantity, setLocalQuantity, onQuantityChange, quantity, product)}
-        subtitle={subtitle}
-        subtitleStyle={styles.subtitle}
-      />
-      <Card.Actions>
-        <Button onPress={onButtonPress}>Remove Item</Button>
-      </Card.Actions>
-    </Card>
+    <View style={styles.container}>
+      <View style={styles.topSection}>
+        <Image style={styles.image} source={{ uri: product.image }} />
+        <View style={styles.infoContainer}>
+          <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
+            {product.title}
+          </Text>
+          <Text style={styles.subtitle} numberOfLines={2} ellipsizeMode="tail">
+            {product.description}
+          </Text>
+          <Text style={styles.price}>${formattedPrice}</Text>
+        </View>
+      </View>
+
+      <View style={styles.bottomSection}>
+        <View style={styles.quantityContainer}>
+          <Button onPress={handleDecrease} style={styles.quantityMinButton}>
+            <MaterialIcons name="remove" size={18} color="#FFA500" />
+          </Button>
+          <View style={styles.quantityTextContainer}>
+            <Text style={styles.quantityText}>{localQuantity}</Text>
+          </View>
+          <Button onPress={handleIncrease} style={styles.quantityPlusButton}>
+            <MaterialIcons name="add" size={18} color="#FFA500" />
+          </Button>
+        </View>
+        <Button onPress={onButtonPress} style={styles.transparentButton}>
+          Remove Item
+        </Button>
+      </View>
+    </View>
   );
 };
-
-CheckoutCard.whyDidYouRender = true;
-
-export default CheckoutCard;
 
 CheckoutCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    quantity: PropTypes.number,
+    quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
   }).isRequired,
-  onButtonPress: PropTypes.func.isRequired,
   onQuantityChange: PropTypes.func.isRequired,
+  onButtonPress: PropTypes.func.isRequired,
 };
+
+export default CheckoutCard;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#F9F9F9', // Light gray background
     marginVertical: 10,
     borderRadius: 10,
-    height: 150,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4, // For Android shadow
+  },
+  topSection: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    resizeMode: 'cover',
+  },
+  infoContainer: {
+    flex: 1,
+    paddingHorizontal: 10,
   },
   title: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-  },
-  row: {
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-  },
-  quantityInput: {
-    width: 40,
-    height: 25,
-    textAlign: 'center',
+    marginBottom: 4,
   },
   subtitle: {
     fontSize: 14,
     color: '#666',
-    marginVertical: 4,
+    marginBottom: 8,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  bottomSection: {
+    flexDirection: 'row',
+    flex: 1,
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    // justifyContent: 'space-between',
+  },
+  quantityMinButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#FFA500',
+    borderRadius: 8,
+    maxWidth: 50,
+  },
+  quantityPlusButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#FFA500',
+    borderRadius: 8,
+    maxWidth: 50,
+  },
+  quantityText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000',
+  },
+  transparentButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#FFA500',
+    borderRadius: 20,
+    // paddingHorizontal: 20,
+  },
+  quantityTextContainer: {
+    width: 30,
   },
 });

@@ -99,11 +99,11 @@ const CheckoutScreen = ({ navigation }) => {
                 placeholder="Enter your promo code"
                 keyboardType="default"
                 right={<TextInput.Icon icon="percent" color={errors.promoCode ? colors.error : colors.primary} />}
+                errorObject={errors.promoCode}
               />
             )}
             name="promoCode"
           />
-          {errors.promoCode && <Text>{errors.promoCode.message}</Text>}
 
           <Button icon="sack-percent" onPress={handleSubmit(onApplyPromoCode)} mode="contained">
             APPLY PROMO CODE
