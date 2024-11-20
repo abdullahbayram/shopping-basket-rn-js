@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "clean": "rm -rf node_modules && npm install",
+    "clean-pro": "react-native-clean-project",
     "lint": "eslint .",
     "prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
@@ -77,6 +78,7 @@
     "lint-staged": "^15.2.10",
     "msw": "^2.4.9",
     "prettier": "^3.3.3",
+    "react-native-clean-project": "^4.0.3",
     "react-test-renderer": "18.2"
   },
   "lint-staged": {
