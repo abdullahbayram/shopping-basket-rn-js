@@ -22,6 +22,12 @@ const screenOptions = {
   headerTintColor: '#004f6b',
 };
 
+const screenOptionsResultScreens = {
+  headerLeft: () => null,
+  gestureEnabled: false,
+  headerBackVisible: false,
+};
+
 const Navigator = () => {
   return (
     <NavigationContainer>
@@ -29,8 +35,16 @@ const Navigator = () => {
         <Stack.Screen options={screenOptions} name="Product List" component={ProductListScreen} />
         <Stack.Screen options={screenOptions} name="Checkout" component={CheckoutScreen} />
         <Stack.Screen options={screenOptions} name="Payment" component={PaymentScreen} />
-        <Stack.Screen name="Error" component={ErrorScreen} />
-        <Stack.Screen name="Success" component={SuccessScreen} />
+        <Stack.Screen
+          name="Error"
+          options={{ ...screenOptions, ...screenOptionsResultScreens }}
+          component={ErrorScreen}
+        />
+        <Stack.Screen
+          name="Success"
+          component={SuccessScreen}
+          options={{ ...screenOptions, ...screenOptionsResultScreens }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

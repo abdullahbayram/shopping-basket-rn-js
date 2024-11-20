@@ -3,14 +3,9 @@ import { fireEvent, screen } from '@testing-library/react-native';
 import CheckoutScreen from './CheckoutScreen';
 import renderInProvider from '../../../__tests__/utils/renderInProvider';
 import { sampleBasket } from '../../../__tests__/mocks/handlers';
+import mockNavigation from '../../../__tests__/mocks/navigation';
 
 const initialState = { basket: { items: sampleBasket } };
-
-const mockNavigation = {
-  navigate: jest.fn(),
-  goBack: jest.fn(),
-  setParams: jest.fn(),
-};
 
 describe('CheckoutScreen', () => {
   it('should render CheckoutScreen correctly', () => {
