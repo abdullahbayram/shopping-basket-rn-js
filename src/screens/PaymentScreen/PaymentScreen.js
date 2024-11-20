@@ -9,13 +9,13 @@ import Screen from '../../components/templetes/Screen/Screen';
 import Input from '../../components/molecules/Input/Input';
 import TextInput from '../../components/atoms/TextInput/TextInput';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
-import validateCreditCard from '../../utils/validateCreditCard';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/strings';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
+import checkCreditCardWithCardValidator from '../../utils/checkCreditCardWithCardValidator';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
@@ -31,7 +31,7 @@ const PaymentScreen = ({ navigation }) => {
     reset,
   } = useForm({
     defaultValues: {
-      creditCardNumber: '4539456463019519',
+      creditCardNumber: '4539456463019519', // 4539456463019519 4929718047638157
       cardholderName: 'ABD',
       expirationDate: '12/12',
       cvv: '111',
@@ -42,7 +42,7 @@ const PaymentScreen = ({ navigation }) => {
   const totalCount = useSelector(selectTotalItemCount);
   const dispatch = useDispatch();
   const creditCardValue = watch('creditCardNumber');
-  const isCreditCardValid = validateCreditCard(creditCardValue);
+  const isCreditCardValid = checkCreditCardWithCardValidator(creditCardValue);
   const total = useSelector(selectTotalPrice);
 
   const [placeOrder, { isLoading }] = usePlaceOrderMutation();
@@ -123,8 +123,7 @@ const PaymentScreen = ({ navigation }) => {
           rules={{
             required: 'Credit card number is required',
             validate: {
-              isExactLength: (value) => /^[0-9]{16}$/.test(value) || 'Credit card must be 16 digits',
-              isValidCreditCard: (value) => validateCreditCard(value) || 'Invalid credit card number',
+              isValidCreditCard: (value) => checkCreditCardWithCardValidator(value) || 'Invalid credit card number',
             },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
