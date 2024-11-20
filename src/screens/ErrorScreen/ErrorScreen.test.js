@@ -1,11 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react-native';
+import { screen, render } from '@testing-library/react-native';
 import { useRoute } from '@react-navigation/native';
 import ErrorScreen from './ErrorScreen';
 
 // Mock useRoute to control the route parameters for testing
 jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn(),
+  useNavigation: jest.fn(),
 }));
 
 describe('ErrorScreen Component', () => {

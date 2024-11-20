@@ -4,10 +4,11 @@ exports[`SuccessScreen Component should match the snapshot 1`] = `
 <View
   style={
     {
-      "alignItems": "center",
       "backgroundColor": "#fff",
       "flex": 1,
-      "justifyContent": "center",
+      "paddingLeft": 16,
+      "paddingRight": 9,
+      "paddingTop": 10,
     }
   }
 >
@@ -15,71 +16,73 @@ exports[`SuccessScreen Component should match the snapshot 1`] = `
     style={
       {
         "alignItems": "center",
-        "marginBottom": 20,
-      }
-    }
-  >
-    <Text
-      style={
-        {
-          "fontSize": 24,
-          "fontWeight": "bold",
-          "marginBottom": 8,
-          "textAlign": "center",
-        }
-      }
-    >
-      Thank you!
-    </Text>
-    <Text
-      style={
-        {
-          "fontSize": 24,
-          "fontWeight": "bold",
-          "marginBottom": 8,
-          "textAlign": "center",
-        }
-      }
-    >
-      Your order has been placed successfully.
-    </Text>
-    <Text
-      style={
-        {
-          "color": "#666",
-          "fontSize": 16,
-        }
-      }
-    >
-      Redirecting to product list in 
-      5
-       second
-      s
-      ...
-    </Text>
-  </View>
-  <View
-    style={
-      {
-        "backgroundColor": "#e0e0e0",
-        "borderRadius": 5,
-        "height": 10,
-        "overflow": "hidden",
-        "width": "80%",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
     <View
-      collapsable={false}
       style={
         {
-          "backgroundColor": "#76c7c0",
-          "borderRadius": 5,
-          "height": "100%",
-          "width": "0%",
+          "alignItems": "center",
+          "marginBottom": 20,
         }
       }
-    />
+    >
+      <Text
+        style={
+          {
+            "fontSize": 24,
+            "fontWeight": "bold",
+            "marginBottom": 8,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+Thank you!
+Your order has been placed successfully.
+
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 16,
+          }
+        }
+      >
+        Redirecting to product list in 
+        5
+         second
+        s
+        ...
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#e0e0e0",
+          "borderRadius": 5,
+          "height": 10,
+          "overflow": "hidden",
+          "width": "80%",
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        style={
+          {
+            "backgroundColor": "#76c7c0",
+            "borderRadius": 5,
+            "height": "100%",
+            "width": "0%",
+          }
+        }
+      />
+    </View>
   </View>
 </View>
 `;

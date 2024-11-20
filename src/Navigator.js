@@ -31,8 +31,8 @@ const screenOptionsResultScreens = {
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Product List">
-        <Stack.Screen options={screenOptions} name="Product List" component={ProductListScreen} />
+      <Stack.Navigator initialRouteName="ProductList">
+        <Stack.Screen options={screenOptions} name="ProductList" component={ProductListScreen} />
         <Stack.Screen options={screenOptions} name="Checkout" component={CheckoutScreen} />
         <Stack.Screen options={screenOptions} name="Payment" component={PaymentScreen} />
         <Stack.Screen
