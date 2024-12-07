@@ -5,7 +5,7 @@ const messages = {
   limitReached: { title: 'Limit Reached', msg: 'You can only add a maximum of 15 units per item.' },
   promoSuccess: { title: 'Promo Code', msg: 'Promo code applied successfully' },
   invalidPromo: { title: 'Promo Code', msg: 'Invalid promo code' },
-  promoError: { title: 'Order Success', msg: 'Error applying promo code' },
+  promoError: { title: 'Promo Error', msg: 'Error applying promo code' },
   orderSuccess: {
     title: 'Promo Error',
     msg: `

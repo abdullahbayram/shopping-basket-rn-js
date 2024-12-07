@@ -74,7 +74,7 @@ const PaymentScreen = ({ navigation }) => {
           const errorMessage =
             Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
               ? err?.data?.errors[0].msg
-              : DEFAULT_ERROR_MESSAGE;
+              : err?.msg || DEFAULT_ERROR_MESSAGE;
           navigation.navigate('Error', { errorMessage });
         });
     } catch (err) {

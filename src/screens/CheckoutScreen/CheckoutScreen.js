@@ -60,7 +60,7 @@ const CheckoutScreen = ({ navigation }) => {
       }
     } catch (err) {
       console.log(err);
-      showToast(messages.promoError);
+      showToast({ ...messages.promoError, ...{ msg: err.msg || messages.promoError.msg } });
     }
   };
 
