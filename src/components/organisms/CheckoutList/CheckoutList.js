@@ -30,8 +30,6 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   );
 };
 
-CheckoutList.whyDidYouRender = true;
-
 CheckoutList.propTypes = {
   basketItems: PropTypes.arrayOf(
     PropTypes.shape({

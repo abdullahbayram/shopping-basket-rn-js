@@ -15,9 +15,12 @@ import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
+import strings from '../../constants/strings';
 
 const CheckoutScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -29,11 +32,13 @@ const CheckoutScreen = ({ navigation }) => {
     },
   });
 
-  const basketItems = useSelector(selectBasketItems);
+  const { basketItems, totalCount, total } = useSelector((state) => ({
+    basketItems: selectBasketItems(state),
+    totalCount: selectTotalItemCount(state),
+    total: selectTotalPrice(state),
+  }));
+
   const isBasketEmtpy = basketItems.length === 0;
-  const totalCount = useSelector(selectTotalItemCount);
-  const dispatch = useDispatch();
-  const total = useSelector(selectTotalPrice);
 
   const [validatePromoCode, { isLoading }] = useValidatePromoCodeMutation();
 
@@ -51,16 +56,16 @@ const CheckoutScreen = ({ navigation }) => {
 
   const onApplyPromoCode = async (data) => {
     try {
-      const response = await validatePromoCode(data.promoCode).unwrap();
-      if (response?.amount) {
-        dispatch(setDiscount(response.amount));
+      const { amount } = await validatePromoCode(data.promoCode).unwrap();
+      if (amount) {
+        dispatch(setDiscount(amount));
         showToast(messages.promoSuccess);
       } else {
         showToast(messages.invalidPromo);
       }
     } catch (err) {
-      console.log(err);
-      showToast({ ...messages.promoError, ...{ msg: err.msg || messages.promoError.msg } });
+      const errorMsg = err?.msg || messages.promoError.msg;
+      showToast({ ...messages.promoError, msg: errorMsg });
     }
   };
 
@@ -72,13 +77,15 @@ const CheckoutScreen = ({ navigation }) => {
     <Screen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
-        <Text variant="titleMedium">Total: ${total.toFixed(2)}</Text>
+        <Text variant="titleMedium">
+          {strings.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+        </Text>
       </View>
 
       <View style={styles.topContainer}>
         <View style={styles.orderButtonContainer}>
           <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmtpy}>
-            ORDER ({totalCount} items)
+            {strings.order} ({totalCount} items)
           </Button>
         </View>
 
@@ -95,7 +102,7 @@ const CheckoutScreen = ({ navigation }) => {
                 onChangeText={onChange}
                 onBlur={onBlur}
                 label="Promo Code"
-                placeholder="Enter your promo code"
+                placeholder={strings.promoCodePlaceholder}
                 keyboardType="default"
                 right={<TextInput.Icon icon="percent" color={errors.promoCode ? colors.error : colors.primary} />}
                 errorObject={errors.promoCode}
@@ -105,16 +112,11 @@ const CheckoutScreen = ({ navigation }) => {
           />
 
           <Button icon="sack-percent" onPress={handleSubmit(onApplyPromoCode)} mode="contained">
-            APPLY PROMO CODE
+            {strings.applyPromo}
           </Button>
         </View>
       </View>
-      <CheckoutList
-        products={basketItems}
-        onQuantityChange={onQuantityChange}
-        basketItems={basketItems}
-        onRemoveItem={onRemoveItem}
-      />
+      <CheckoutList onQuantityChange={onQuantityChange} basketItems={basketItems} onRemoveItem={onRemoveItem} />
     </Screen>
   );
 };
@@ -127,8 +129,9 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
   },
   topContainer: {
-    height: 200,
+    flex: 1,
     justifyContent: 'space-between',
+    marginVertical: 10,
   },
   orderButtonContainer: {
     flex: 4,

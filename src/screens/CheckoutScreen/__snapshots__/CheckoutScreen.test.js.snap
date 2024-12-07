@@ -48,15 +48,17 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
         ]
       }
     >
-      Total: $
+      Total:
+       $
       0.00
     </Text>
   </View>
   <View
     style={
       {
-        "height": 200,
+        "flex": 1,
         "justifyContent": "space-between",
+        "marginVertical": 10,
       }
     }
   >
@@ -262,7 +264,8 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
                 }
                 testID="button-text"
               >
-                ORDER (
+                ORDER
+                 (
                 0
                  items)
               </Text>
