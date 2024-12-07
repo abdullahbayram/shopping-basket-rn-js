@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
@@ -10,15 +10,18 @@ import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/strings';
+import messages from '../../constants/alertMessages';
 import ProductList from '../../components/organisms/ProductList/ProductList';
 import HelperText from '../../components/atoms/HelperText/HelperText';
+import strings from '../../constants/strings';
 
 const ProductListScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const totalCount = useSelector(selectTotalItemCount);
   const basketItems = useSelector((state) => state.basket.items);
   const { data: products, error, isLoading, refetch } = useGetProductsQuery();
+
+  const basketItemsMap = useMemo(() => new Map(basketItems.map((item) => [item.id, item])), [basketItems]);
 
   const onCheckoutPress = () => {
     if (!validateBasket(basketItems)) {
@@ -29,7 +32,7 @@ const ProductListScreen = ({ navigation }) => {
   };
 
   const onAddToBasket = (item) => {
-    const existingItem = basketItems.find((basketItem) => basketItem.id === item.id);
+    const existingItem = basketItemsMap.get(item.id);
     if (existingItem && existingItem.quantity >= 5) {
       showToast(messages.limitReached);
       return;
@@ -44,23 +47,34 @@ const ProductListScreen = ({ navigation }) => {
   return (
     <Screen>
       {error ? (
-        <HelperText style={styles.errorText} type="error">
-          Error loading products. Pull to refresh
-        </HelperText>
+        <View>
+          <HelperText style={styles.errorText} type="error">
+            {strings.errorLoading}
+          </HelperText>
+          <Button onPress={refetch} mode="contained">
+            Retry
+          </Button>
+        </View>
       ) : (
-        <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
+        <Text variant="titleMedium">
+          {strings.basketItemCount} {totalCount}
+        </Text>
       )}
-      <ProductList products={products} basketItems={basketItems} onAddItem={onAddToBasket} refetch={refetch} />
-      <View style={styles.buttonContainer}>
-        <Button
-          disabled={!validateBasket(basketItems)}
-          icon="cart-arrow-down"
-          mode="contained"
-          onPress={onCheckoutPress}
-        >
-          CHECKOUT
-        </Button>
-      </View>
+      {!error && (
+        <ProductList products={products || []} basketItems={basketItems} onAddItem={onAddToBasket} refetch={refetch} />
+      )}
+      {!error && (
+        <View style={styles.buttonContainer}>
+          <Button
+            disabled={!validateBasket(basketItems)}
+            icon="cart-arrow-down"
+            mode="contained"
+            onPress={onCheckoutPress}
+          >
+            {strings.checkout}
+          </Button>
+        </View>
+      )}
     </Screen>
   );
 };
@@ -72,7 +86,9 @@ ProductListScreen.whyDidYouRender = true;
 const styles = StyleSheet.create({
   buttonContainer: {
     paddingTop: 10,
-    height: 100,
+    paddingBottom: 30,
+    flexGrow: 1,
+    justifyContent: 'center',
   },
   errorText: { alignSelf: 'center' },
 });

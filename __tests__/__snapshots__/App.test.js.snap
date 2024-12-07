@@ -180,6 +180,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   }
                 >
                   Items in the basket: 
+                   
                   0
                 </Text>
                 <RCTScrollView
@@ -3958,7 +3959,9 @@ exports[`<App /> Text renders correctly on App 1`] = `
                 <View
                   style={
                     {
-                      "height": 100,
+                      "flexGrow": 1,
+                      "justifyContent": "center",
+                      "paddingBottom": 30,
                       "paddingTop": 10,
                     }
                   }

@@ -13,7 +13,7 @@ import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../utils/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/strings';
+import messages from '../../constants/alertMessages';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
 import checkCreditCardWithCardValidator from '../../utils/checkCreditCardWithCardValidator';
 

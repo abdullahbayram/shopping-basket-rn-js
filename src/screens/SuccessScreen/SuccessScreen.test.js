@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react-native';
 import SuccessScreen from './SuccessScreen';
 import renderInNavigation from '../../../__tests__/utils/renderInNavigation';
-import strings from '../../constants/strings';
+import strings from '../../constants/alertMessages';
 
 describe('SuccessScreen Component', () => {
   it('should render the success message', () => {

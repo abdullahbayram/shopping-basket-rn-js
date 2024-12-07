@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Button from '../../atoms/Button/Button';
 import Text from '../../atoms/Text/Text';
 import showToast from '../../../utils/showToast';
-import messages from '../../../constants/strings';
+import messages from '../../../constants/alertMessages';
 import styles from './CheckoutCard.style';
 
 const CheckoutCard = ({ product, onQuantityChange, onRemoveButtonPress }) => {
