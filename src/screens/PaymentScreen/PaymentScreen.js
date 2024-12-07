@@ -187,7 +187,11 @@ const PaymentScreen = ({ navigation }) => {
             <Input
               value={value}
               onBlur={onBlur}
-              onChangeText={onChange}
+              onChangeText={(text) => {
+                // Filter input to allow only numeric characters
+                const numericValue = text.replace(/[^0-9]/g, '');
+                onChange(numericValue);
+              }}
               label="CVV"
               placeholder="CVV"
               maxLength={3}
