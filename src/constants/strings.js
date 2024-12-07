@@ -9,4 +9,10 @@ export default {
   order: 'ORDER',
   promoCodePlaceholder: 'Enter your promo code',
   applyPromo: 'APPLY PROMO CODE',
+  // Payment
+  cardholderName: 'Cardholder Name',
+  creditCardNumber: 'Credit Card Number',
+  expirationDate: 'Expiration Date',
+  cvv: 'CVV',
+  unexpectedError: 'An unexpected error occurred. Please try again later.',
 };

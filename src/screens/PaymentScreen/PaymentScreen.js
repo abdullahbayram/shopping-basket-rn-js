@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
@@ -16,10 +16,11 @@ import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
 import checkCreditCardWithCardValidator from '../../utils/checkCreditCardWithCardValidator';
+import strings from '../../constants/strings';
+import validationRules from '../../constants/validationRules';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
-const DEFAULT_ERROR_MESSAGE = 'An unexpected error occurred. Please try again later.';
 
 const PaymentScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -38,14 +39,27 @@ const PaymentScreen = ({ navigation }) => {
     },
   });
 
-  const basketItems = useSelector(selectBasketItems);
-  const totalCount = useSelector(selectTotalItemCount);
+  const { basketItems, totalCount, total } = useSelector((state) => ({
+    basketItems: selectBasketItems(state),
+    totalCount: selectTotalItemCount(state),
+    total: selectTotalPrice(state),
+  }));
+
   const dispatch = useDispatch();
-  const creditCardValue = watch('creditCardNumber');
-  const isCreditCardValid = checkCreditCardWithCardValidator(creditCardValue);
-  const total = useSelector(selectTotalPrice);
+
+  const isCreditCardValid = useMemo(() => checkCreditCardWithCardValidator(watch('creditCardNumber')), [watch]);
 
   const [placeOrder, { isLoading }] = usePlaceOrderMutation();
+
+  const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
+
+  const handleOrderError = (err) => {
+    const errorMessage =
+      Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
+        ? err?.data?.errors[0].msg
+        : err?.msg || strings.unexpectedError;
+    navigation.navigate('Error', { errorMessage });
+  };
 
   const onPlaceOrder = async (data) => {
     if (!validateBasket(basketItems)) {
@@ -53,52 +67,58 @@ const PaymentScreen = ({ navigation }) => {
       return;
     }
     try {
-      await placeOrder({
+      const response = await placeOrder({
         basket: basketItems,
         cardNumber: data.creditCardNumber,
         cardholderName: data.cardholderName,
         expirationDate: data.expirationDate,
         cvv: data.cvv,
-      })
-        .unwrap()
-        .then((response) => {
-          if (response) {
-            dispatch(clearBasket());
-            dispatch(clearDiscount());
-            reset();
-            navigation.navigate('Success');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          const errorMessage =
-            Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
-              ? err?.data?.errors[0].msg
-              : err?.msg || DEFAULT_ERROR_MESSAGE;
-          navigation.navigate('Error', { errorMessage });
-        });
+      }).unwrap();
+
+      if (response) {
+        dispatch(clearBasket());
+        dispatch(clearDiscount());
+        reset();
+        navigation.navigate('Success');
+      }
     } catch (err) {
-      const errorMessage = DEFAULT_ERROR_MESSAGE;
-      console.log(err);
-      navigation.navigate('Error', { errorMessage });
+      handleOrderError(err);
     }
+  };
+
+  const formatExpirationDate = (value) => {
+    const sanitized = value.replace(/[^0-9]/g, '');
+    if (sanitized.length <= 2) return sanitized;
+    return `${sanitized.slice(0, 2)}/${sanitized.slice(2, 4)}`;
+  };
+
+  const getIcon = (field) => {
+    if (field === 'creditCardNumber') return isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD;
+    const isValid = !errors[field];
+    const iconMap = {
+      cardholderName: isValid ? 'account-check' : 'account',
+      expirationDate: isValid ? 'calendar-check' : 'calendar-alert',
+      cvv: isValid ? 'shield-check' : 'shield-alert',
+    };
+    return iconMap[field];
   };
 
   return (
     <Screen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
-      <Text variant="titleMedium">Items in the basket: {totalCount}</Text>
+      <Text variant="titleMedium">
+        {strings.basketItemCount} {totalCount}
+      </Text>
       <View style={styles.totalContainer}>
-        <Text variant="titleMedium">Total: ${total.toFixed(2)}</Text>
+        <Text variant="titleMedium">
+          {strings.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+        </Text>
       </View>
 
       <View style={styles.formContainer}>
         <Controller
           control={control}
-          rules={{
-            required: 'Cardholder name is required',
-            minLength: { value: 3, message: 'Name must be at least 3 characters' },
-          }}
+          rules={validationRules.cardholderName}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
@@ -109,10 +129,12 @@ const PaymentScreen = ({ navigation }) => {
               errorObject={errors.cardholderName}
               right={
                 <TextInput.Icon
-                  icon={!errors.cardholderName ? 'account-check' : 'account'}
+                  icon={getIcon('cardholderName', errors)}
                   color={errors.cardholderName ? colors.error : colors.primary}
                 />
               }
+              accessibilityLabel="Cardholder Name"
+              accessibilityHint="Enter the name as it appears on your credit card"
             />
           )}
           name="cardholderName"
@@ -120,12 +142,7 @@ const PaymentScreen = ({ navigation }) => {
 
         <Controller
           control={control}
-          rules={{
-            required: 'Credit card number is required',
-            validate: {
-              isValidCreditCard: (value) => checkCreditCardWithCardValidator(value) || 'Invalid credit card number',
-            },
-          }}
+          rules={validationRules.creditCardNumber}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
@@ -135,13 +152,15 @@ const PaymentScreen = ({ navigation }) => {
               placeholder="Enter your credit card number"
               maxLength={16}
               keyboardType="numeric"
+              errorObject={errors.creditCardNumber}
               right={
                 <TextInput.Icon
-                  icon={isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD}
+                  icon={getIcon('creditCardNumber', errors)}
                   color={errors.creditCardNumber ? colors.error : colors.primary}
                 />
               }
-              errorObject={errors.creditCardNumber}
+              accessibilityLabel="Credit Card Number"
+              accessibilityHint="Enter the number on your credit card"
             />
           )}
           name="creditCardNumber"
@@ -149,18 +168,12 @@ const PaymentScreen = ({ navigation }) => {
 
         <Controller
           control={control}
-          rules={{
-            required: 'Expiration date is required',
-            pattern: {
-              value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
-              message: 'Invalid expiration date (MM/YY)',
-            },
-          }}
+          rules={validationRules.expirationDate}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               onBlur={onBlur}
-              onChangeText={onChange}
+              onChangeText={(text) => onChange(formatExpirationDate(text))}
               label="Expiration Date"
               placeholder="MM/YY"
               maxLength={5}
@@ -168,10 +181,12 @@ const PaymentScreen = ({ navigation }) => {
               errorObject={errors.expirationDate}
               right={
                 <TextInput.Icon
-                  icon={!errors.expirationDate ? 'calendar-check' : 'calendar-alert'}
+                  icon={getIcon('expirationDate', errors)}
                   color={errors.expirationDate ? colors.error : colors.primary}
                 />
               }
+              accessibilityLabel="Expiration Date"
+              accessibilityHint="Enter the card's expiration date in MM/YY format"
             />
           )}
           name="expirationDate"
@@ -179,30 +194,22 @@ const PaymentScreen = ({ navigation }) => {
 
         <Controller
           control={control}
-          rules={{
-            required: 'CVV is required',
-            minLength: { value: 3, message: 'CVV must be 3 digits' },
-          }}
+          rules={validationRules.cvv}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               onBlur={onBlur}
-              onChangeText={(text) => {
-                // Filter input to allow only numeric characters
-                const numericValue = text.replace(/[^0-9]/g, '');
-                onChange(numericValue);
-              }}
+              onChangeText={(text) => onChange(filterNumericInput(text))}
               label="CVV"
               placeholder="CVV"
               maxLength={3}
               keyboardType="numeric"
               errorObject={errors.cvv}
               right={
-                <TextInput.Icon
-                  icon={!errors.cvv ? 'shield-check' : 'shield-alert'}
-                  color={errors.cvv ? colors.error : colors.primary}
-                />
+                <TextInput.Icon icon={getIcon('cvv', errors)} color={errors.cvv ? colors.error : colors.primary} />
               }
+              accessibilityLabel="CVV"
+              accessibilityHint="Enter the 3-digit security code on the back of your card"
             />
           )}
           name="cvv"
@@ -216,7 +223,7 @@ const PaymentScreen = ({ navigation }) => {
           onPress={handleSubmit(onPlaceOrder)}
           disabled={basketItems.length === 0 || isLoading}
         >
-          ORDER
+          {strings.order}
         </Button>
       </View>
     </Screen>
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   bottomContainer: {
-    height: 275,
+    flex: 1,
     justifyContent: 'flex-end',
     paddingBottom: 30,
   },
