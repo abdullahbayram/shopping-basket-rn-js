@@ -1,8 +1,32 @@
+# Node.js dependencies
 node_modules/
+
+# Build output and transpiled files
+build/
+dist/
+web-build/
+
+# Configuration files
+config/
+*.config.js
+
+# Test files and directories
+coverage/
+jest/
+__tests__/
+
+# Ignore JavaScript files inside specific directories
 build/*.js
 config/*.js
 coverage/*.js
-coverage/*
 jest/*.js
-__tests__/*
 __tests__/*.js
+
+# Expo-specific directories
+.expo/
+.expo-shared/
+
+# IDE and system-specific files
+.vscode/
+.idea/
+.DS_Store

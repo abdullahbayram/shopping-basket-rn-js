@@ -1,10 +1,9 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
 # dependencies
 node_modules/
 
 # Expo
 .expo/
+.expo-shared/
 dist/
 web-build/
 
@@ -23,21 +22,30 @@ web-build/
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+*.log
 
 # macOS
 .DS_Store
 *.pem
+Thumbs.db
 
 # local env files
 .env*.local
+.env.*
+*.env
 
 # typescript
 *.tsbuildinfo
+build/
 
-#ide
+# IDE
 /.idea
+.vscode/
+*.swp
 
-#jest
+# Linting and Babel
+.eslintcache
+.babelrc.*
+
+# Jest
 /coverage
-*.env.*
-*.env

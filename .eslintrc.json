@@ -14,24 +14,18 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react",
-    "react-native"
-  ],
+  "plugins": ["react", "react-native"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "overrides": [
     {
-      // Test files only
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "extends": [
-        "plugin:testing-library/react"
-      ]
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"],
+      "rules": {
+        "react-native/no-inline-styles": "off"
+      }
     }
   ],
   "rules": {
@@ -54,14 +48,10 @@
     "react/prop-types": [
       "error",
       {
-        "ignore": [
-          "navigation"
-        ]
+        "ignore": ["navigation"]
       }
     ],
-    // Enforce Prettier formatting as ESLint errors
     "prettier/prettier": "error",
-    // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     // prevent eslint to complain about the "styles" variable being used before it was defined
     "no-use-before-define": [
@@ -71,14 +61,10 @@
       }
     ],
     "react/require-default-props": "off",
-    // allow .js files to contain JSX code
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx", ".tsx"]
       }
     ],
     "react-native/no-inline-styles": "error",
@@ -87,15 +73,12 @@
       {
         "devDependencies": [
           "test.{js,jsx}",
-          // repos with a single test file
           "test-*.{js,jsx}",
-          // repos with multiple top-level test files
           "**/*{.,_}{test,spec}.{js,jsx}",
-          // tests where the extension or filename suffix denotes that it is a test
           "**/jest.config.js",
-          // jest config
-          "**/jest.setup.js"
-          // jest setup
+          "**/jest.setup.js",
+          "**/babel.config.js",
+          "**/webpack.config.js"
         ],
         "optionalDependencies": false
       }

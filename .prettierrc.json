@@ -14,15 +14,23 @@
   "embeddedLanguageFormatting": "auto",
   "overrides": [
     {
-      "files": "*.json",
+      "files": ["*.json", "*.jsonc"],
       "options": {
-        "printWidth": 100
+        "printWidth": 100,
+        "tabWidth": 2
       }
     },
     {
       "files": "*.md",
       "options": {
-        "proseWrap": "preserve"
+        "proseWrap": "always"
+      }
+    },
+    {
+      "files": "*.yml",
+      "options": {
+        "tabWidth": 2,
+        "singleQuote": false
       }
     }
   ]

@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "shopping-basket",
+    "description": "A sample shopping basket app built with React Native to showcase development and testing expertise. This app allows users to manage and track their purchases efficiently, featuring a clean UI, robust state management, and comprehensive test coverage.",
     "slug": "shopping-basket",
     "version": "1.0.0",
     "orientation": "portrait",

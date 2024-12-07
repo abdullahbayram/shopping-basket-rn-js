@@ -9,13 +9,20 @@ jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
   default: () => {},
 })); */
 
-jest.useFakeTimers();
+jest.useFakeTimers('modern');
 
-// Start API mocking before all tests
-beforeAll(() => server.listen());
+// MSW: Start API mocking before all tests
+beforeAll(() => {
+  server.listen();
 
-// Reset any runtime request handlers after each test
+  // Log unhandled requests during testing
+  server.events.on('request:unhandled', (req) => {
+    console.warn(`Unhandled request to ${req.url.href}`);
+  });
+});
+
+// MSW: Reset any runtime request handlers after each test
 afterEach(() => server.resetHandlers());
 
-// Stop the server after all tests
+// MSW: Stop the server after all tests
 afterAll(() => server.close());
