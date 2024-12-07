@@ -30,21 +30,13 @@ const screenOptionsResultScreens = {
 
 const Navigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="ProductList">
-        <Stack.Screen options={screenOptions} name="ProductList" component={ProductListScreen} />
-        <Stack.Screen options={screenOptions} name="Checkout" component={CheckoutScreen} />
-        <Stack.Screen options={screenOptions} name="Payment" component={PaymentScreen} />
-        <Stack.Screen
-          name="Error"
-          options={{ ...screenOptions, ...screenOptionsResultScreens }}
-          component={ErrorScreen}
-        />
-        <Stack.Screen
-          name="Success"
-          component={SuccessScreen}
-          options={{ ...screenOptions, ...screenOptionsResultScreens }}
-        />
+    <NavigationContainer testID="NavigationContainer" accessibilityRole="navigation">
+      <Stack.Navigator initialRouteName="ProductList" screenOptions={screenOptions}>
+        <Stack.Screen name="ProductList" component={ProductListScreen} />
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="Payment" component={PaymentScreen} />
+        <Stack.Screen name="Error" component={ErrorScreen} options={screenOptionsResultScreens} />
+        <Stack.Screen name="Success" component={SuccessScreen} options={screenOptionsResultScreens} />
       </Stack.Navigator>
     </NavigationContainer>
   );
