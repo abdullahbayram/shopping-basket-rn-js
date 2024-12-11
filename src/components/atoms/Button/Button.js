@@ -2,14 +2,23 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Button as PaperButton, useTheme } from 'react-native-paper';
 
-const Button = ({ children, onPress, icon = '', mode = 'outlined', disabled = false, style = {} }) => {
+const Button = ({
+  children,
+  onPress,
+  icon = '',
+  mode = 'outlined',
+  disabled = false,
+  style = {},
+  textColor,
+  buttonColor,
+}) => {
   const theme = useTheme();
   return (
     <PaperButton
       style={style}
       onPress={onPress}
-      textColor={theme.colors.tertiary}
-      buttonColor={theme.colors.secondary}
+      textColor={textColor || theme.colors.tertiary}
+      buttonColor={buttonColor || theme.colors.secondary}
       icon={icon}
       mode={mode}
       disabled={disabled}
@@ -26,6 +35,8 @@ Button.propTypes = {
   icon: PropTypes.string,
   mode: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  textColor: PropTypes.string,
+  buttonColor: PropTypes.string,
 };
 
 export default Button;
