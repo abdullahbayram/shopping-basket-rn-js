@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    backgroundColor: '#F9F9F9', // Light gray background
+    backgroundColor: '#F9F9F9',
     marginVertical: 10,
     borderRadius: 10,
     padding: 10,
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 4, // For Android shadow
+    elevation: 4,
   },
   topSection: {
     flexDirection: 'row',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
-  quantityMinButton: {
+  quantityButton: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
@@ -59,14 +59,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     maxWidth: 50,
   },
-  quantityPlusButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#FFA500',
-    borderRadius: 20,
-    maxWidth: 50,
+  quantityTextContainer: {
+    width: 30,
   },
   quantityText: {
     fontSize: 16,
@@ -80,9 +74,4 @@ const styles = StyleSheet.create({
     borderColor: '#FFA500',
     borderRadius: 20,
   },
-  quantityTextContainer: {
-    width: 30,
-  },
 });
-
-export default styles;

@@ -6,7 +6,7 @@ import { useTheme } from 'react-native-paper';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
 import Screen from '../../components/templetes/Screen/Screen';
-import Input from '../../components/molecules/Input/Input';
+import Input from '../../components/molecules/Input';
 import TextInput from '../../components/atoms/TextInput';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
@@ -14,7 +14,7 @@ import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../..
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
-import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
+import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import checkCreditCardWithCardValidator from '../../validate/checkCreditCardWithCardValidator';
 import strings from '../../constants/strings';
 import validationRules from '../../validate/validationRules';

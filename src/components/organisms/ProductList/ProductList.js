@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import ProductCard from '../../molecules/ProductCard/ProductCard';
+import ProductCard from '../../molecules/ProductCard';
 
 const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
   const renderItem = useCallback(

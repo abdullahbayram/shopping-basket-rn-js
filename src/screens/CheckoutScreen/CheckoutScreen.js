@@ -6,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
 import Screen from '../../components/templetes/Screen/Screen';
-import Input from '../../components/molecules/Input/Input';
+import Input from '../../components/molecules/Input';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
@@ -14,7 +14,7 @@ import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';
-import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
+import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import strings from '../../constants/strings';
 
 const CheckoutScreen = ({ navigation }) => {

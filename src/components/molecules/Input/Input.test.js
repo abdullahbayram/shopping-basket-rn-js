@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
-import Input from './Input';
+import Input from '.';
 
 const creditCardNumber = '1234 5678 9012 3456';
 const CREDIT_CARD = 'credit-card';

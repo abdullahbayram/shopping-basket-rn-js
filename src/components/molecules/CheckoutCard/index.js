@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -8,31 +8,25 @@ import showToast from '../../../utils/showToast';
 import messages from '../../../constants/alertMessages';
 import styles from './CheckoutCard.style';
 
-const CheckoutCard = ({ product, onQuantityChange, onRemoveButtonPress }) => {
-  const [localQuantity, setLocalQuantity] = React.useState(product.quantity);
-
-  const isQuantityEqualsToOne = localQuantity === 1;
-  const leftButtonIcon = isQuantityEqualsToOne ? 'delete' : 'remove';
+const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButtonPress }) => {
+  const isQuantityEqualsToOne = product.quantity === 1;
+  const formattedPrice = (product.price * product.quantity).toFixed(2);
 
   const handleDecrease = () => {
-    if (localQuantity > 1) {
-      setLocalQuantity(localQuantity - 1);
-      onQuantityChange(product, localQuantity - 1);
+    if (product.quantity > 1) {
+      onQuantityChange(product, product.quantity - 1);
     } else {
       onRemoveButtonPress();
     }
   };
 
   const handleIncrease = () => {
-    if (localQuantity < 5) {
-      setLocalQuantity(localQuantity + 1);
-      onQuantityChange(product, localQuantity + 1);
+    if (product.quantity < maxQuantity) {
+      onQuantityChange(product, product.quantity + 1);
     } else {
       showToast(messages.invalidQuantity);
     }
   };
-
-  const formattedPrice = (product.price * localQuantity).toFixed(2);
 
   return (
     <View style={styles.container}>
@@ -51,13 +45,13 @@ const CheckoutCard = ({ product, onQuantityChange, onRemoveButtonPress }) => {
 
       <View style={styles.bottomSection}>
         <View style={styles.quantityContainer}>
-          <Button onPress={handleDecrease} style={styles.quantityMinButton}>
-            <MaterialIcons name={leftButtonIcon} size={18} color="#FFA500" />
+          <Button onPress={handleDecrease} style={styles.quantityButton}>
+            <MaterialIcons name={isQuantityEqualsToOne ? 'delete' : 'remove'} size={18} color="#FFA500" />
           </Button>
           <View style={styles.quantityTextContainer}>
-            <Text style={styles.quantityText}>{localQuantity}</Text>
+            <Text style={styles.quantityText}>{product.quantity}</Text>
           </View>
-          <Button onPress={handleIncrease} style={styles.quantityPlusButton}>
+          <Button onPress={handleIncrease} style={styles.quantityButton}>
             <MaterialIcons name="add" size={18} color="#FFA500" />
           </Button>
         </View>
@@ -78,6 +72,7 @@ CheckoutCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
+  maxQuantity: PropTypes.number,
   onQuantityChange: PropTypes.func.isRequired,
   onRemoveButtonPress: PropTypes.func.isRequired,
 };

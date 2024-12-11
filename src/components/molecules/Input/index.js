@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import TextInput from '../../atoms/TextInput';
 import HelperText from '../../atoms/HelperText';
+import styles from './Input.style';
 
 const Input = ({ label = null, onChangeText, maxLength, style, value, onBlur, onEndEditing, right, errorObject }) => {
   return (
@@ -44,12 +45,3 @@ Input.propTypes = {
 };
 
 export default Input;
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 5,
-  },
-  invisibleHeight: {
-    height: 20,
-  },
-});

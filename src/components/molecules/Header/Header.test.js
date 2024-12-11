@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
-import Header from './Header';
+import Header from '.';
 import accessibilityLabels from '../../../constants/accessibilityLabels'; // Adjust the path to the actual file
 
 describe('<Header />', () => {
