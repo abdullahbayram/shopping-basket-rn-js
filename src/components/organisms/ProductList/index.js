@@ -5,30 +5,26 @@ import ProductCard from '../../molecules/ProductCard';
 import styles from './ProductList.style';
 
 const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
-  const renderItem = useCallback(
-    ({ item, index }) => {
-      const existingItem =
-        !!basketItems && Array.isArray(basketItems) && basketItems.length > 0
-          ? basketItems.find((basketItem) => basketItem.id === item.id)
-          : {};
-      const isMaxQuantityPerProductReached = existingItem && existingItem.quantity >= 5;
-
-      return (
-        <ProductCard
-          index={index}
-          product={item}
-          onButtonPress={() => onAddItem(item)}
-          isMaxQuantityPerProductReached={!!isMaxQuantityPerProductReached}
-        />
-      );
+  const basketMap = useMemo(() => new Map(basketItems?.map((item) => [item.id, item])), [basketItems]);
+  const isMaxQuantityReached = useCallback(
+    (productId) => {
+      const existingItem = basketMap.get(productId);
+      return existingItem ? existingItem.quantity >= 5 : false;
     },
-    [basketItems, onAddItem],
+    [basketMap],
   );
 
-  const keyExtractor = useMemo((item) => item?.id, []);
-  const refreshControl = useMemo(
-    () => (refetch ? <RefreshControl refreshing={false} onRefresh={refetch} /> : null),
-    [refetch],
+  const keyExtractor = useCallback((item) => item?.id?.toString() || `key-${Math.random()}`, []);
+  const renderItem = useCallback(
+    ({ item, index }) => (
+      <ProductCard
+        index={index}
+        product={item}
+        onButtonPress={() => onAddItem(item)}
+        isMaxQuantityPerProductReached={isMaxQuantityReached(item.id)}
+      />
+    ),
+    [onAddItem, isMaxQuantityReached],
   );
 
   return (
@@ -38,9 +34,13 @@ const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
       columnWrapperStyle={styles.flatListColumnStyle}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      refreshControl={refreshControl}
+      refreshControl={refetch && <RefreshControl refreshing={false} onRefresh={refetch} />}
       style={styles.flatList}
       contentContainerStyle={styles.flatListPadding}
+      initialNumToRender={10}
+      maxToRenderPerBatch={5}
+      windowSize={10}
+      removeClippedSubviews
     />
   );
 };

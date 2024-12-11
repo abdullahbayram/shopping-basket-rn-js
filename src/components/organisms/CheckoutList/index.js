@@ -31,6 +31,9 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
       style={styles.flatList}
       contentContainerStyle={styles.contentContainer}
       initialNumToRender={10}
+      maxToRenderPerBatch={5}
+      windowSize={10}
+      removeClippedSubviews
     />
   );
 };
