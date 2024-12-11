@@ -13,7 +13,7 @@ import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../..
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
-import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';
+import CheckoutList from '../../components/organisms/CheckoutList';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import strings from '../../constants/strings';
 

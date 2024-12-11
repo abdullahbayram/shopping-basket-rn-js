@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTheme } from 'react-native-paper';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
@@ -11,11 +12,12 @@ import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
-import ProductList from '../../components/organisms/ProductList/ProductList';
+import ProductList from '../../components/organisms/ProductList';
 import HelperText from '../../components/atoms/HelperText';
 import strings from '../../constants/strings';
 
 const ProductListScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   const dispatch = useDispatch();
   const totalCount = useSelector(selectTotalItemCount);
   const basketItems = useSelector((state) => state.basket.items);
@@ -41,7 +43,7 @@ const ProductListScreen = ({ navigation }) => {
   };
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return <ActivityIndicator size="large" color={colors.secondary} />;
   }
 
   return (

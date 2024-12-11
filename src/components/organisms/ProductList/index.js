@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
-import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import ProductCard from '../../molecules/ProductCard';
+import styles from './ProductList.style';
 
 const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
   const renderItem = useCallback(
@@ -64,17 +65,5 @@ ProductList.propTypes = {
   onAddItem: PropTypes.func.isRequired,
   refetch: PropTypes.func.isRequired,
 };
-
-const styles = StyleSheet.create({
-  flatListPadding: {
-    paddingRight: 10,
-  },
-  flatList: {
-    marginTop: 7,
-  },
-  flatListColumnStyle: {
-    justifyContent: 'space-between',
-  },
-});
 
 export default ProductList;

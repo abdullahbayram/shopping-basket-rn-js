@@ -1,23 +1,27 @@
-import React, { useCallback, useMemo } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import CheckoutCard from '../../molecules/CheckoutCard';
+import Text from '../../atoms/Text';
+import styles from './CheckoutList.style';
 
 const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   const renderItem = useCallback(
-    ({ item }) => {
-      return (
-        <CheckoutCard
-          product={item}
-          onRemoveButtonPress={() => onRemoveItem(item)}
-          onQuantityChange={onQuantityChange}
-        />
-      );
-    },
+    ({ item }) => (
+      <CheckoutCard product={item} onRemoveButtonPress={() => onRemoveItem(item)} onQuantityChange={onQuantityChange} />
+    ),
     [onRemoveItem, onQuantityChange],
   );
 
-  const keyExtractor = useMemo((item) => item?.id, []);
+  const keyExtractor = useCallback((item) => String(item?.id), []);
+
+  if (!basketItems.length) {
+    return (
+      <Text style={styles.emptyMessage} variant="titleMedium">
+        Your basket is empty.
+      </Text>
+    );
+  }
 
   return (
     <FlatList
@@ -26,6 +30,7 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
       keyExtractor={keyExtractor}
       style={styles.flatList}
       contentContainerStyle={styles.contentContainer}
+      initialNumToRender={10}
     />
   );
 };
@@ -38,19 +43,15 @@ CheckoutList.propTypes = {
       description: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      rating: PropTypes.shape({
+        rate: PropTypes.number,
+        count: PropTypes.number,
+      }),
     }),
   ).isRequired,
   onRemoveItem: PropTypes.func.isRequired,
   onQuantityChange: PropTypes.func.isRequired,
 };
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    paddingRight: 10,
-  },
-  flatList: {
-    marginTop: 7,
-  },
-});
 
 export default CheckoutList;
