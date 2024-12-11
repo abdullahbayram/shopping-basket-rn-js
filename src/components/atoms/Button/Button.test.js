@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react-native';
-import Button from './Button';
+import Button from '.';
 
 const BUTTON_TEXT_CLICK_ME = 'Click Me';
 const BUTTON_TEXT_PRESS_ME = 'Press Me';

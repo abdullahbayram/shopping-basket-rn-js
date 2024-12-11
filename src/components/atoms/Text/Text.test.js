@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react-native';
-import Text from './Text'; // Adjust the import path to your file
+import Text from '.'; // Adjust the import path to your file
 
 describe('<Text />', () => {
   const testText = 'Hello, World!';

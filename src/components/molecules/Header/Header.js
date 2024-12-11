@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Appbar from '../../atoms/Appbar/Appbar';
+import Appbar from '../../atoms/Appbar';
 import accessibilityLabels from '../../../constants/accessibilityLabels';
 
 const Header = ({ handleSearch = null, handleMore = null, onBackPress = null, title }) => {

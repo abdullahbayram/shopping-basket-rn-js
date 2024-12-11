@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HelperText as PHelperText } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
+import styles from './HelperText.style';
 
 const HelperText = ({ children, type, visible, style }) => (
   <PHelperText type={type} visible={visible} style={[styles.helperText, style]}>
@@ -17,9 +17,3 @@ HelperText.propTypes = {
 };
 
 export default HelperText;
-
-const styles = StyleSheet.create({
-  helperText: {
-    paddingVertical: 0,
-  },
-});

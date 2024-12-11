@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Animated, Text, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import Button from '../../atoms/Button/Button';
+import Button from '../../atoms/Button';
 
 const RedirectWithAnimation = ({ message, duration = 5000 }) => {
   const navigation = useNavigation();

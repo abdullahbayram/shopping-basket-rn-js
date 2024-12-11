@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import ActivityIndicator from '../../components/atoms/ActivityIndicator/ActivityIndicator';
-import Button from '../../components/atoms/Button/Button';
-import Text from '../../components/atoms/Text/Text';
+import ActivityIndicator from '../../components/atoms/ActivityIndicator';
+import Button from '../../components/atoms/Button';
+import Text from '../../components/atoms/Text';
 import Screen from '../../components/templetes/Screen/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
@@ -12,7 +12,7 @@ import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import ProductList from '../../components/organisms/ProductList/ProductList';
-import HelperText from '../../components/atoms/HelperText/HelperText';
+import HelperText from '../../components/atoms/HelperText';
 import strings from '../../constants/strings';
 
 const ProductListScreen = ({ navigation }) => {
