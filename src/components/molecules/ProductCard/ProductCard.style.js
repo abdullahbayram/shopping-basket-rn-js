@@ -13,17 +13,13 @@ export default StyleSheet.create({
     paddingBottom: 0,
     marginVertical: 0,
   },
-  subtitle: {
-    fontSize: 14,
-    color: '#666',
-  },
-  feedbackAndPrice: {
-    paddingHorizontal: 16,
-  },
   rating: {
     fontSize: 13,
     color: '#FFA500',
     marginBottom: 4,
+  },
+  feedbackAndPrice: {
+    paddingHorizontal: 16,
   },
   price: {
     fontSize: 18,
@@ -33,6 +29,10 @@ export default StyleSheet.create({
   button: {
     borderRadius: 50,
     flex: 1,
+  },
+  disabledButton: {
+    backgroundColor: '#ddd',
+    borderColor: '#aaa',
   },
   buttonOrHelperTextContainer: {
     paddingHorizontal: 7,

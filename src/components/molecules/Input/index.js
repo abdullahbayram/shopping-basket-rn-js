@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import TextInput from '../../atoms/TextInput';
 import HelperText from '../../atoms/HelperText';
 import styles from './Input.style';
 
-const Input = ({ label = null, onChangeText, maxLength, style, value, onBlur, onEndEditing, right, errorObject }) => {
+const Input = ({ label, onChangeText, maxLength, style, value = '', onBlur, onEndEditing, right, errorObject }) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -13,7 +13,7 @@ const Input = ({ label = null, onChangeText, maxLength, style, value, onBlur, on
         style={style}
         label={label}
         onChangeText={onChangeText}
-        value={String(value)}
+        value={value !== null && value !== undefined ? String(value) : ''}
         onBlur={onBlur}
         onEndEditing={onEndEditing}
         right={right}

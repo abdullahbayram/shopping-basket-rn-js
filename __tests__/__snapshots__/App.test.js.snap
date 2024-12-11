@@ -1043,7 +1043,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   }
                                 >
                                   €
-                                  22.3
+                                  22.30
                                 </Text>
                               </View>
                               <View
@@ -2416,7 +2416,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   }
                                 >
                                   €
-                                  695
+                                  695.00
                                 </Text>
                               </View>
                               <View
@@ -2861,7 +2861,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   }
                                 >
                                   €
-                                  168
+                                  168.00
                                 </Text>
                               </View>
                               <View
