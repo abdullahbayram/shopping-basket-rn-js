@@ -25,7 +25,7 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       style={styles.flatList}
-      contentContainerStyle={styles.flatListPadding}
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };
@@ -45,7 +45,7 @@ CheckoutList.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  flatListPadding: {
+  contentContainer: {
     paddingRight: 10,
   },
   flatList: {

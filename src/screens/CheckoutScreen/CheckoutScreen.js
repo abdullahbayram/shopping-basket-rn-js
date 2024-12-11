@@ -38,7 +38,7 @@ const CheckoutScreen = ({ navigation }) => {
     total: selectTotalPrice(state),
   }));
 
-  const isBasketEmtpy = basketItems.length === 0;
+  const isBasketEmpty = basketItems.length === 0;
 
   const [validatePromoCode, { isLoading }] = useValidatePromoCodeMutation();
 
@@ -84,7 +84,7 @@ const CheckoutScreen = ({ navigation }) => {
 
       <View style={styles.topContainer}>
         <View style={styles.orderButtonContainer}>
-          <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmtpy}>
+          <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmpty}>
             {strings.order} ({totalCount} items)
           </Button>
         </View>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
   },
   topContainer: {
-    flex: 1,
+    height: 165,
     justifyContent: 'space-between',
     marginVertical: 10,
   },

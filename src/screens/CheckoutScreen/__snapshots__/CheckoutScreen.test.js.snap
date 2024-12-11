@@ -56,7 +56,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
   <View
     style={
       {
-        "flex": 1,
+        "height": 165,
         "justifyContent": "space-between",
         "marginVertical": 10,
       }
