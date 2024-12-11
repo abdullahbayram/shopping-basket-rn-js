@@ -54,10 +54,22 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
-    const errorMessage =
-      Array.isArray(err?.data?.errors) && err?.data?.errors.length > 0
-        ? err?.data?.errors[0].msg
-        : err?.msg || strings.unexpectedError;
+    let errorMessage = strings.unexpectedError; // Default error message
+
+    try {
+      if (typeof err.msg === 'string') {
+        const parsedError = JSON.parse(err.msg);
+
+        if (Array.isArray(parsedError?.errors) && parsedError.errors.length > 0) {
+          errorMessage = parsedError.errors[0].msg; // Use the first specific error message
+        }
+      } else if (Array.isArray(err?.errors) && err.errors.length > 0) {
+        errorMessage = err.errors[0].msg;
+      }
+    } catch (e) {
+      console.error('Failed to parse error message:', e);
+    }
+
     navigation.navigate('Error', { errorMessage });
   };
 

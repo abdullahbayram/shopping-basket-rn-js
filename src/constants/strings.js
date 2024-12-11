@@ -15,4 +15,5 @@ export default {
   expirationDate: 'Expiration Date',
   cvv: 'CVV',
   unexpectedError: 'An unexpected error occurred. Please try again later.',
+  unexpectedErrorShort: 'Unexpected Error',
 };

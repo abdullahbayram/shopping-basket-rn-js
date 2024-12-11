@@ -1,13 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Animated, Text, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
+import Button from '../../atoms/Button/Button';
 
 const RedirectWithAnimation = ({ message, duration = 5000 }) => {
   const navigation = useNavigation();
   const [seconds, setSeconds] = useState(duration / 1000); // Countdown in seconds
   const progress = useRef(new Animated.Value(0)).current; // Animation progress
   const redirectTo = 'ProductList';
+
+  const resetNavigation = useCallback(() => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: redirectTo }],
+    });
+  }, [navigation]);
 
   useEffect(() => {
     // Disable Android back button
@@ -28,13 +36,9 @@ const RedirectWithAnimation = ({ message, duration = 5000 }) => {
         return prev - 1;
       });
     }, 1000);
-
     // Redirect logic
     const timer = setTimeout(() => {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: redirectTo }],
-      });
+      resetNavigation();
     }, duration);
 
     return () => {
@@ -42,7 +46,7 @@ const RedirectWithAnimation = ({ message, duration = 5000 }) => {
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, [navigation, progress, duration, redirectTo]);
+  }, [navigation, progress, duration, redirectTo, resetNavigation]);
 
   const widthInterpolated = progress.interpolate({
     inputRange: [0, 1],
@@ -60,6 +64,9 @@ const RedirectWithAnimation = ({ message, duration = 5000 }) => {
       <View style={styles.progressBarContainer}>
         <Animated.View style={[styles.progressBar, { width: widthInterpolated }]} />
       </View>
+      <Button mode="contained" onPress={resetNavigation}>
+        Go to Products
+      </Button>
     </View>
   );
 };
@@ -98,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0e0e0',
     borderRadius: 5,
     overflow: 'hidden', // Ensure the progress stays inside the container
+    marginBottom: 16,
   },
   progressBar: {
     height: '100%',

@@ -3,7 +3,6 @@ import { screen, render } from '@testing-library/react-native';
 import { useRoute } from '@react-navigation/native';
 import ErrorScreen from './ErrorScreen';
 
-// Mock useRoute to control the route parameters for testing
 jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn(),
   useNavigation: jest.fn(),
@@ -12,7 +11,7 @@ jest.mock('@react-navigation/native', () => ({
 describe('ErrorScreen Component', () => {
   it('should render the default error message when no parameters are passed', () => {
     useRoute.mockReturnValue({
-      params: {},
+      params: undefined,
     });
 
     render(<ErrorScreen />);
