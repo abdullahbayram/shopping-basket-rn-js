@@ -1,9 +1,13 @@
 const valid = require('card-validator');
 
 const checkCreditCardWithCardValidator = (creditCardNumber) => {
+  if (!creditCardNumber || typeof creditCardNumber !== 'string') {
+    console.error('Invalid input: creditCardNumber must be a non-empty string');
+    return false;
+  }
+
   const numberValidation = valid.number(creditCardNumber);
-  console.log(numberValidation, 'numberValidation');
-  return numberValidation.isValid;
+  return numberValidation?.isValid || false;
 };
 
 export default checkCreditCardWithCardValidator;

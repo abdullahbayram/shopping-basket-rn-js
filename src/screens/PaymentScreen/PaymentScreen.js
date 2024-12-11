@@ -11,13 +11,13 @@ import TextInput from '../../components/atoms/TextInput/TextInput';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../utils/validateBasket';
+import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay/ActivityOverlay';
-import checkCreditCardWithCardValidator from '../../utils/checkCreditCardWithCardValidator';
+import checkCreditCardWithCardValidator from '../../validate/checkCreditCardWithCardValidator';
 import strings from '../../constants/strings';
-import validationRules from '../../constants/validationRules';
+import validationRules from '../../validate/validationRules';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';

@@ -10,7 +10,7 @@ import Input from '../../components/molecules/Input/Input';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../utils/validateBasket';
+import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import CheckoutList from '../../components/organisms/CheckoutList/CheckoutList';

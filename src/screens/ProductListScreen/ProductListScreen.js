@@ -8,7 +8,7 @@ import Screen from '../../components/templetes/Screen/Screen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../utils/validateBasket';
+import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/alertMessages';
 import ProductList from '../../components/organisms/ProductList/ProductList';

@@ -1,4 +1,4 @@
-import checkCreditCardWithCardValidator from '../utils/checkCreditCardWithCardValidator';
+import checkCreditCardWithCardValidator from './checkCreditCardWithCardValidator';
 
 const validationRules = {
   cardholderName: {
