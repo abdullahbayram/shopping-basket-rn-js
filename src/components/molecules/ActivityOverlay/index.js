@@ -7,7 +7,7 @@ const ActivityOverlay = ({ isVisible = false, color = 'white', size = 'large', z
   if (!isVisible) return null;
 
   return (
-    <View style={[styles.overlay, { zIndex }]} accessibilityLabel="Loading overlay" accessibilityRole="progressbar">
+    <View style={[styles.overlay, { zIndex }]}>
       <ActivityIndicator size={size} color={color} />
     </View>
   );

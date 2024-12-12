@@ -1,6 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-
-const baseUrl = 'http://';
+import api from '../../constants/urls';
 
 const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
   const controller = new AbortController();
@@ -23,7 +22,7 @@ const customBaseQuery = async (args) => {
   const { url, method = 'GET', body, headers } = args;
 
   try {
-    const response = await fetchWithTimeout(`${baseUrl}${url}`, {
+    const response = await fetchWithTimeout(`${api.baseUrl}${url}`, {
       method,
       body: JSON.stringify(body),
       headers: {
@@ -55,18 +54,18 @@ export const apiSlice = createApi({
   baseQuery: customBaseQuery,
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({ url: 'fakestoreapi.com/products' }),
+      query: () => ({ url: api.endpoints.products }),
     }),
     placeOrder: builder.mutation({
       query: (orderData) => ({
-        url: 'localhost:9001/checkout',
+        url: api.endpoints.checkout,
         method: 'POST',
         body: orderData,
       }),
     }),
     validatePromoCode: builder.mutation({
       query: (promoCode) => ({
-        url: 'localhost:9001/promocode',
+        url: api.endpoints.promocode,
         method: 'POST',
         body: { promoCode },
       }),

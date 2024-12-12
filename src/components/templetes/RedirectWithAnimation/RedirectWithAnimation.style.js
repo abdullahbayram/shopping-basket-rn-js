@@ -13,6 +13,10 @@ export default StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
   },
+  textContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
   message: {
     fontSize: 16,
     color: '#666',

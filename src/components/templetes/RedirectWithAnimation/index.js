@@ -53,15 +53,17 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{message}</Text>
-      <Text style={styles.message}>
-        Redirecting to {redirectTo} in {seconds} second{seconds > 1 ? 's' : ''}...
-      </Text>
-      <View style={styles.progressBarContainer} accessibilityLabel="Progress bar">
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{message}</Text>
+        <Text style={styles.message}>
+          Redirecting to product list in {seconds} second{seconds > 1 ? 's' : ''}...
+        </Text>
+      </View>
+      <View style={styles.progressBarContainer}>
         <Animated.View style={[styles.progressBar, { width: widthInterpolated }]} />
       </View>
-      <Button mode="contained" onPress={resetNavigation} accessibilityLabel={`Go to ${redirectTo}`}>
-        Go to {redirectTo}
+      <Button mode="contained" onPress={resetNavigation}>
+        Go to Products
       </Button>
     </View>
   );

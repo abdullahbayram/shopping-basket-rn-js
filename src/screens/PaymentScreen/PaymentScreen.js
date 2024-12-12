@@ -13,7 +13,7 @@ import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/alertMessages';
+import messages from '../../constants/toastMessages';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import checkCreditCardWithCardValidator from '../../validate/checkCreditCardWithCardValidator';
 import strings from '../../constants/strings';
@@ -54,7 +54,7 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
-    let errorMessage = strings.unexpectedError; // Default error message
+    let errorMessage = strings.payment.unexpectedError; // Default error message
 
     try {
       if (typeof err.msg === 'string') {
@@ -75,7 +75,7 @@ const PaymentScreen = ({ navigation }) => {
 
   const onPlaceOrder = async (data) => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.basketError);
+      showToast(messages.basket.empty);
       return;
     }
     try {
@@ -119,11 +119,11 @@ const PaymentScreen = ({ navigation }) => {
     <Screen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <Text variant="titleMedium">
-        {strings.basketItemCount} {totalCount}
+        {strings.payment.basketItemCount} {totalCount}
       </Text>
       <View style={styles.totalContainer}>
         <Text variant="titleMedium">
-          {strings.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+          {strings.payment.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
         </Text>
       </View>
 
@@ -136,7 +136,7 @@ const PaymentScreen = ({ navigation }) => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Cardholder Name"
+              label={strings.payment.cardholderName}
               placeholder="Enter the name on your card"
               errorObject={errors.cardholderName}
               right={
@@ -145,8 +145,6 @@ const PaymentScreen = ({ navigation }) => {
                   color={errors.cardholderName ? colors.error : colors.primary}
                 />
               }
-              accessibilityLabel="Cardholder Name"
-              accessibilityHint="Enter the name as it appears on your credit card"
             />
           )}
           name="cardholderName"
@@ -160,7 +158,7 @@ const PaymentScreen = ({ navigation }) => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Credit Card Number"
+              label={strings.payment.creditCardNumber}
               placeholder="Enter your credit card number"
               maxLength={16}
               keyboardType="numeric"
@@ -171,8 +169,6 @@ const PaymentScreen = ({ navigation }) => {
                   color={errors.creditCardNumber ? colors.error : colors.primary}
                 />
               }
-              accessibilityLabel="Credit Card Number"
-              accessibilityHint="Enter the number on your credit card"
             />
           )}
           name="creditCardNumber"
@@ -186,7 +182,7 @@ const PaymentScreen = ({ navigation }) => {
               value={value}
               onBlur={onBlur}
               onChangeText={(text) => onChange(formatExpirationDate(text))}
-              label="Expiration Date"
+              label={strings.payment.expirationDate}
               placeholder="MM/YY"
               maxLength={5}
               keyboardType="numeric"
@@ -197,8 +193,6 @@ const PaymentScreen = ({ navigation }) => {
                   color={errors.expirationDate ? colors.error : colors.primary}
                 />
               }
-              accessibilityLabel="Expiration Date"
-              accessibilityHint="Enter the card's expiration date in MM/YY format"
             />
           )}
           name="expirationDate"
@@ -212,16 +206,14 @@ const PaymentScreen = ({ navigation }) => {
               value={value}
               onBlur={onBlur}
               onChangeText={(text) => onChange(filterNumericInput(text))}
-              label="CVV"
-              placeholder="CVV"
+              label={strings.payment.cvv}
+              placeholder={strings.payment.cvv}
               maxLength={3}
               keyboardType="numeric"
               errorObject={errors.cvv}
               right={
                 <TextInput.Icon icon={getIcon('cvv', errors)} color={errors.cvv ? colors.error : colors.primary} />
               }
-              accessibilityLabel="CVV"
-              accessibilityHint="Enter the 3-digit security code on the back of your card"
             />
           )}
           name="cvv"
@@ -235,7 +227,7 @@ const PaymentScreen = ({ navigation }) => {
           onPress={handleSubmit(onPlaceOrder)}
           disabled={basketItems.length === 0 || isLoading}
         >
-          {strings.order}
+          {strings.payment.order}
         </Button>
       </View>
     </Screen>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CheckoutCard from '../../molecules/CheckoutCard';
 import Text from '../../atoms/Text';
 import styles from './CheckoutList.style';
+import strings from '../../../constants/strings';
 
 const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   const renderItem = useCallback(
@@ -18,7 +19,7 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   if (!basketItems.length) {
     return (
       <Text style={styles.emptyMessage} variant="titleMedium">
-        Your basket is empty.
+        {strings.checkout.emptyBasket}
       </Text>
     );
   }

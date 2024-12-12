@@ -12,7 +12,7 @@ import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/alertMessages';
+import messages from '../../constants/toastMessages';
 import CheckoutList from '../../components/organisms/CheckoutList';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import strings from '../../constants/strings';
@@ -48,7 +48,7 @@ const CheckoutScreen = ({ navigation }) => {
 
   const onOrderPress = () => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.basketError);
+      showToast(messages.basket.empty);
       return;
     }
     navigation.navigate('Payment');
@@ -59,9 +59,9 @@ const CheckoutScreen = ({ navigation }) => {
       const { amount } = await validatePromoCode(data.promoCode).unwrap();
       if (amount) {
         dispatch(setDiscount(amount));
-        showToast(messages.promoSuccess);
+        showToast(messages.promo.success);
       } else {
-        showToast(messages.invalidPromo);
+        showToast(messages.promo.invalid);
       }
     } catch (err) {
       const errorMsg = err?.msg || messages.promoError.msg;
@@ -78,14 +78,14 @@ const CheckoutScreen = ({ navigation }) => {
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
         <Text variant="titleMedium">
-          {strings.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+          {strings.checkout.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
         </Text>
       </View>
 
       <View style={styles.topContainer}>
         <View style={styles.orderButtonContainer}>
           <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmpty}>
-            {strings.order} ({totalCount} items)
+            {strings.checkout.order} ({totalCount} items)
           </Button>
         </View>
 
@@ -102,7 +102,7 @@ const CheckoutScreen = ({ navigation }) => {
                 onChangeText={onChange}
                 onBlur={onBlur}
                 label="Promo Code"
-                placeholder={strings.promoCodePlaceholder}
+                placeholder={strings.checkout.promoCodePlaceholder}
                 keyboardType="default"
                 right={<TextInput.Icon icon="percent" color={errors.promoCode ? colors.error : colors.primary} />}
                 errorObject={errors.promoCode}
@@ -112,7 +112,7 @@ const CheckoutScreen = ({ navigation }) => {
           />
 
           <Button icon="sack-percent" onPress={handleSubmit(onApplyPromoCode)} mode="contained">
-            {strings.applyPromo}
+            {strings.checkout.applyPromo}
           </Button>
         </View>
       </View>

@@ -11,7 +11,7 @@ import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/alertMessages';
+import messages from '../../constants/toastMessages';
 import ProductList from '../../components/organisms/ProductList';
 import HelperText from '../../components/atoms/HelperText';
 import strings from '../../constants/strings';
@@ -27,7 +27,7 @@ const ProductListScreen = ({ navigation }) => {
 
   const onCheckoutPress = () => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.basketError);
+      showToast(messages.promo.error);
       return;
     }
     navigation.navigate('Checkout');
@@ -36,7 +36,7 @@ const ProductListScreen = ({ navigation }) => {
   const onAddToBasket = (item) => {
     const existingItem = basketItemsMap.get(item.id);
     if (existingItem && existingItem.quantity >= 5) {
-      showToast(messages.limitReached);
+      showToast(messages.basket.limitReached);
       return;
     }
     dispatch(addItemToBasket(item));
@@ -51,7 +51,7 @@ const ProductListScreen = ({ navigation }) => {
       {error ? (
         <View>
           <HelperText style={styles.errorText} type="error">
-            {strings.errorLoading}
+            {strings.productList.errorLoading}
           </HelperText>
           <Button onPress={refetch} mode="contained">
             Retry
@@ -59,7 +59,7 @@ const ProductListScreen = ({ navigation }) => {
         </View>
       ) : (
         <Text variant="titleMedium">
-          {strings.basketItemCount} {totalCount}
+          {strings.productList.basketItemCount} {totalCount}
         </Text>
       )}
       {!error && (
@@ -73,7 +73,7 @@ const ProductListScreen = ({ navigation }) => {
             mode="contained"
             onPress={onCheckoutPress}
           >
-            {strings.checkout}
+            {strings.productList.checkout}
           </Button>
         </View>
       )}

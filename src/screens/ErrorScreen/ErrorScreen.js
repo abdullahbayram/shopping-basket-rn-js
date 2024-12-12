@@ -6,7 +6,7 @@ import strings from '../../constants/strings';
 
 const ErrorScreen = () => {
   const route = useRoute();
-  const { errorMessage } = route.params || { errorMessage: strings.unexpectedErrorShort };
+  const { errorMessage } = route.params || { errorMessage: strings.payment.unexpectedErrorShort };
 
   return (
     <Screen>

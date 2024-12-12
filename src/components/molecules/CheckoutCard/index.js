@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Button from '../../atoms/Button';
 import Text from '../../atoms/Text';
 import showToast from '../../../utils/showToast';
-import messages from '../../../constants/alertMessages';
+import messages from '../../../constants/toastMessages';
 import styles from './CheckoutCard.style';
 
 const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButtonPress }) => {
@@ -24,7 +24,7 @@ const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButt
     if (product.quantity < maxQuantity) {
       onQuantityChange(product, product.quantity + 1);
     } else {
-      showToast(messages.invalidQuantity);
+      showToast(messages.basket.invalidQuantity);
     }
   };
 

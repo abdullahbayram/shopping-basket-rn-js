@@ -27,39 +27,45 @@ exports[`SuccessScreen Component should match the snapshot 1`] = `
       }
     }
   >
-    <Text
+    <View
       style={
         {
-          "fontSize": 24,
-          "fontWeight": "bold",
-          "marginBottom": 8,
-          "textAlign": "center",
+          "alignItems": "center",
+          "marginBottom": 20,
         }
       }
     >
-      
+      <Text
+        style={
+          {
+            "fontSize": 24,
+            "fontWeight": "bold",
+            "marginBottom": 8,
+            "textAlign": "center",
+          }
+        }
+      >
+        
 Thank you!
 Your order has been placed successfully.
-
-    </Text>
-    <Text
-      style={
-        {
-          "color": "#666",
-          "fontSize": 16,
+      
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#666",
+            "fontSize": 16,
+          }
         }
-      }
-    >
-      Redirecting to 
-      ProductList
-       in 
-      5
-       second
-      s
-      ...
-    </Text>
+      >
+        Redirecting to product list in 
+        5
+         second
+        s
+        ...
+      </Text>
+    </View>
     <View
-      accessibilityLabel="Progress bar"
       style={
         {
           "backgroundColor": "#e0e0e0",
@@ -225,8 +231,7 @@ Your order has been placed successfully.
               }
               testID="button-text"
             >
-              Go to 
-              ProductList
+              Go to Products
             </Text>
           </View>
         </View>

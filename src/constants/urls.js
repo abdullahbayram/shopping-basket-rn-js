@@ -1,4 +1,8 @@
-export const baseUrl = 'http://localhost:9001/';
-
-export const products = 'products';
-export const checkout = 'checkout';
+export default {
+  baseUrl: 'http://',
+  endpoints: {
+    products: 'fakestoreapi.com/products',
+    checkout: 'localhost:9001/checkout',
+    promocode: 'localhost:9001/promocode',
+  },
+};
