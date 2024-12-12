@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/Screen/Screen';
+import Screen from '../../components/templetes/BaseScreen';
 import Input from '../../components/molecules/Input';
 import TextInput from '../../components/atoms/TextInput';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';

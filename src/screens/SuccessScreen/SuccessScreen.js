@@ -1,6 +1,6 @@
 import React from 'react';
-import RedirectWithAnimation from '../../components/templetes/RedirectWithAnimation/RedirectWithAnimation';
-import Screen from '../../components/templetes/Screen/Screen';
+import RedirectWithAnimation from '../../components/templetes/RedirectWithAnimation';
+import Screen from '../../components/templetes/BaseScreen';
 import strings from '../../constants/alertMessages';
 
 const SuccessScreen = () => {

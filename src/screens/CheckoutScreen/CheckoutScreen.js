@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/Screen/Screen';
+import Screen from '../../components/templetes/BaseScreen';
 import Input from '../../components/molecules/Input';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';

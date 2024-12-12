@@ -3,13 +3,18 @@
 exports[`CheckoutScreen should match the snapshot 1`] = `
 <View
   style={
-    {
-      "backgroundColor": "#fff",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 9,
-      "paddingTop": 10,
-    }
+    [
+      {
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "paddingLeft": 16,
+        "paddingRight": 9,
+        "paddingTop": 10,
+      },
+      {
+        "backgroundColor": "rgba(255, 251, 254, 1)",
+      },
+    ]
   }
 >
   <View

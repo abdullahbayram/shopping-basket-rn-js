@@ -3,13 +3,18 @@
 exports[`SuccessScreen Component should match the snapshot 1`] = `
 <View
   style={
-    {
-      "backgroundColor": "#fff",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 9,
-      "paddingTop": 10,
-    }
+    [
+      {
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "paddingLeft": 16,
+        "paddingRight": 9,
+        "paddingTop": 10,
+      },
+      {
+        "backgroundColor": "rgba(255, 251, 254, 1)",
+      },
+    ]
   }
 >
   <View
@@ -22,45 +27,39 @@ exports[`SuccessScreen Component should match the snapshot 1`] = `
       }
     }
   >
-    <View
+    <Text
       style={
         {
-          "alignItems": "center",
-          "marginBottom": 20,
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "marginBottom": 8,
+          "textAlign": "center",
         }
       }
     >
-      <Text
-        style={
-          {
-            "fontSize": 24,
-            "fontWeight": "bold",
-            "marginBottom": 8,
-            "textAlign": "center",
-          }
-        }
-      >
-        
+      
 Thank you!
 Your order has been placed successfully.
 
-      </Text>
-      <Text
-        style={
-          {
-            "color": "#666",
-            "fontSize": 16,
-          }
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#666",
+          "fontSize": 16,
         }
-      >
-        Redirecting to product list in 
-        5
-         second
-        s
-        ...
-      </Text>
-    </View>
+      }
+    >
+      Redirecting to 
+      ProductList
+       in 
+      5
+       second
+      s
+      ...
+    </Text>
     <View
+      accessibilityLabel="Progress bar"
       style={
         {
           "backgroundColor": "#e0e0e0",
@@ -226,7 +225,8 @@ Your order has been placed successfully.
               }
               testID="button-text"
             >
-              Go to Products
+              Go to 
+              ProductList
             </Text>
           </View>
         </View>

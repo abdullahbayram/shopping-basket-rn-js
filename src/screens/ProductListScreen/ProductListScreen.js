@@ -5,7 +5,7 @@ import { useTheme } from 'react-native-paper';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator';
 import Button from '../../components/atoms/Button';
 import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/Screen/Screen';
+import Screen from '../../components/templetes/BaseScreen';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
