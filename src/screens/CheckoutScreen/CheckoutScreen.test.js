@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
-import CheckoutScreen from './CheckoutScreen';
+import CheckoutScreen from '.';
 import renderInProvider from '../../../__tests__/utils/renderInProvider';
 import { sampleBasket } from '../../../__tests__/mocks/handlers';
 import mockNavigation from '../../../__tests__/mocks/navigation';

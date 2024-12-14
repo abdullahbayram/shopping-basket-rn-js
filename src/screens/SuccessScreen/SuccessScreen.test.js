@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react-native';
-import SuccessScreen from './SuccessScreen';
+import SuccessScreen from '.';
 import renderInNavigation from '../../../__tests__/utils/renderInNavigation';
 import strings from '../../constants/strings';
 

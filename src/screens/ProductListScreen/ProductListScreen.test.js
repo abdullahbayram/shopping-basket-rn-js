@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
-import ProductListScreen from './ProductListScreen';
+import ProductListScreen from '.';
 import renderInProvider from '../../../__tests__/utils/renderInProvider';
 import { sampleBasket, sampleResponse } from '../../../__tests__/mocks/handlers';
 

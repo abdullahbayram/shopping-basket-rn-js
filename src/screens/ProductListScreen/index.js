@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
 import ActivityIndicator from '../../components/atoms/ActivityIndicator';
@@ -15,6 +15,7 @@ import messages from '../../constants/toastMessages';
 import ProductList from '../../components/organisms/ProductList';
 import HelperText from '../../components/atoms/HelperText';
 import strings from '../../constants/strings';
+import styles from './ProductListScreen.style';
 
 const ProductListScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -84,13 +85,3 @@ const ProductListScreen = ({ navigation }) => {
 export default ProductListScreen;
 
 ProductListScreen.whyDidYouRender = true;
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    paddingTop: 10,
-    paddingBottom: 30,
-    flexGrow: 1,
-    justifyContent: 'center',
-  },
-  errorText: { alignSelf: 'center' },
-});

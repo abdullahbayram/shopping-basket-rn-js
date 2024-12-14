@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
@@ -16,6 +16,7 @@ import messages from '../../constants/toastMessages';
 import CheckoutList from '../../components/organisms/CheckoutList';
 import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import strings from '../../constants/strings';
+import styles from './CheckoutScreen.style';
 
 const CheckoutScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -122,19 +123,3 @@ const CheckoutScreen = ({ navigation }) => {
 };
 
 export default CheckoutScreen;
-
-const styles = StyleSheet.create({
-  totalContainer: {
-    marginBottom: 7,
-    paddingLeft: 2,
-  },
-  topContainer: {
-    height: 165,
-    justifyContent: 'space-between',
-    marginVertical: 10,
-  },
-  orderButtonContainer: {
-    flex: 4,
-  },
-  promoContainer: { flex: 6 },
-});

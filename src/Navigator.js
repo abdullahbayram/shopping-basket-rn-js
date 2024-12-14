@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from 'react-native';
-import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
-import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
-import ErrorScreen from './screens/ErrorScreen/ErrorScreen';
-import SuccessScreen from './screens/SuccessScreen/SuccessScreen';
-import PaymentScreen from './screens/PaymentScreen/PaymentScreen';
+import ProductListScreen from './screens/ProductListScreen';
+import CheckoutScreen from './screens/CheckoutScreen';
+import ErrorScreen from './screens/ErrorScreen';
+import SuccessScreen from './screens/SuccessScreen';
+import PaymentScreen from './screens/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
 

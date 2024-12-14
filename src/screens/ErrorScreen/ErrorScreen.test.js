@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react-native';
 import { useRoute } from '@react-navigation/native';
-import ErrorScreen from './ErrorScreen';
+import ErrorScreen from './index';
 
 jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn(),
