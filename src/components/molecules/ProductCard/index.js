@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import Card from '../../atoms/Card/Card';
-import Button from '../../atoms/Button';
-import Text from '../../atoms/Text';
-import HelperText from '../../atoms/HelperText';
+import { Card, Button, Text, HelperText } from '../../atoms';
 import styles from './ProductCard.style';
 
 const leftCardMargin = { marginRight: 5 };

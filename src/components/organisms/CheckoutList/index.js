@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
-import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import CheckoutCard from '../../molecules/CheckoutCard';
-import Text from '../../atoms/Text';
+import { Text, FlatList } from '../../atoms';
+import { CheckoutCard } from '../../molecules';
 import styles from './CheckoutList.style';
 import strings from '../../../constants/strings';
 
@@ -31,10 +30,6 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
       keyExtractor={keyExtractor}
       style={styles.flatList}
       contentContainerStyle={styles.contentContainer}
-      initialNumToRender={10}
-      maxToRenderPerBatch={5}
-      windowSize={10}
-      removeClippedSubviews
     />
   );
 };

@@ -3,18 +3,16 @@ import { View } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import Button from '../../components/atoms/Button';
-import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/BaseScreen';
-import Input from '../../components/molecules/Input';
+import { Button, Text } from '../../components/atoms';
+import { Input, ActivityOverlay } from '../../components/molecules';
+import { CheckoutList } from '../../components/organisms';
+import { BaseScreen } from '../../components/templetes';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/toastMessages';
-import CheckoutList from '../../components/organisms/CheckoutList';
-import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import strings from '../../constants/strings';
 import styles from './CheckoutScreen.style';
 
@@ -75,7 +73,7 @@ const CheckoutScreen = ({ navigation }) => {
   };
 
   return (
-    <Screen>
+    <BaseScreen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
         <Text variant="titleMedium">
@@ -118,7 +116,7 @@ const CheckoutScreen = ({ navigation }) => {
         </View>
       </View>
       <CheckoutList onQuantityChange={onQuantityChange} basketItems={basketItems} onRemoveItem={onRemoveItem} />
-    </Screen>
+    </BaseScreen>
   );
 };
 

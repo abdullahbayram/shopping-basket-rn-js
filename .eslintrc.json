@@ -32,7 +32,7 @@
     "react/jsx-props-no-spreading": [
       "error",
       {
-        "exceptions": ["Input"]
+        "exceptions": ["Input", "RNFlatList"]
       }
     ],
     "no-param-reassign": [

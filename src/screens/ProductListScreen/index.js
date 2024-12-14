@@ -2,18 +2,15 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
-import ActivityIndicator from '../../components/atoms/ActivityIndicator';
-import Button from '../../components/atoms/Button';
-import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/BaseScreen';
+import { ActivityIndicator, Button, Text, HelperText } from '../../components/atoms';
+import { ProductList } from '../../components/organisms';
+import { BaseScreen } from '../../components/templetes';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
 import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
 import messages from '../../constants/toastMessages';
-import ProductList from '../../components/organisms/ProductList';
-import HelperText from '../../components/atoms/HelperText';
 import strings from '../../constants/strings';
 import styles from './ProductListScreen.style';
 
@@ -48,7 +45,7 @@ const ProductListScreen = ({ navigation }) => {
   }
 
   return (
-    <Screen>
+    <BaseScreen>
       {error ? (
         <View>
           <HelperText style={styles.errorText} type="error">
@@ -78,7 +75,7 @@ const ProductListScreen = ({ navigation }) => {
           </Button>
         </View>
       )}
-    </Screen>
+    </BaseScreen>
   );
 };
 

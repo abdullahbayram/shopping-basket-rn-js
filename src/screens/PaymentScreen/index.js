@@ -1,13 +1,11 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
-import Button from '../../components/atoms/Button';
-import Text from '../../components/atoms/Text';
-import Screen from '../../components/templetes/BaseScreen';
-import Input from '../../components/molecules/Input';
-import TextInput from '../../components/atoms/TextInput';
+import { Button, Text, TextInput } from '../../components/atoms';
+import { Input } from '../../components/molecules';
+import { BaseScreen } from '../../components/templetes';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
@@ -18,6 +16,7 @@ import ActivityOverlay from '../../components/molecules/ActivityOverlay';
 import checkCreditCardWithCardValidator from '../../validate/checkCreditCardWithCardValidator';
 import strings from '../../constants/strings';
 import validationRules from '../../validate/validationRules';
+import styles from './PaymentScreen.style';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
 const CREDIT_CARD = 'credit-card';
@@ -116,7 +115,7 @@ const PaymentScreen = ({ navigation }) => {
   };
 
   return (
-    <Screen>
+    <BaseScreen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <Text variant="titleMedium">
         {strings.payment.basketItemCount} {totalCount}
@@ -230,22 +229,8 @@ const PaymentScreen = ({ navigation }) => {
           {strings.payment.order}
         </Button>
       </View>
-    </Screen>
+    </BaseScreen>
   );
 };
 
 export default PaymentScreen;
-
-const styles = StyleSheet.create({
-  totalContainer: {
-    marginVertical: 16,
-  },
-  formContainer: {
-    marginBottom: 16,
-  },
-  bottomContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingBottom: 30,
-  },
-});

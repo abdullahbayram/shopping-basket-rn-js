@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
-import { FlatList, RefreshControl } from 'react-native';
+import { RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
-import ProductCard from '../../molecules/ProductCard';
+import { FlatList } from '../../atoms';
+import { ProductCard } from '../../molecules';
 import styles from './ProductList.style';
 
 const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
@@ -35,12 +36,7 @@ const ProductList = ({ products, basketItems, onAddItem, refetch }) => {
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       refreshControl={refetch && <RefreshControl refreshing={false} onRefresh={refetch} />}
-      style={styles.flatList}
       contentContainerStyle={styles.flatListPadding}
-      initialNumToRender={10}
-      maxToRenderPerBatch={5}
-      windowSize={10}
-      removeClippedSubviews
     />
   );
 };

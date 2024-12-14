@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
-import RedirectWithAnimation from '../../components/templetes/RedirectWithAnimation';
-import Screen from '../../components/templetes/BaseScreen';
+import { BaseScreen, RedirectWithAnimation } from '../../components/templetes';
 import strings from '../../constants/strings';
 
 const ErrorScreen = () => {
@@ -9,9 +8,9 @@ const ErrorScreen = () => {
   const { errorMessage } = route.params || { errorMessage: strings.payment.unexpectedErrorShort };
 
   return (
-    <Screen>
+    <BaseScreen>
       <RedirectWithAnimation message={errorMessage} duration={10000} />
-    </Screen>
+    </BaseScreen>
   );
 };
 

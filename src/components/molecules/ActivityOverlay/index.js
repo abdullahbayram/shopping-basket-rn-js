@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './ActivityOverlay.style';
+import { ActivityIndicator } from '../../atoms';
 
 const ActivityOverlay = ({ isVisible = false, color = 'white', size = 'large', zIndex = 10 }) => {
   if (!isVisible) return null;

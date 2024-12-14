@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Animated, Text, BackHandler } from 'react-native';
+import { View, Animated, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import Button from '../../atoms/Button';
+import { Button, Text } from '../../atoms';
 import styles from './RedirectWithAnimation.style';
 
 const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'ProductList' }) => {
@@ -54,7 +54,9 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{message}</Text>
+        <Text variant="titleLarge" style={styles.title}>
+          {message}
+        </Text>
         <Text style={styles.message}>
           Redirecting to product list in {seconds} second{seconds > 1 ? 's' : ''}...
         </Text>

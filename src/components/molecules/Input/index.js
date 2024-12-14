@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import TextInput from '../../atoms/TextInput';
-import HelperText from '../../atoms/HelperText';
+import { TextInput, HelperText } from '../../atoms';
 import styles from './Input.style';
 
 const Input = ({ label, onChangeText, maxLength, style, value = '', onBlur, onEndEditing, right, errorObject }) => {
