@@ -2,14 +2,14 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'react-native-paper';
-import PropTypes from 'prop-types';
 import { ProductListScreen, CheckoutScreen, PaymentScreen, SuccessScreen, ErrorScreen } from '../screens';
 import { Toggle } from '../components/molecules';
 import { LinearGradient } from '../components/atoms';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Stack = createNativeStackNavigator();
 
-const HeaderBackground2 = () => <HeaderBackground />;
+const HeaderBackgroundFunc = () => <HeaderBackground />;
 const ToggleDark = (isDarkMode, toggleTheme) => <Toggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />;
 
 const HeaderBackground = () => {
@@ -24,11 +24,12 @@ const screenOptionsResultScreens = {
   headerBackVisible: false,
 };
 
-const Navigator = ({ toggleTheme, isDarkMode }) => {
+const Navigator = () => {
+  const { isDarkMode, toggleTheme } = React.useContext(ThemeContext);
   const { colors } = useTheme();
 
   const screenOptions = () => ({
-    headerBackground: () => HeaderBackground2(),
+    headerBackground: () => HeaderBackgroundFunc(),
     headerTitleStyle: {
       color: colors.textPrimary,
     },
@@ -48,11 +49,6 @@ const Navigator = ({ toggleTheme, isDarkMode }) => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-Navigator.propTypes = {
-  toggleTheme: PropTypes.func.isRequired,
-  isDarkMode: PropTypes.bool.isRequired,
 };
 
 export default Navigator;
