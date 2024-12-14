@@ -1,7 +1,5 @@
-import ActivityOverlay from './ActivityOverlay';
-import CheckoutCard from './CheckoutCard';
-import Header from './Header';
-import Input from './Input';
-import ProductCard from './ProductCard';
-
-export { ActivityOverlay, CheckoutCard, Header, Input, ProductCard };
+export { default as ActivityOverlay } from './ActivityOverlay';
+export { default as CheckoutCard } from './CheckoutCard';
+export { default as Header } from './Header';
+export { default as Input } from './Input';
+export { default as ProductCard } from './ProductCard';

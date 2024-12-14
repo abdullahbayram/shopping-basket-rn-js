@@ -8,10 +8,9 @@ import { BaseScreen } from '../../components/templetes';
 import { useGetProductsQuery } from '../../redux/api/apiSlice';
 import { addItemToBasket } from '../../redux/slices/basketSlice';
 import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../validate/validateBasket';
+import { validateBasket } from '../../validate';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/toastMessages';
-import strings from '../../constants/strings';
+import { toastMessages, strings } from '../../constants';
 import styles from './ProductListScreen.style';
 
 const ProductListScreen = ({ navigation }) => {
@@ -25,7 +24,7 @@ const ProductListScreen = ({ navigation }) => {
 
   const onCheckoutPress = () => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.promo.error);
+      showToast(toastMessages.promo.error);
       return;
     }
     navigation.navigate('Checkout');
@@ -34,7 +33,7 @@ const ProductListScreen = ({ navigation }) => {
   const onAddToBasket = (item) => {
     const existingItem = basketItemsMap.get(item.id);
     if (existingItem && existingItem.quantity >= 5) {
-      showToast(messages.basket.limitReached);
+      showToast(toastMessages.basket.limitReached);
       return;
     }
     dispatch(addItemToBasket(item));

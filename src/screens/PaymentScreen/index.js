@@ -4,18 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
 import { Button, Text, TextInput } from '../../components/atoms';
-import { Input } from '../../components/molecules';
+import { Input, ActivityOverlay } from '../../components/molecules';
 import { BaseScreen } from '../../components/templetes';
 import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../validate/validateBasket';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/toastMessages';
-import ActivityOverlay from '../../components/molecules/ActivityOverlay';
-import checkCreditCardWithCardValidator from '../../validate/checkCreditCardWithCardValidator';
-import strings from '../../constants/strings';
-import validationRules from '../../validate/validationRules';
+import { toastMessages, strings } from '../../constants';
+import { checkCreditCardWithCardValidator, validationRules, validateBasket } from '../../validate';
 import styles from './PaymentScreen.style';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
@@ -53,7 +49,7 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
-    let errorMessage = strings.payment.unexpectedError; // Default error message
+    let errorMessage = strings.payment.unexpectedError;
 
     try {
       if (typeof err.msg === 'string') {
@@ -74,7 +70,7 @@ const PaymentScreen = ({ navigation }) => {
 
   const onPlaceOrder = async (data) => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.basket.empty);
+      showToast(toastMessages.basket.empty);
       return;
     }
     try {

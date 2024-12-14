@@ -1,19 +1,18 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TextInput, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, Text } from '../../components/atoms';
+import { Button, Text, TextInput } from '../../components/atoms';
 import { Input, ActivityOverlay } from '../../components/molecules';
 import { CheckoutList } from '../../components/organisms';
 import { BaseScreen } from '../../components/templetes';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import validateBasket from '../../validate/validateBasket';
+import { validateBasket } from '../../validate';
 import showToast from '../../utils/showToast';
-import messages from '../../constants/toastMessages';
-import strings from '../../constants/strings';
+import { toastMessages, strings } from '../../constants';
 import styles from './CheckoutScreen.style';
 
 const CheckoutScreen = ({ navigation }) => {
@@ -47,7 +46,7 @@ const CheckoutScreen = ({ navigation }) => {
 
   const onOrderPress = () => {
     if (!validateBasket(basketItems)) {
-      showToast(messages.basket.empty);
+      showToast(toastMessages.basket.empty);
       return;
     }
     navigation.navigate('Payment');
@@ -58,13 +57,13 @@ const CheckoutScreen = ({ navigation }) => {
       const { amount } = await validatePromoCode(data.promoCode).unwrap();
       if (amount) {
         dispatch(setDiscount(amount));
-        showToast(messages.promo.success);
+        showToast(toastMessages.promo.success);
       } else {
-        showToast(messages.promo.invalid);
+        showToast(toastMessages.promo.invalid);
       }
     } catch (err) {
-      const errorMsg = err?.msg || messages.promoError.msg;
-      showToast({ ...messages.promoError, msg: errorMsg });
+      const errorMsg = err?.msg || toastMessages.promo.error;
+      showToast({ ...toastMessages.promo.error, msg: errorMsg });
     }
   };
 

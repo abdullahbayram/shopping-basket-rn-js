@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
 import { BaseScreen, RedirectWithAnimation } from '../../components/templetes';
-import strings from '../../constants/strings';
+import { strings } from '../../constants';
 
 const ErrorScreen = () => {
   const route = useRoute();

@@ -1,7 +1,5 @@
-import ProductListScreen from './ProductListScreen';
-import CheckoutScreen from './CheckoutScreen';
-import PaymentScreen from './PaymentScreen';
-import SuccessScreen from './SuccessScreen';
-import ErrorScreen from './ErrorScreen';
-
-export { ProductListScreen, CheckoutScreen, PaymentScreen, SuccessScreen, ErrorScreen };
+export { default as CheckoutScreen } from './CheckoutScreen';
+export { default as ErrorScreen } from './ErrorScreen';
+export { default as ProductListScreen } from './ProductListScreen';
+export { default as PaymentScreen } from './PaymentScreen';
+export { default as SuccessScreen } from './SuccessScreen';

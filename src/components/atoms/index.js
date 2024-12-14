@@ -1,10 +1,8 @@
-import ActivityIndicator from './ActivityIndicator';
-import Appbar from './Appbar';
-import Button from './Button';
-import Card from './Card';
-import FlatList from './FlatList';
-import HelperText from './HelperText';
-import Text from './Text';
-import TextInput from './TextInput';
-
-export { ActivityIndicator, Appbar, Button, Card, FlatList, HelperText, Text, TextInput };
+export { default as ActivityIndicator } from './ActivityIndicator';
+export { default as Appbar } from './Appbar';
+export { default as Button } from './Button';
+export { default as Card } from './Card';
+export { default as FlatList } from './FlatList';
+export { default as HelperText } from './HelperText';
+export { default as Text } from './Text';
+export { default as TextInput } from './TextInput';

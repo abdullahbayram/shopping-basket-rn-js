@@ -1,4 +1,2 @@
-import CheckoutList from './CheckoutList';
-import ProductList from './ProductList';
-
-export { CheckoutList, ProductList };
+export { default as CheckoutList } from './CheckoutList';
+export { default as ProductList } from './ProductList';
