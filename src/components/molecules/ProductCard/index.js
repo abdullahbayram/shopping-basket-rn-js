@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import { Card, Button, Text, HelperText } from '../../atoms';
-import styles from './ProductCard.style';
+import createStyles from './ProductCard.style';
+import { spacing } from '../../../constants/theme';
 
 const leftCardMargin = { marginRight: 5 };
 const rightCardMargin = { marginLeft: 5 };
@@ -10,6 +12,9 @@ const rightCardMargin = { marginLeft: 5 };
 const generateCardMargin = (index) => (index % 2 === 0 ? leftCardMargin : rightCardMargin);
 
 const ProductCard = ({ product, onButtonPress, isMaxQuantityPerProductReached, index = 0 }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors, spacing);
+
   const { title, price, rating, image } = product;
   const maxStars = 5;
   const filledStars = Math.round((rating.rate / maxStars) * maxStars);

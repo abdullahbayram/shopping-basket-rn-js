@@ -1,11 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingLeft: 16,
-    paddingRight: 9,
-    paddingTop: 10,
-  },
-});
+const createStyles = (colors, spacing) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background,
+      paddingLeft: spacing.medium,
+      paddingRight: spacing.baseScreenSpecial,
+      paddingTop: spacing.small,
+    },
+  });
+
+export default createStyles;

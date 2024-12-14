@@ -2,11 +2,13 @@ import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTheme } from 'react-native-paper';
-import styles from './BaseScreen.style';
+import createStyles from './BaseScreen.style';
+import { spacing } from '../../../constants/theme';
 
 const Screen = ({ children }) => {
   const { colors } = useTheme();
-  return <View style={[styles.container, { backgroundColor: colors.background }]}>{children}</View>;
+  const styles = createStyles(colors, spacing);
+  return <View style={styles.container}>{children}</View>;
 };
 
 export default Screen;

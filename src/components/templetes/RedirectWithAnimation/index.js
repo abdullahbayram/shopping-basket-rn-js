@@ -1,14 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Animated, BackHandler } from 'react-native';
+import { View, Animated, BackHandler, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import { Button, Text } from '../../atoms';
-import styles from './RedirectWithAnimation.style';
+import { useTheme } from 'react-native-paper';
+import { Button, Text, LinearGradient } from '../../atoms';
+import createStyles from './RedirectWithAnimation.style';
+import { spacing } from '../../../constants/theme';
 
 const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'ProductList' }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors, spacing);
   const navigation = useNavigation();
   const [seconds, setSeconds] = useState(Math.max(duration / 1000, 1));
   const progress = useRef(new Animated.Value(0)).current;
+  const shimmerPosition = useRef(new Animated.Value(-1)).current; // For the shimmer effect
 
   const resetNavigation = useCallback(() => {
     navigation.reset({
@@ -25,6 +30,14 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
       duration,
       useNativeDriver: false,
     }).start();
+
+    Animated.loop(
+      Animated.timing(shimmerPosition, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: false,
+      }),
+    ).start();
 
     const interval = setInterval(() => {
       setSeconds((prev) => {
@@ -44,11 +57,16 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, [navigation, progress, duration, resetNavigation]);
+  }, [navigation, progress, duration, resetNavigation, shimmerPosition]);
 
   const widthInterpolated = progress.interpolate({
     inputRange: [0, 1],
     outputRange: ['0%', '100%'],
+  });
+
+  const shimmerTranslate = shimmerPosition.interpolate({
+    inputRange: [-1, 1],
+    outputRange: [-100, 100],
   });
 
   return (
@@ -62,9 +80,22 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
         </Text>
       </View>
       <View style={styles.progressBarContainer}>
-        <Animated.View style={[styles.progressBar, { width: widthInterpolated }]} />
+        <Animated.View style={[styles.animatedContainer, { width: widthInterpolated }]}>
+          <LinearGradient colors={[colors.linearLeft, colors.linearRight]} end={{ x: 1, y: 0 }} />
+          <Animated.View
+            style={{
+              ...StyleSheet.absoluteFillObject,
+              transform: [{ translateX: shimmerTranslate }],
+            }}
+          >
+            <LinearGradient
+              colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0)']}
+              end={{ x: 1, y: 0 }}
+            />
+          </Animated.View>
+        </Animated.View>
       </View>
-      <Button mode="contained" onPress={resetNavigation}>
+      <Button mode="contained" style={styles.button} textStyle={styles.buttonText} onPress={resetNavigation}>
         Go to Products
       </Button>
     </View>

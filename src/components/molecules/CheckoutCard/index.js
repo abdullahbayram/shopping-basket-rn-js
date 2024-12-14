@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from 'react-native-paper';
 import { Button, Text } from '../../atoms';
 import showToast from '../../../utils/showToast';
 import messages from '../../../constants/toastMessages';
-import styles from './CheckoutCard.style';
+import createStyles from './CheckoutCard.style';
+import { spacing } from '../../../constants/theme';
 
 const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButtonPress }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors, spacing);
+
   const isQuantityEqualsToOne = product.quantity === 1;
   const formattedPrice = (product.price * product.quantity).toFixed(2);
 
@@ -45,13 +50,13 @@ const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButt
       <View style={styles.bottomSection}>
         <View style={styles.quantityContainer}>
           <Button onPress={handleDecrease} style={styles.quantityButton}>
-            <MaterialIcons name={isQuantityEqualsToOne ? 'delete' : 'remove'} size={18} color="#FFA500" />
+            <MaterialIcons name={isQuantityEqualsToOne ? 'delete' : 'remove'} size={18} color={colors.buttonBorder} />
           </Button>
           <View style={styles.quantityTextContainer}>
             <Text style={styles.quantityText}>{product.quantity}</Text>
           </View>
           <Button onPress={handleIncrease} style={styles.quantityButton}>
-            <MaterialIcons name="add" size={18} color="#FFA500" />
+            <MaterialIcons name="add" size={18} color={colors.buttonBorder} />
           </Button>
         </View>
         <Button onPress={onRemoveButtonPress} style={styles.transparentButton}>

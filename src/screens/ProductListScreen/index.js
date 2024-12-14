@@ -12,6 +12,8 @@ import { validateBasket } from '../../validate';
 import showToast from '../../utils/showToast';
 import { toastMessages, strings } from '../../constants';
 import styles from './ProductListScreen.style';
+import globalStyles from '../../globalStyles';
+import { spacing } from '../../constants/theme';
 
 const ProductListScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -39,40 +41,49 @@ const ProductListScreen = ({ navigation }) => {
     dispatch(addItemToBasket(item));
   };
 
-  if (isLoading) {
-    return <ActivityIndicator size="large" color={colors.secondary} />;
-  }
-
   return (
     <BaseScreen>
-      {error ? (
-        <View>
-          <HelperText style={styles.errorText} type="error">
-            {strings.productList.errorLoading}
-          </HelperText>
-          <Button onPress={refetch} mode="contained">
-            Retry
-          </Button>
+      {isLoading ? (
+        <View style={[globalStyles.flex, globalStyles.centerContent]}>
+          <ActivityIndicator style={{ marginBottom: 3 * spacing.large }} size="large" color={colors.spinner} />
         </View>
       ) : (
-        <Text variant="titleMedium">
-          {strings.productList.basketItemCount} {totalCount}
-        </Text>
-      )}
-      {!error && (
-        <ProductList products={products || []} basketItems={basketItems} onAddItem={onAddToBasket} refetch={refetch} />
-      )}
-      {!error && (
-        <View style={styles.buttonContainer}>
-          <Button
-            disabled={!validateBasket(basketItems)}
-            icon="cart-arrow-down"
-            mode="contained"
-            onPress={onCheckoutPress}
-          >
-            {strings.productList.checkout}
-          </Button>
-        </View>
+        <>
+          {error ? (
+            <View>
+              <HelperText style={styles.errorText} type="error">
+                {strings.productList.errorLoading}
+              </HelperText>
+              <Button onPress={refetch} mode="contained">
+                Retry
+              </Button>
+            </View>
+          ) : (
+            <Text variant="titleMedium">
+              {strings.productList.basketItemCount} {totalCount}
+            </Text>
+          )}
+          {!error && (
+            <ProductList
+              products={products || []}
+              basketItems={basketItems}
+              onAddItem={onAddToBasket}
+              refetch={refetch}
+            />
+          )}
+          {!error && (
+            <View style={styles.buttonContainer}>
+              <Button
+                disabled={!validateBasket(basketItems)}
+                icon="cart-arrow-down"
+                mode="contained"
+                onPress={onCheckoutPress}
+              >
+                {strings.productList.checkout}
+              </Button>
+            </View>
+          )}
+        </>
       )}
     </BaseScreen>
   );
