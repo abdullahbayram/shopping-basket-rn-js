@@ -62,7 +62,7 @@ const PaymentScreen = ({ navigation }) => {
         errorMessage = err.errors[0].msg;
       }
     } catch (e) {
-      console.error('Failed to parse error message:', e);
+      console.error(strings.devErrors.parseErrorMessage, e);
     }
 
     navigation.navigate('Error', { errorMessage });
@@ -86,7 +86,7 @@ const PaymentScreen = ({ navigation }) => {
         dispatch(clearBasket());
         dispatch(clearDiscount());
         reset();
-        navigation.navigate('Success');
+        navigation.navigate(strings.screenNames.Success);
       }
     } catch (err) {
       handleOrderError(err);
@@ -103,9 +103,9 @@ const PaymentScreen = ({ navigation }) => {
     if (field === 'creditCardNumber') return isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD;
     const isValid = !errors[field];
     const iconMap = {
-      cardholderName: isValid ? 'account-check' : 'account',
-      expirationDate: isValid ? 'calendar-check' : 'calendar-alert',
-      cvv: isValid ? 'shield-check' : 'shield-alert',
+      cardholderName: isValid ? strings.icons.accountCheck : strings.icons.account,
+      expirationDate: isValid ? strings.icons.calendarCheck : strings.icons.calendarAlert,
+      cvv: isValid ? strings.icons.shieldCheck : strings.icons.shieldAlert,
     };
     return iconMap[field];
   };
@@ -132,7 +132,7 @@ const PaymentScreen = ({ navigation }) => {
               onBlur={onBlur}
               onChangeText={onChange}
               label={strings.payment.cardholderName}
-              placeholder="Enter the name on your card"
+              placeholder={strings.payment.cardholderNamePlaceholder}
               errorObject={errors.cardholderName}
               right={
                 <TextInput.Icon
@@ -154,7 +154,7 @@ const PaymentScreen = ({ navigation }) => {
               onBlur={onBlur}
               onChangeText={onChange}
               label={strings.payment.creditCardNumber}
-              placeholder="Enter your credit card number"
+              placeholder={strings.payment.creditCardPlaceholder}
               maxLength={16}
               keyboardType="numeric"
               errorObject={errors.creditCardNumber}
@@ -178,7 +178,7 @@ const PaymentScreen = ({ navigation }) => {
               onBlur={onBlur}
               onChangeText={(text) => onChange(formatExpirationDate(text))}
               label={strings.payment.expirationDate}
-              placeholder="MM/YY"
+              placeholder={strings.payment.expirationDatePlaceholder}
               maxLength={5}
               keyboardType="numeric"
               errorObject={errors.expirationDate}
@@ -222,7 +222,7 @@ const PaymentScreen = ({ navigation }) => {
           onPress={handleSubmit(onPlaceOrder)}
           disabled={basketItems.length === 0 || isLoading}
         >
-          {strings.payment.order}
+          {strings.buttons.order}
         </Button>
       </View>
     </BaseScreen>

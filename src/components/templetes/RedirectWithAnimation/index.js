@@ -6,6 +6,7 @@ import { useTheme } from 'react-native-paper';
 import { Button, Text, LinearGradient } from '../../atoms';
 import createStyles from './RedirectWithAnimation.style';
 import { spacing } from '../../../constants/theme';
+import { strings } from '../../../constants';
 
 const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'ProductList' }) => {
   const { colors } = useTheme();
@@ -96,7 +97,7 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
         </Animated.View>
       </View>
       <Button mode="contained" style={styles.button} textStyle={styles.buttonText} onPress={resetNavigation}>
-        Go to Products
+        {strings.buttons.gotoProducts}
       </Button>
     </View>
   );

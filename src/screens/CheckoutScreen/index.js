@@ -93,13 +93,13 @@ const CheckoutScreen = ({ navigation }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 {...register('promoCode', {
-                  required: 'Promo code can not be empty',
-                  pattern: { value: /^A([\d]{1,2})$/, message: 'This promo code is not valid' },
+                  required: strings.checkout.promoCodeRequiredMessage,
+                  pattern: { value: /^A([\d]{1,2})$/, message: strings.checkout.promoCodeNotValid },
                 })}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                label="Promo Code"
+                label={strings.checkout.promoCode}
                 placeholder={strings.checkout.promoCodePlaceholder}
                 keyboardType="default"
                 right={<TextInput.Icon icon="percent" color={errors.promoCode ? colors.error : colors.primary} />}

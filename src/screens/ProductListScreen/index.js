@@ -55,7 +55,7 @@ const ProductListScreen = ({ navigation }) => {
                 {strings.productList.errorLoading}
               </HelperText>
               <Button onPress={refetch} mode="contained">
-                Retry
+                {strings.buttons.retry}
               </Button>
             </View>
           ) : (
@@ -79,7 +79,7 @@ const ProductListScreen = ({ navigation }) => {
                 mode="contained"
                 onPress={onCheckoutPress}
               >
-                {strings.productList.checkout}
+                {strings.buttons.checkout}
               </Button>
             </View>
           )}
