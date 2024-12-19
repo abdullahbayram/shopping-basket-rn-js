@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 export default (colors, spacing) =>
   StyleSheet.create({
     container: {
-      backgroundColor: colors.containerBackground,
-      marginVertical: spacing.small,
-      borderRadius: spacing.small,
-      padding: spacing.small,
+      backgroundColor: colors.cardBackground,
+      marginVertical: spacing.sm,
+      borderRadius: spacing.sm,
+      padding: spacing.sm,
       shadowColor: colors.shadowColor,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.2,
@@ -15,7 +15,7 @@ export default (colors, spacing) =>
     },
     topSection: {
       flexDirection: 'row',
-      marginBottom: spacing.medium,
+      marginBottom: spacing.md,
     },
     image: {
       width: 100,
@@ -25,12 +25,12 @@ export default (colors, spacing) =>
     },
     infoContainer: {
       flex: 1,
-      paddingHorizontal: spacing.small,
+      paddingHorizontal: spacing.sm,
     },
     title: {
       fontSize: 16,
       fontWeight: 'bold',
-      marginBottom: spacing.small,
+      marginBottom: spacing.sm,
       color: colors.textTertiary,
     },
     subtitle: {

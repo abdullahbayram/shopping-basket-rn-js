@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
+import { spacing } from '../../../constants/theme';
 
 export default StyleSheet.create({
   contentContainer: {
-    paddingRight: 10,
+    paddingRight: spacing.sm,
   },
   flatList: {
-    marginTop: 7,
-    marginBottom: 30,
+    marginTop: spacing.special,
+    marginBottom: spacing.xl,
   },
   emptyMessage: {
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: spacing.lg,
   },
 });

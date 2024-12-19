@@ -1,5 +1,9 @@
 import { MD3LightTheme, MD3DarkTheme } from 'react-native-paper';
 
+export const sharedColors = {
+  overlayBackgroundColor: 'rgba(0,0,0,0.5)',
+};
+
 const lightColors = {
   primary: '#3498db',
   secondary: '#FED034',
@@ -77,10 +81,12 @@ export const darkTheme = {
 };
 
 export const spacing = {
-  tiny: 4,
+  xxs: 2,
+  xs: 4,
+  sm: 10,
+  md: 16,
+  lg: 24,
+  xl: 32,
   special: 7,
   baseScreenSpecial: 9,
-  small: 10,
-  medium: 16,
-  large: 24,
 };

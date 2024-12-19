@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
+import { spacing } from '../../constants/theme';
 
 export default StyleSheet.create({
   totalContainer: {
-    marginVertical: 16,
+    marginVertical: spacing.md,
   },
   formContainer: {
-    marginBottom: 16,
+    marginBottom: spacing.md,
   },
   bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 30,
+    paddingBottom: spacing.lg,
   },
 });

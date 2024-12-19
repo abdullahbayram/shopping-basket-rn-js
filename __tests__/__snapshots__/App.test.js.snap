@@ -3967,7 +3967,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                     {
                       "flexGrow": 1,
                       "justifyContent": "center",
-                      "paddingBottom": 30,
+                      "paddingBottom": 24,
                       "paddingTop": 10,
                     }
                   }
@@ -4255,17 +4255,25 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   onChange={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
+                  onTintColor="#666"
                   style={
                     [
                       {
                         "height": 31,
                         "width": 51,
                       },
-                      {
-                        "marginHorizontal": 7,
-                      },
+                      [
+                        {
+                          "marginHorizontal": 7,
+                        },
+                        {
+                          "backgroundColor": "#666",
+                          "borderRadius": 16,
+                        },
+                      ],
                     ]
                   }
+                  tintColor="#004f6b"
                   value={false}
                 />
               </View>

@@ -5,9 +5,9 @@ const createStyles = (colors, spacing) =>
     container: {
       flex: 1,
       backgroundColor: colors.background,
-      paddingLeft: spacing.medium,
+      paddingLeft: spacing.md,
       paddingRight: spacing.baseScreenSpecial,
-      paddingTop: spacing.small,
+      paddingTop: spacing.sm,
     },
   });
 

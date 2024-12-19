@@ -12,7 +12,14 @@ const Toggle = ({ isDarkMode, toggleTheme }) => {
   return (
     <View style={styles.toggleButton}>
       <Icon color={isDarkMode ? colors.textPrimary : colors.textSecondary} size={24} source="theme-light-dark" />
-      <Switch style={{ marginHorizontal: spacing.special }} value={isDarkMode} onValueChange={toggleTheme} />
+      <Switch
+        style={{ marginHorizontal: spacing.special }}
+        trackColor={{ false: colors.textPrimary, true: colors.textSecondary }}
+        // thumbColor={isDarkMode ? colors.textSecondary : colors.textPrimary}
+        ios_backgroundColor={isDarkMode ? colors.textPrimary : colors.textSecondary}
+        value={isDarkMode}
+        onValueChange={toggleTheme}
+      />
     </View>
   );
 };

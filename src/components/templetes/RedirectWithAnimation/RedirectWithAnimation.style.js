@@ -16,7 +16,7 @@ const createStyles = (colors, spacing) =>
       color: colors.textPrimary,
     },
     textContainer: {
-      marginBottom: spacing.large,
+      marginBottom: spacing.lg,
       alignItems: 'center',
     },
     message: {
@@ -29,7 +29,7 @@ const createStyles = (colors, spacing) =>
       backgroundColor: colors.progressBarBackground,
       borderRadius: 5,
       overflow: 'hidden', // Ensures the gradient is clipped within the container
-      marginBottom: spacing.medium,
+      marginBottom: spacing.md,
     },
     button: {
       backgroundColor: colors.secondary,

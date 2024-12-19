@@ -45,7 +45,7 @@ const ProductListScreen = ({ navigation }) => {
     <BaseScreen>
       {isLoading ? (
         <View style={[globalStyles.flex, globalStyles.centerContent]}>
-          <ActivityIndicator style={{ marginBottom: 3 * spacing.large }} size="large" color={colors.spinner} />
+          <ActivityIndicator style={{ marginBottom: 3 * spacing.lg }} size="large" color={colors.spinner} />
         </View>
       ) : (
         <>

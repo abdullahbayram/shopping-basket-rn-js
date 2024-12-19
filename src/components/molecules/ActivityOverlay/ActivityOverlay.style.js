@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sharedColors } from '../../../constants/theme';
 
 export default StyleSheet.create({
   overlay: {
@@ -7,7 +8,7 @@ export default StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: sharedColors.overlayBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -904,7 +904,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
               "color": "rgba(125, 82, 96, 1)",
             },
             {
-              "marginTop": 20,
+              "marginTop": 24,
               "textAlign": "center",
             },
           ],

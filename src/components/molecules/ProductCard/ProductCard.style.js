@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 export default (colors, spacing) =>
   StyleSheet.create({
     container: {
-      marginVertical: spacing.small,
-      borderRadius: spacing.small,
+      marginVertical: spacing.sm,
+      borderRadius: spacing.sm,
       flex: 1,
       backgroundColor: colors.cardBackground,
       shadowColor: colors.shadowColor,
@@ -22,10 +22,10 @@ export default (colors, spacing) =>
     rating: {
       fontSize: 13,
       color: colors.ratingStar,
-      marginBottom: spacing?.tiny,
+      marginBottom: spacing.xs,
     },
     feedbackAndPrice: {
-      paddingHorizontal: spacing?.medium,
+      paddingHorizontal: spacing?.md,
     },
     price: {
       fontSize: 18,

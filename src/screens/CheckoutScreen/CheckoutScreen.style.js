@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native';
+import { spacing } from '../../constants/theme';
 
 export default StyleSheet.create({
   totalContainer: {
-    marginBottom: 7,
-    paddingLeft: 2,
+    marginBottom: spacing.special,
+    paddingLeft: spacing.xxs,
   },
   topContainer: {
     height: 165,
     justifyContent: 'space-between',
-    marginVertical: 10,
+    marginVertical: spacing.sm,
   },
   orderButtonContainer: {
     flex: 4,

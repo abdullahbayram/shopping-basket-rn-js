@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { spacing } from '../../constants/theme';
 
 export default StyleSheet.create({
   buttonContainer: {
-    paddingTop: 10,
-    paddingBottom: 30,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.lg,
     flexGrow: 1,
     justifyContent: 'center',
   },
