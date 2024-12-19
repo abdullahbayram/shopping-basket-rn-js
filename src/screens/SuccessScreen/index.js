@@ -1,6 +1,6 @@
 import React from 'react';
-import { BaseScreen, RedirectWithAnimation } from '../../components/templetes';
-import { strings } from '../../constants';
+import { BaseScreen, RedirectWithAnimation } from '@components/templetes';
+import { strings } from '@constants';
 
 const SuccessScreen = () => {
   return (

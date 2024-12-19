@@ -2,18 +2,17 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
-import { ActivityIndicator, Button, Text, HelperText } from '../../components/atoms';
-import { ProductList } from '../../components/organisms';
-import { BaseScreen } from '../../components/templetes';
-import { useGetProductsQuery } from '../../redux/api/apiSlice';
-import { addItemToBasket } from '../../redux/slices/basketSlice';
-import { selectTotalItemCount } from '../../redux/selectors/basketSelector';
-import { validateBasket } from '../../validate';
-import showToast from '../../utils/showToast';
-import { toastMessages, strings } from '../../constants';
+import { ActivityIndicator, Button, Text, HelperText } from '@components/atoms';
+import { ProductList } from '@components/organisms';
+import { BaseScreen } from '@components/templetes';
+import { addItemToBasket } from '@redux/slices/basketSlice';
+import { useGetProductsQuery } from '@redux/api/apiSlice';
+import { selectTotalItemCount } from '@redux/selectors/basketSelector';
+import { validateBasket } from '@validate';
+import showToast from '@utils/showToast';
+import { toastMessages, strings } from '@constants';
 import styles from './ProductListScreen.style';
 import globalStyles from '../../globalStyles';
-import { spacing } from '../../constants/theme';
 
 const ProductListScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -29,7 +28,7 @@ const ProductListScreen = ({ navigation }) => {
       showToast(toastMessages.promo.error);
       return;
     }
-    navigation.navigate('Checkout');
+    navigation.navigate(strings.screens.checkout);
   };
 
   const onAddToBasket = (item) => {
@@ -45,7 +44,7 @@ const ProductListScreen = ({ navigation }) => {
     <BaseScreen>
       {isLoading ? (
         <View style={[globalStyles.flex, globalStyles.centerContent]}>
-          <ActivityIndicator style={{ marginBottom: 3 * spacing.lg }} size="large" color={colors.spinner} />
+          <ActivityIndicator style={styles.avtivityIndicator} size="large" color={colors.spinner} />
         </View>
       ) : (
         <>

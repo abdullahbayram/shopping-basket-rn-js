@@ -3,16 +3,16 @@ import { View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, Text, TextInput } from '../../components/atoms';
-import { Input, ActivityOverlay } from '../../components/molecules';
-import { CheckoutList } from '../../components/organisms';
-import { BaseScreen } from '../../components/templetes';
-import { removeItemFromBasket, updateItemQuantity, setDiscount } from '../../redux/slices/basketSlice';
-import { useValidatePromoCodeMutation } from '../../redux/api/apiSlice';
-import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import { validateBasket } from '../../validate';
-import showToast from '../../utils/showToast';
-import { toastMessages, strings } from '../../constants';
+import { Button, Text, TextInput } from '@components/atoms';
+import { Input, ActivityOverlay } from '@components/molecules';
+import { CheckoutList } from '@components/organisms';
+import { BaseScreen } from '@components/templetes';
+import { removeItemFromBasket, updateItemQuantity, setDiscount } from '@redux/slices/basketSlice';
+import { useValidatePromoCodeMutation } from '@redux/api/apiSlice';
+import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';
+import { validateBasket } from '@validate';
+import showToast from '@utils/showToast';
+import { toastMessages, strings } from '@constants';
 import styles from './CheckoutScreen.style';
 
 const CheckoutScreen = ({ navigation }) => {
@@ -49,7 +49,7 @@ const CheckoutScreen = ({ navigation }) => {
       showToast(toastMessages.basket.empty);
       return;
     }
-    navigation.navigate('Payment');
+    navigation.navigate(strings.screens.payment);
   };
 
   const onApplyPromoCode = async (data) => {

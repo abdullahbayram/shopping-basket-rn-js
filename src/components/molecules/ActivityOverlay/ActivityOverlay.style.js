@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sharedColors } from '../../../constants/theme';
+import { sharedColors } from '@constants/theme';
 
 export default StyleSheet.create({
   overlay: {

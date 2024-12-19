@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useTheme } from 'react-native-paper';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import { spacing } from '@constants/theme';
 import styles from './Toggle.style';
-import { spacing } from '../../../constants/theme';
 import { Switch, Icon } from '../../atoms';
 
 const Toggle = ({ isDarkMode, toggleTheme }) => {

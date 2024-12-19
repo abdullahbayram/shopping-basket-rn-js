@@ -7,6 +7,22 @@
   "globals": {
     "__DEV__": "readonly"
   },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@constants", "./src/constants"],
+          ["@context", "./src/context"],
+          ["@screens", "./src/screens"],
+          ["@redux", "./src/redux"],
+          ["@utils", "./src/utils"],
+          ["@validate", "./src/validate"]
+        ],
+        "extensions": [".js", ".jsx", ".json"]
+      }
+    }
+  },
   "extends": [
     "plugin:react/recommended",
     "airbnb",
@@ -64,7 +80,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx", ".tsx"]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "react-native/no-inline-styles": "error",

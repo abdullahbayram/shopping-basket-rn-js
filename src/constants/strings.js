@@ -7,8 +7,11 @@ export default {
     shieldCheck: 'shield-check',
     shieldAlert: 'shield-alert',
   },
-  screenNames: {
+  screens: {
     success: 'Success',
+    payment: 'Payment',
+    error: 'Error',
+    checkout: 'Checkout',
   },
   devErrors: {
     parseErrorMessage: 'Failed to parse error message:',

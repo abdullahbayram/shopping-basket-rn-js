@@ -3,15 +3,15 @@ import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
-import { Button, Text, TextInput } from '../../components/atoms';
-import { Input, ActivityOverlay } from '../../components/molecules';
-import { BaseScreen } from '../../components/templetes';
-import { clearBasket, clearDiscount } from '../../redux/slices/basketSlice';
-import { usePlaceOrderMutation } from '../../redux/api/apiSlice';
-import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '../../redux/selectors/basketSelector';
-import showToast from '../../utils/showToast';
-import { toastMessages, strings } from '../../constants';
-import { checkCreditCardWithCardValidator, validationRules, validateBasket } from '../../validate';
+import { Button, Text, TextInput } from '@components/atoms';
+import { Input, ActivityOverlay } from '@components/molecules';
+import { BaseScreen } from '@components/templetes';
+import { clearBasket, clearDiscount } from '@redux/slices/basketSlice';
+import { usePlaceOrderMutation } from '@redux/api/apiSlice';
+import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';
+import showToast from '@utils/showToast';
+import { toastMessages, strings } from '@constants';
+import { checkCreditCardWithCardValidator, validationRules, validateBasket } from '@validate';
 import styles from './PaymentScreen.style';
 
 const CREDIT_CARD_CHECK = 'credit-card-check';
@@ -27,7 +27,7 @@ const PaymentScreen = ({ navigation }) => {
     reset,
   } = useForm({
     defaultValues: {
-      creditCardNumber: '4539456463019519', // 4539456463019519 4929718047638157
+      creditCardNumber: '5138949832030474',
       cardholderName: 'ABD',
       expirationDate: '12/12',
       cvv: '111',
@@ -49,6 +49,7 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
+    console.error(err, 'err1');
     let errorMessage = strings.payment.unexpectedError;
 
     try {
@@ -65,7 +66,7 @@ const PaymentScreen = ({ navigation }) => {
       console.error(strings.devErrors.parseErrorMessage, e);
     }
 
-    navigation.navigate('Error', { errorMessage });
+    navigation.navigate(strings.screens.error, { errorMessage });
   };
 
   const onPlaceOrder = async (data) => {
@@ -81,14 +82,15 @@ const PaymentScreen = ({ navigation }) => {
         expirationDate: data.expirationDate,
         cvv: data.cvv,
       }).unwrap();
-
+      console.log(response, 'response');
       if (response) {
         dispatch(clearBasket());
         dispatch(clearDiscount());
         reset();
-        navigation.navigate(strings.screenNames.Success);
+        navigation.navigate(strings.screens.success);
       }
     } catch (err) {
+      console.log(err, 'err2');
       handleOrderError(err);
     }
   };

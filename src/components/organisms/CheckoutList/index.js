@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import strings from '@constants/strings';
 import { Text, FlatList } from '../../atoms';
 import { CheckoutCard } from '../../molecules';
 import styles from './CheckoutList.style';
-import strings from '../../../constants/strings';
 
 const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
   const renderItem = useCallback(

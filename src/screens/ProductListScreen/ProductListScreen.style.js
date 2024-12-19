@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { spacing } from '../../constants/theme';
+import { spacing } from '@constants/theme';
 
 export default StyleSheet.create({
   buttonContainer: {
@@ -9,4 +9,5 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   errorText: { alignSelf: 'center' },
+  avtivityIndicator: { marginBottom: 72 },
 });

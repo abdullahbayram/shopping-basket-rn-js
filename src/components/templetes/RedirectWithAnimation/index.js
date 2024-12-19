@@ -3,10 +3,10 @@ import { View, Animated, BackHandler, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import { useTheme } from 'react-native-paper';
+import { spacing } from '@constants/theme';
+import { strings } from '@constants';
 import { Button, Text, LinearGradient } from '../../atoms';
 import createStyles from './RedirectWithAnimation.style';
-import { spacing } from '../../../constants/theme';
-import { strings } from '../../../constants';
 
 const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'ProductList' }) => {
   const { colors } = useTheme();

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { useTheme } from 'react-native-paper';
+import { spacing } from '@constants/theme';
 import { Card, Button, Text, HelperText } from '../../atoms';
 import createStyles from './ProductCard.style';
-import { spacing } from '../../../constants/theme';
 
 const leftCardMargin = { marginRight: 5 };
 const rightCardMargin = { marginLeft: 5 };

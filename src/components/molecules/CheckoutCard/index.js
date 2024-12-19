@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
+import messages from '@constants/toastMessages';
+import { spacing } from '@constants/theme';
+import showToast from '@utils/showToast';
 import { Button, Text } from '../../atoms';
-import showToast from '../../../utils/showToast';
-import messages from '../../../constants/toastMessages';
 import createStyles from './CheckoutCard.style';
-import { spacing } from '../../../constants/theme';
 
 const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButtonPress }) => {
   const { colors } = useTheme();

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { typography } from '../../../constants/theme';
+import { typography } from '@constants/theme';
 
 const createStyles = (colors, spacing) =>
   StyleSheet.create({
