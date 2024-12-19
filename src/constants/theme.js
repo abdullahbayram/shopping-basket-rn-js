@@ -90,3 +90,14 @@ export const spacing = {
   special: 7,
   baseScreenSpecial: 9,
 };
+
+export const typography = {
+  sm: 12,
+  md: 14,
+  default: 16,
+  lg: 20,
+  xl: 24,
+  light: '300',
+  normal: '400',
+  bold: '700',
+};

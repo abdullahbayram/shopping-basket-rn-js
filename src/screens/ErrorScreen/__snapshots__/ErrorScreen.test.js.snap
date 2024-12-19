@@ -55,7 +55,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
                 {
                   "color": undefined,
                   "fontSize": 24,
-                  "fontWeight": "bold",
+                  "fontWeight": "700",
                   "marginBottom": 7,
                   "textAlign": "center",
                 },

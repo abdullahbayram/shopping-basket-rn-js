@@ -113,11 +113,11 @@ const PaymentScreen = ({ navigation }) => {
   return (
     <BaseScreen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
-      <Text variant="titleMedium">
+      <Text variant="titleSmall">
         {strings.payment.basketItemCount} {totalCount}
       </Text>
       <View style={styles.totalContainer}>
-        <Text variant="titleMedium">
+        <Text variant="titleSmall">
           {strings.payment.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
         </Text>
       </View>

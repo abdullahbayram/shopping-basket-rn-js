@@ -17,7 +17,7 @@ const CheckoutList = ({ basketItems, onRemoveItem, onQuantityChange }) => {
 
   if (!basketItems.length) {
     return (
-      <Text style={styles.emptyMessage} variant="titleMedium">
+      <Text style={styles.emptyMessage} variant="titleSmall">
         {strings.checkout.emptyBasket}
       </Text>
     );

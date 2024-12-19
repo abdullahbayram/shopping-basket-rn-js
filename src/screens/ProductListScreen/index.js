@@ -59,7 +59,7 @@ const ProductListScreen = ({ navigation }) => {
               </Button>
             </View>
           ) : (
-            <Text variant="titleMedium">
+            <Text variant="titleSmall">
               {strings.productList.basketItemCount} {totalCount}
             </Text>
           )}

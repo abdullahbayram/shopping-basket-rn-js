@@ -75,7 +75,7 @@ const CheckoutScreen = ({ navigation }) => {
     <BaseScreen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
-        <Text variant="titleMedium">
+        <Text variant="titleSmall">
           {strings.checkout.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
         </Text>
       </View>

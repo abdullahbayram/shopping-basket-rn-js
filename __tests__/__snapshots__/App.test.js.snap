@@ -167,10 +167,10 @@ exports[`<App /> Text renders correctly on App 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 16,
+                          "fontSize": 14,
                           "fontWeight": "500",
-                          "letterSpacing": 0.15,
-                          "lineHeight": 24,
+                          "letterSpacing": 0.1,
+                          "lineHeight": 20,
                         },
                         [
                           {
@@ -536,7 +536,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -595,8 +595,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -981,7 +981,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -1040,8 +1040,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -1445,7 +1445,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -1504,8 +1504,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -1890,7 +1890,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -1949,8 +1949,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -2354,7 +2354,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -2413,8 +2413,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -2799,7 +2799,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -2858,8 +2858,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -3263,7 +3263,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -3322,8 +3322,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],
@@ -3708,7 +3708,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                             },
                                             {
                                               "color": "#FFA500",
-                                              "fontSize": 13,
+                                              "fontSize": 12,
                                               "marginBottom": 4,
                                             },
                                           ],
@@ -3767,8 +3767,8 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                           },
                                           {
                                             "color": "#000",
-                                            "fontSize": 18,
-                                            "fontWeight": "bold",
+                                            "fontSize": 16,
+                                            "fontWeight": "700",
                                           },
                                         ],
                                       ],

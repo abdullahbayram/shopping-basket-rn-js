@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { typography } from '../../../constants/theme';
 
 const createStyles = (colors, spacing) =>
   StyleSheet.create({
@@ -9,8 +10,8 @@ const createStyles = (colors, spacing) =>
       backgroundColor: colors.background,
     },
     title: {
-      fontWeight: 'bold',
-      fontSize: 24,
+      fontWeight: typography.bold,
+      fontSize: typography.xl,
       marginBottom: spacing.special,
       textAlign: 'center',
       color: colors.textPrimary,
@@ -20,7 +21,7 @@ const createStyles = (colors, spacing) =>
       alignItems: 'center',
     },
     message: {
-      fontSize: 16,
+      fontSize: typography.default,
       color: colors.textSecondary,
     },
     progressBarContainer: {

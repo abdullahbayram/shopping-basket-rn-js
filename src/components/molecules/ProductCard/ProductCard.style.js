@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { typography } from '../../../constants/theme';
 
 export default (colors, spacing) =>
   StyleSheet.create({
@@ -20,7 +21,7 @@ export default (colors, spacing) =>
       marginVertical: 0,
     },
     rating: {
-      fontSize: 13,
+      fontSize: typography.sm,
       color: colors.ratingStar,
       marginBottom: spacing.xs,
     },
@@ -28,8 +29,8 @@ export default (colors, spacing) =>
       paddingHorizontal: spacing?.md,
     },
     price: {
-      fontSize: 18,
-      fontWeight: 'bold',
+      fontSize: typography.default,
+      fontWeight: typography.bold,
       color: colors.textTertiary,
     },
     button: {

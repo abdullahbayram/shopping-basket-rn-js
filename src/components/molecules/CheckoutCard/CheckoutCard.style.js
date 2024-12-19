@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { typography } from '../../../constants/theme';
 
 export default (colors, spacing) =>
   StyleSheet.create({
@@ -28,19 +29,19 @@ export default (colors, spacing) =>
       paddingHorizontal: spacing.sm,
     },
     title: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.default,
+      fontWeight: typography.bold,
       marginBottom: spacing.sm,
       color: colors.textTertiary,
     },
     subtitle: {
-      fontSize: 14,
+      fontSize: typography.md,
       color: colors.textSecondary,
       marginBottom: spacing.special,
     },
     price: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.default,
+      fontWeight: typography.bold,
       color: colors.textTertiary,
     },
     bottomSection: {
@@ -65,8 +66,8 @@ export default (colors, spacing) =>
       width: 30,
     },
     quantityText: {
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: typography.default,
+      fontWeight: typography.bold,
       textAlign: 'center',
       color: colors.textTertiary,
     },
