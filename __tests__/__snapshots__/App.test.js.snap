@@ -3968,6 +3968,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                       "flexGrow": 1,
                       "justifyContent": "center",
                       "paddingBottom": 24,
+                      "paddingRight": 7,
                       "paddingTop": 10,
                     }
                   }

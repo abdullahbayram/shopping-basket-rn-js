@@ -10,9 +10,13 @@ export default StyleSheet.create({
     height: 165,
     justifyContent: 'space-between',
     marginVertical: spacing.sm,
+    paddingRight: spacing.sm,
   },
   orderButtonContainer: {
     flex: 4,
   },
-  promoContainer: { flex: 6 },
+  promoContainer: {
+    flex: 6,
+    marginBottom: spacing.sm,
+  },
 });

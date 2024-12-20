@@ -59,6 +59,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
         "height": 165,
         "justifyContent": "space-between",
         "marginVertical": 10,
+        "paddingRight": 10,
       }
     }
   >
@@ -278,6 +279,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
       style={
         {
           "flex": 6,
+          "marginBottom": 10,
         }
       }
     >
