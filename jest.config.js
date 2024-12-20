@@ -7,7 +7,7 @@ module.exports = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg|react-redux)',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  coverageThreshold: { global: { branches: 40, functions: 40, lines: 40, statements: 40 } },
+  coverageThreshold: { global: { branches: 40, functions: 60, lines: 60, statements: 60 } },
   testPathIgnorePatterns: ['/__tests__/mocks/', '/__tests__/utils/'],
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
@@ -18,4 +18,5 @@ module.exports = {
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@validate/(.*)$': '<rootDir>/src/validate/$1',
   },
+  coverageReporters: ['json', 'json-summary', 'text', 'lcov'],
 };

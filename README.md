@@ -1,8 +1,24 @@
 # Shopping Basket
 
-A feature-rich React Native sample e-commerce app designed to showcase various modern development practices, including clean code principles, state management, testing strategies, and user interface design.
+A React Native sample e-commerce app designed to showcase various modern development practices, including clean code
+principles, state management, testing strategies, and user interface design.
 
 ---
+
+#### Status Legend:
+
+- ✅ DONE
+
+- 🟢 IN PROGRESS
+
+- 🟡 TODO
+
+## Test Coverage
+
+![statements](././badges/statements.svg) ![branches](././badges/branches.svg) ![functions](././badges/functions.svg)
+![lines](././badges/lines.svg)
+
+![Coverage Report](././badges/coverage-summary.png)
 
 ## 🚀 Features
 
@@ -22,7 +38,8 @@ A feature-rich React Native sample e-commerce app designed to showcase various m
 
    - ✅ Show items in the basket with their quantities and prices.
    - ✅ Calculate and display the total price.
-   - ✅ Add a promo code field to apply discounts. (Available promo codes: `A` + `XX` (two digits), i.e., `A10` %10, `A80` %80, and so on.)
+   - ✅ Add a promo code field to apply discounts. (Available promo codes: `A` + `XX` (two digits), i.e., `A10` %10,
+     `A80` %80, and so on.)
    - ✅ Validate promo codes, make an API call, and update the total.
    - ✅ Show a message if the basket is empty.
    - ✅ Show a message if the promo code is invalid.
@@ -38,14 +55,15 @@ A feature-rich React Native sample e-commerce app designed to showcase various m
 
 4. **Payment Result Views**
 
-   - ✅ Success Screen with a  progress bar animation.
-   - ✅ Error Screen with an error message and a  progress bar animation.
+   - ✅ Success Screen with a progress bar animation.
+   - ✅ Error Screen with an error message and a progress bar animation.
 
 5. **UX/UI**
 
    - ✅ Light and dark themes.
    - ✅ Inspired by the Amazon App. (for light theme)
-   - ✅ Components structure designed with Atomic Web Design principles for atoms, molecules, organisms, templates, and screens.
+   - ✅ Components structure designed with Atomic Web Design principles for atoms, molecules, organisms, templates, and
+     screens.
 
 ### **Code Requirements**
 
@@ -53,12 +71,13 @@ A feature-rich React Native sample e-commerce app designed to showcase various m
 - ✅ Avoid inline styles.
 - ✅ Use functional components.
 - ✅ Define colors, fonts, spacing, and other constants in the theme file.
-- ✅ Import all UI elements from the components folder, starting with components/atoms to maintain a centralized and extensible structure.
+- ✅ Import all UI elements from the components folder, starting with components/atoms to maintain a centralized and
+  extensible structure.
 - ✅ Prevent unnecessary re-renders using `useMemo` and `useCallback` (verified with "why did you render").
 - ✅ Enforce lint and test error-free commits (implemented with Husky and lint-staged).
 - ✅ Enforce valid commit messages (implemented with Commitlint).
 - ✅ Prevent pushing code with test coverage below 40% (implemented with Jest and Husky).
-- 🟡 Aim for a test coverage threshold of 90%.
+- 🟡 Aim for a test coverage threshold of 80%.
 
 ---
 
@@ -73,7 +92,7 @@ A feature-rich React Native sample e-commerce app designed to showcase various m
 - **UI Components**: React Native Paper, custom components.
 - **Performance Optimization**: `useCallback`, `useMemo`.
 - **Code Quality**: ESLint, Prettier, Husky, Commitlint.
-- **Animation**: `react-native-reanimated`.
+- **Animation**: `Animated`.
 
 ---
 
@@ -104,10 +123,14 @@ A feature-rich React Native sample e-commerce app designed to showcase various m
 
 To ensure the robustness of the application, the following testing strategies and practices are implemented:
 
-- **🟡 Unit Testing**: All components and utility functions are covered with unit tests to ensure correctness of individual units of code.
-- **🟡 Integration Testing**: Critical workflows, such as adding items to the basket, applying promo codes, and navigating between screens, are tested to validate seamless interaction between components.
-- **🟡 Mock API Testing**: Using `mock-service-worker`, API calls are simulated to test application behavior under various response scenarios.
-- **🟡 Code Coverage**: Coverage reports are generated with Jest, with a minimum threshold enforced to maintain code quality.
+- **🟡 Unit Testing**: All components and utility functions are covered with unit tests to ensure correctness of
+  individual units of code.
+- **🟡 Integration Testing**: Critical workflows, such as adding items to the basket, applying promo codes, and
+  navigating between screens, are tested to validate seamless interaction between components.
+- **🟡 Mock API Testing**: Using `mock-service-worker`, API calls are simulated to test application behavior under
+  various response scenarios.
+- **✅ Code Coverage**: Coverage reports are generated with Jest, with a minimum threshold enforced to maintain code
+  quality.
 
 To run the tests:
 
@@ -121,8 +144,9 @@ Run the tests with coverage:
 npm test -- --coverage
 ```
 
----
+Test coverage reports are automatically generated in the `coverage` directory for review.
 
+---
 
 ## 🌟 Contributing
 
@@ -134,7 +158,21 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/new-feature`).
 5. Open a pull request.
 
-Make sure your code adheres to the project’s linting and testing standards. Additionally, provide clear documentation for any new features.
+Make sure your code adheres to the project’s linting and testing standards. Additionally, provide clear documentation
+for any new features.
+
+---
+
+## 🖼️ Visuals
+
+Below are sample screenshots of the application:
+
+- **🟡 Light Theme Product List View**:
+
+- **🟡 Dark Theme Basket View**:
+
+You can contribute screenshots by opening a pull request with your captures showcasing different screens or
+functionalities.
 
 ---
 
@@ -146,5 +184,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 💬 Contact
 
-Feel free to reach out via email at [info@abayram.dev](mailto:info@abayram.dev).
-
+Feel free to reach out via email at [info@abayram.dev](mailto:info@abayram.dev)&#x20;
