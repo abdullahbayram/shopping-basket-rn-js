@@ -5,7 +5,30 @@ principles, state management, testing strategies, and user interface design.
 
 ---
 
-#### Status Legend:
+## 🎥 Demo
+
+🟡 Watch the app in action:
+
+[![Shopping Basket Demo](https://img.youtube.com/vi/<video-id>/0.jpg)](https://www.youtube.com/watch?v=<video-id>)
+
+Click the image above to view the demo video.
+
+---
+
+## 🖼️ Visuals
+
+Below are sample screenshots of the application:
+
+- **🟡 Light Theme Product List View**:
+
+- **🟡 Dark Theme Basket View**:
+
+You can contribute screenshots by opening a pull request with your captures showcasing different screens or
+functionalities.
+
+---
+
+## Status Legend
 
 \- ✅ DONE
 
@@ -13,12 +36,7 @@ principles, state management, testing strategies, and user interface design.
 
 \- 🟡 TODO
 
-## Test Coverage
-
-![statements](././badges/statements.svg) ![branches](././badges/branches.svg) ![functions](././badges/functions.svg)
-![lines](././badges/lines.svg)
-
-![Coverage Report](././badges/coverage-summary.png)
+---
 
 ## 🚀 Features
 
@@ -67,6 +85,10 @@ principles, state management, testing strategies, and user interface design.
 
 ### **Code Requirements**
 
+- ✅ UI components should follow the Atomic Design structure: 
+This means breaking components into smaller, reusable parts (`atoms`, `molecules`, etc.) and structuring them accordingly.
+- ✅ UI elements should be extended in the `components/atoms` folder: 
+All base components should be created in the `atoms` directory, and then these atomic components should be reused throughout the application.
 - ✅ Test and style files should be in the same folder as the component.
 - ✅ Avoid inline styles.
 - ✅ Use functional components.
@@ -81,44 +103,6 @@ principles, state management, testing strategies, and user interface design.
 - ✅ Use aliases for paths in imports.
 - ✅ Generate automated test coverage reports and badges.
 - 🟡 Aim for a test coverage threshold of 80%.
-
----
-
-## 🛠️ Tech Stack
-
-- **React Native**: Core development framework.
-- **Expo**: Quick setup and development environment.
-- **State Management**: Redux Toolkit.
-- **API Calls**: `fetch`.
-- **Form Management**: `react-hook-form` with validation.
-- **Testing**: Jest, Testing Library, mock-service-worker.
-- **UI Components**: React Native Paper, custom components.
-- **Performance Optimization**: `useCallback`, `useMemo`.
-- **Code Quality**: ESLint, Prettier, Husky, Commitlint.
-- **Animation**: `Animated`.
-
----
-
-## 📦 Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/abdullahbayram/shopping-basket-rn-js.git
-   cd shopping-basket
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the app:
-
-   ```bash
-   npx expo start
-   ```
 
 ---
 
@@ -182,6 +166,44 @@ src/
 
 ---
 
+## 🛠️ Tech Stack
+
+- **React Native**: Core development framework.
+- **Expo**: Quick setup and development environment.
+- **State Management**: Redux Toolkit.
+- **API Calls**: `fetch`.
+- **Form Management**: `react-hook-form` with validation.
+- **Testing**: Jest, `@testing-library/react-native` , `mock-service-worker` .
+- **UI Components**: React Native Paper, custom components.
+- **Performance Optimization**: `useCallback`, `useMemo`.
+- **Code Quality**: ESLint, Prettier, Husky, Commitlint.
+- **Animation**: `Animated`.
+
+---
+
+## 📦 Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/abdullahbayram/shopping-basket-rn-js.git
+   cd shopping-basket
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the app:
+
+   ```bash
+   npx expo start
+   ```
+
+---
+
 ## 🧪 Testing
 
 To ensure the robustness of the application, the following testing strategies and practices are implemented:
@@ -211,6 +233,15 @@ Test coverage reports are automatically generated in the `coverage` directory fo
 
 ---
 
+## Test Coverage
+
+![statements](././badges/statements.svg) ![branches](././badges/branches.svg) ![functions](././badges/functions.svg)
+![lines](././badges/lines.svg)
+
+![Coverage Report](././badges/coverage-summary.png)
+
+---
+
 ## 🌟 Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -223,19 +254,6 @@ Contributions are welcome! Please follow these steps:
 
 Make sure your code adheres to the project’s linting and testing standards. Additionally, provide clear documentation
 for any new features.
-
----
-
-## 🖼️ Visuals
-
-Below are sample screenshots of the application:
-
-- **🟡 Light Theme Product List View**:
-
-- **🟡 Dark Theme Basket View**:
-
-You can contribute screenshots by opening a pull request with your captures showcasing different screens or
-functionalities.
 
 ---
 
