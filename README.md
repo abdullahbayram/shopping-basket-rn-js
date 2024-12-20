@@ -20,26 +20,11 @@ Click the image above to view the demo video.
 Below are sample screenshots of the application:
 
 - **Light Theme**:
-- ![Light Theme Screenshot](./assets/ss/light/1.png)
-- ![Light Theme Screenshot](./assets/ss/light/2.png)
-- ![Light Theme Screenshot](./assets/ss/light/3.png)
-- ![Light Theme Screenshot](./assets/ss/light/4.png)
-- ![Light Theme Screenshot](./assets/ss/light/5.png)
-- ![Light Theme Screenshot](./assets/ss/light/6.png)
-- ![Light Theme Screenshot](./assets/ss/light/7.png)
-- ![Light Theme Screenshot](./assets/ss/light/8.png)
+  ![App Demo GIF](./assets/ss/light/screenshots.gif)
+
 
 - **Dark Theme**:
-- ![Dark Theme Screenshot](./assets/ss/dark/1.png)
-- ![Dark Theme Screenshot](./assets/ss/dark/2.png)
-- ![Dark Theme Screenshot](./assets/ss/dark/3.png)
-- ![Dark Theme Screenshot](./assets/ss/dark/4.png)
-- ![Dark Theme Screenshot](./assets/ss/dark/6.png)
-- ![Dark Theme Screenshot](./assets/ss/dark/5.png)
-
-
-You can contribute screenshots by opening a pull request with your captures showcasing different screens or
-functionalities.
+  ![App Demo GIF](./assets/ss/dark/screenshots.gif)
 
 ---
 
