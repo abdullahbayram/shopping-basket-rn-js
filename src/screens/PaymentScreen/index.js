@@ -27,10 +27,10 @@ const PaymentScreen = ({ navigation }) => {
     reset,
   } = useForm({
     defaultValues: {
-      creditCardNumber: '5138949832030474',
-      cardholderName: 'ABD',
-      expirationDate: '12/12',
-      cvv: '111',
+      creditCardNumber: '',
+      cardholderName: '',
+      expirationDate: '',
+      cvv: '',
     },
   });
 
