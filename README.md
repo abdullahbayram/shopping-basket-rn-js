@@ -17,14 +17,11 @@ Click the image above to view the demo video.
 
 ## 🖼️ Visuals
 
-Below are sample screenshots of the application:
+### Light Theme
+![App Demo GIF](./assets/ss/light/screenshots.gif)
 
-- **Light Theme**:
-  ![App Demo GIF](./assets/ss/light/screenshots.gif)
-
-
-- **Dark Theme**:
-  ![App Demo GIF](./assets/ss/dark/screenshots.gif)
+### Dark Theme
+![App Demo GIF](./assets/ss/dark/screenshots.gif)
 
 ---
 
