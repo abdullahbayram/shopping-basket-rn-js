@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
 import { ActivityIndicator, Button, Text, HelperText } from '@components/atoms';
 import { ProductList } from '@components/organisms';
-import { BaseScreen } from '@components/templetes';
+import { BaseScreen } from '@components/templates';
 import { addItemToBasket } from '@redux/slices/basketSlice';
 import { useGetProductsQuery } from '@redux/api/apiSlice';
 import { selectTotalItemCount } from '@redux/selectors/basketSelector';

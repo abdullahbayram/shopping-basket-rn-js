@@ -6,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Button, Text, TextInput } from '@components/atoms';
 import { Input, ActivityOverlay } from '@components/molecules';
 import { CheckoutList } from '@components/organisms';
-import { BaseScreen } from '@components/templetes';
+import { BaseScreen } from '@components/templates';
 import { removeItemFromBasket, updateItemQuantity, setDiscount } from '@redux/slices/basketSlice';
 import { useValidatePromoCodeMutation } from '@redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';

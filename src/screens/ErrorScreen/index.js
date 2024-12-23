@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
-import { BaseScreen, RedirectWithAnimation } from '@components/templetes';
+import { BaseScreen, RedirectWithAnimation } from '@components/templates';
 import { strings } from '@constants';
 
 const ErrorScreen = () => {

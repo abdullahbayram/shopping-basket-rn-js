@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseScreen, RedirectWithAnimation } from '@components/templetes';
+import { BaseScreen, RedirectWithAnimation } from '@components/templates';
 import { strings } from '@constants';
 
 const SuccessScreen = () => {
