@@ -11,7 +11,7 @@ import { removeItemFromBasket, updateItemQuantity, setDiscount } from '@redux/sl
 import { useValidatePromoCodeMutation } from '@redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';
 import { validateBasket } from '@validate';
-import showToast from '@utils/showToast';
+import { showToast } from '@utils';
 import { toastMessages, strings } from '@constants';
 import styles from './CheckoutScreen.style';
 

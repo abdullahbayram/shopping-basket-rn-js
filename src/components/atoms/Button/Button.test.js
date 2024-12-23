@@ -11,9 +11,9 @@ beforeEach(() => {
 
 const mockOnPress = jest.fn();
 
-const renderButton = (onPress, mode, children, icon) => {
+const renderButton = (onPress, mode, children, icon, disabled) => {
   return render(
-    <Button onPress={onPress} icon={icon} mode={mode}>
+    <Button onPress={onPress} icon={icon} mode={mode} disabled={disabled}>
       {children}
     </Button>,
   );
@@ -54,5 +54,12 @@ describe('<Button />', () => {
     expect(button).toBeTruthy();
     fireEvent.press(button);
     expect(mockOnPress).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not call onPress when the button is disabled', () => {
+    renderButton(mockOnPress, undefined, BUTTON_TEXT_PRESS_ME, 'camera', true);
+    const button = screen.getByText(BUTTON_TEXT_PRESS_ME);
+    fireEvent.press(button);
+    expect(mockOnPress).not.toHaveBeenCalled();
   });
 });

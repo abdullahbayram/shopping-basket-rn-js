@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 import messages from '@constants/toastMessages';
 import { spacing } from '@constants/theme';
-import showToast from '@utils/showToast';
+import { showToast } from '@utils';
 import { Button, Text } from '../../atoms';
 import createStyles from './CheckoutCard.style';
 
