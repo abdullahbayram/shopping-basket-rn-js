@@ -180,7 +180,7 @@ export const sampleBasket = [
 ];
 
 export const handlers = [
-  http.get('http://fakestoreapi.com/products', () => {
+  http.get('http://localhost:9001/products', () => {
     return HttpResponse.json(sampleResponse);
   }),
 

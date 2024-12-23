@@ -49,7 +49,7 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
-    console.error(err, 'err1');
+    console.log(err, 'err1');
     let errorMessage = strings.payment.unexpectedError;
 
     try {
@@ -63,7 +63,7 @@ const PaymentScreen = ({ navigation }) => {
         errorMessage = err.errors[0].msg;
       }
     } catch (e) {
-      console.error(strings.devErrors.parseErrorMessage, e);
+      console.log(strings.devErrors.parseErrorMessage, e);
     }
 
     navigation.navigate(strings.screens.error, { errorMessage });

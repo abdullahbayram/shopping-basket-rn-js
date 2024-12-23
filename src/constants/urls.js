@@ -1,8 +1,8 @@
 export default {
-  baseUrl: 'http://',
+  baseUrl: 'http://localhost:9001/',
   endpoints: {
-    products: 'fakestoreapi.com/products',
-    checkout: 'localhost:9001/checkout',
-    promocode: 'localhost:9001/promocode',
+    products: 'products',
+    checkout: 'checkout',
+    promocode: 'promocode',
   },
 };
