@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react-native';
-import { ThemeProvider } from 'react-native-paper';
+import { fireEvent, screen } from '@testing-library/react-native';
 import { showToast } from '@utils';
+import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider'; // Adjust the path accordingly
 import CheckoutCard from '.';
 
 jest.mock('@utils', () => ({
@@ -26,16 +26,14 @@ describe('CheckoutCard', () => {
   const mockOnRemoveButtonPress = jest.fn();
 
   const renderComponent = (props) =>
-    render(
-      <ThemeProvider>
-        <CheckoutCard
-          product={mockProduct}
-          maxQuantity={5}
-          onQuantityChange={mockOnQuantityChange}
-          onRemoveButtonPress={mockOnRemoveButtonPress}
-          {...props}
-        />
-      </ThemeProvider>,
+    renderInThemeProvider(
+      <CheckoutCard
+        product={mockProduct}
+        maxQuantity={5}
+        onQuantityChange={mockOnQuantityChange}
+        onRemoveButtonPress={mockOnRemoveButtonPress}
+        {...props}
+      />,
     );
 
   afterEach(() => {

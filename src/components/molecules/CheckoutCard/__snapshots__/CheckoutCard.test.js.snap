@@ -33,7 +33,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
               },
               [
                 {
-                  "color": "rgba(125, 82, 96, 1)",
+                  "color": "#34300F",
                 },
                 undefined,
               ],
@@ -65,7 +65,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
               },
               [
                 {
-                  "color": "rgba(125, 82, 96, 1)",
+                  "color": "#34300F",
                 },
                 undefined,
               ],
@@ -95,7 +95,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
               },
               [
                 {
-                  "color": "rgba(125, 82, 96, 1)",
+                  "color": "#34300F",
                 },
                 undefined,
               ],
@@ -114,8 +114,8 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(98, 91, 113, 1)",
-            "borderRadius": 20,
+            "backgroundColor": "#FED034",
+            "borderRadius": 10,
             "shadowColor": "#000",
             "shadowOffset": {
               "height": 0,
@@ -131,9 +131,9 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(98, 91, 113, 1)",
+              "backgroundColor": "#FED034",
               "borderColor": "rgba(121, 116, 126, 1)",
-              "borderRadius": 20,
+              "borderRadius": 10,
               "borderStyle": "solid",
               "borderWidth": 1,
               "flex": undefined,
@@ -186,7 +186,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                   "overflow": "hidden",
                 },
                 {
-                  "borderRadius": 20,
+                  "borderRadius": 10,
                 },
               ]
             }
@@ -238,7 +238,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                         undefined,
                         false,
                         {
-                          "color": "rgba(125, 82, 96, 1)",
+                          "color": "#34300F",
                           "fontFamily": "System",
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -279,7 +279,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                 },
                 [
                   {
-                    "color": "rgba(125, 82, 96, 1)",
+                    "color": "#34300F",
                   },
                   undefined,
                 ],
@@ -294,8 +294,8 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(98, 91, 113, 1)",
-            "borderRadius": 20,
+            "backgroundColor": "#FED034",
+            "borderRadius": 10,
             "shadowColor": "#000",
             "shadowOffset": {
               "height": 0,
@@ -311,9 +311,9 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(98, 91, 113, 1)",
+              "backgroundColor": "#FED034",
               "borderColor": "rgba(121, 116, 126, 1)",
-              "borderRadius": 20,
+              "borderRadius": 10,
               "borderStyle": "solid",
               "borderWidth": 1,
               "flex": undefined,
@@ -366,7 +366,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                   "overflow": "hidden",
                 },
                 {
-                  "borderRadius": 20,
+                  "borderRadius": 10,
                 },
               ]
             }
@@ -418,7 +418,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                         undefined,
                         false,
                         {
-                          "color": "rgba(125, 82, 96, 1)",
+                          "color": "#34300F",
                           "fontFamily": "System",
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -443,8 +443,8 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
       collapsable={false}
       style={
         {
-          "backgroundColor": "rgba(98, 91, 113, 1)",
-          "borderRadius": 20,
+          "backgroundColor": "#FED034",
+          "borderRadius": 10,
           "shadowColor": "#000",
           "shadowOffset": {
             "height": 0,
@@ -460,9 +460,9 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(98, 91, 113, 1)",
+            "backgroundColor": "#FED034",
             "borderColor": "rgba(121, 116, 126, 1)",
-            "borderRadius": 20,
+            "borderRadius": 10,
             "borderStyle": "solid",
             "borderWidth": 1,
             "flex": undefined,
@@ -515,7 +515,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                 "overflow": "hidden",
               },
               {
-                "borderRadius": 20,
+                "borderRadius": 10,
               },
             ]
           }
@@ -567,7 +567,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
                       undefined,
                       false,
                       {
-                        "color": "rgba(125, 82, 96, 1)",
+                        "color": "#34300F",
                         "fontFamily": "System",
                         "fontSize": 14,
                         "fontWeight": "500",

@@ -19,6 +19,7 @@ const Toggle = ({ isDarkMode, toggleTheme }) => {
         ios_backgroundColor={isDarkMode ? colors.textPrimary : colors.textSecondary}
         value={isDarkMode}
         onValueChange={toggleTheme}
+        testID="toggle-switch"
       />
     </View>
   );

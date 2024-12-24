@@ -4275,6 +4275,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                       ],
                     ]
                   }
+                  testID="toggle-switch"
                   tintColor="#004f6b"
                   value={false}
                 />
