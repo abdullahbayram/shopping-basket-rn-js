@@ -18,9 +18,11 @@ Click the image above to view the demo video.
 ## 🖼️ Visuals
 
 ### Light Theme
+
 ![App Demo GIF](./assets/ss/light/screenshots.gif)
 
 ### Dark Theme
+
 ![App Demo GIF](./assets/ss/dark/screenshots.gif)
 
 ---
@@ -41,51 +43,51 @@ Click the image above to view the demo video.
 
 1. **Product List View**
 
-    - ✅ Display products with their details.
-    - ✅ Allow adding items to the basket.
-    - ✅ Limit product quantity to 5 per item.
-    - ✅ Disable the add button if the limit is reached and show a message to the user on the product card.
-    - ✅ Display total items in the basket.
-    - ✅ Navigation to Basket Checkout View if there is at least one item in the basket.
-    - ✅ Show a message if there are no products available.
+   - ✅ Display products with their details.
+   - ✅ Allow adding items to the basket.
+   - ✅ Limit product quantity to 5 per item.
+   - ✅ Disable the add button if the limit is reached and show a message to the user on the product card.
+   - ✅ Display total items in the basket.
+   - ✅ Navigation to Basket Checkout View if there is at least one item in the basket.
+   - ✅ Show a message if there are no products available.
 
 2. **Basket Checkout View**
 
-    - ✅ Show items in the basket with their quantities and prices.
-    - ✅ Calculate and display the total price.
-    - ✅ Add a promo code field to apply discounts. (Available promo codes: `A` + `XX` (two digits), i.e., `A10` %10,
-      `A80` %80, and so on.)
-    - ✅ Validate promo codes, make an API call, and update the total.
-    - ✅ Show a message if the basket is empty.
-    - ✅ Show a message if the promo code is invalid.
-    - ✅ Show a message if the promo code is applied successfully.
-    - ✅ Allow removing items from the basket.
-    - ✅ Navigation to Payment View if there is at least one item in the basket.
+   - ✅ Show items in the basket with their quantities and prices.
+   - ✅ Calculate and display the total price.
+   - ✅ Add a promo code field to apply discounts. (Available promo codes: `A` + `XX` (two digits), i.e., `A10` %10,
+     `A80` %80, and so on.)
+   - ✅ Validate promo codes, make an API call, and update the total.
+   - ✅ Show a message if the basket is empty.
+   - ✅ Show a message if the promo code is invalid.
+   - ✅ Show a message if the promo code is applied successfully.
+   - ✅ Allow removing items from the basket.
+   - ✅ Navigation to Payment View if there is at least one item in the basket.
 
 3. **Payment View**
 
-    - ✅ Payment form with credit card validations and error messages.
-    - ✅ Navigate to Success Screen if the payment is successful.
-    - ✅ Navigate to Error Screen if the payment fails.
+   - ✅ Payment form with credit card validations and error messages.
+   - ✅ Navigate to Success Screen if the payment is successful.
+   - ✅ Navigate to Error Screen if the payment fails.
 
 4. **Payment Result Views**
 
-    - ✅ Success Screen with a progress bar animation.
-    - ✅ Error Screen with an error message and a progress bar animation.
+   - ✅ Success Screen with a progress bar animation.
+   - ✅ Error Screen with an error message and a progress bar animation.
 
 5. **UX/UI**
 
-    - ✅ Light and dark themes.
-    - ✅ Inspired by the Amazon App. (for light theme)
-    - ✅ Components structure designed with Atomic Web Design principles for atoms, molecules, organisms, templates, and
-      screens.
+   - ✅ Light and dark themes.
+   - ✅ Inspired by the Amazon App. (for light theme)
+   - ✅ Components structure designed with Atomic Web Design principles for atoms, molecules, organisms, templates, and
+     screens.
 
 ### **Code Requirements**
 
-- ✅ UI components should follow the Atomic Design structure: 
-This means breaking components into smaller, reusable parts (`atoms`, `molecules`, etc.) and structuring them accordingly.
-- ✅ UI elements should be extended in the `components/atoms` folder: 
-All base components should be created in the `atoms` directory, and then these atomic components should be reused throughout the application.
+- ✅ UI components should follow the Atomic Design structure: This means breaking components into smaller, reusable
+  parts (`atoms`, `molecules`, etc.) and structuring them accordingly.
+- ✅ UI elements should be extended in the `components/atoms` folder: All base components should be created in the
+  `atoms` directory, and then these atomic components should be reused throughout the application.
 - ✅ Test and style files should be in the same folder as the component.
 - ✅ Avoid inline styles.
 - ✅ Use functional components.
@@ -232,12 +234,13 @@ Test coverage reports are automatically generated in the `coverage` directory fo
 
 ## Test Coverage
 
-![statements](././badges/statements.svg) ![branches](././badges/branches.svg) ![functions](././badges/functions.svg)
+![statements](././badges/statements.svg)
+![branches](././badges/branches.svg)
+![functions](././badges/functions.svg)
 ![lines](././badges/lines.svg)
 
 ![Coverage Report](././badges/coverage-summary.png)
 
----
 
 ## 🌟 Contributing
 
@@ -263,4 +266,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 💬 Contact
 
 Feel free to reach out via email at [info@abayram.dev](mailto:info@abayram.dev)&#x20;
-
