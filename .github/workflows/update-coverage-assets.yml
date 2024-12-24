@@ -8,7 +8,7 @@ on:
 
 jobs:
   update-assets:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       # Step 1: Check out the repository
@@ -32,7 +32,6 @@ jobs:
           sudo apt-get upgrade -y
           sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1 libcups2 fonts-liberation
           sudo apt-get install -y libxshmfence1 libgbm1 libxcomposite1 libxrandr2 libgtk-3-0 libpangocairo-1.0-0
-          sudo apt-get install -y libasound2 || echo "libasound2 not found, skipping"
 
       # Step 4: Run tests and generate coverage report
       - name: Run test coverage
