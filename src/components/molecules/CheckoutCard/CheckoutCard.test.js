@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
 import { showToast } from '@utils';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider'; // Adjust the path accordingly
+import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider';
 import CheckoutCard from '.';
 
 jest.mock('@utils', () => ({

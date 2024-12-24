@@ -21,7 +21,7 @@ const ProductCard = ({ product, onButtonPress, isMaxQuantityPerProductReached, i
   const stars = '★'.repeat(filledStars) + '☆'.repeat(maxStars - filledStars);
 
   return (
-    <Card style={[styles.container, generateCardMargin(index)]}>
+    <Card testID="product-card" style={[styles.container, generateCardMargin(index)]}>
       <Card.Cover source={{ uri: image }} />
       <Card.Title style={styles.title} title={title} subtitle={stars} subtitleStyle={styles.rating} />
       <View style={styles.feedbackAndPrice}>
