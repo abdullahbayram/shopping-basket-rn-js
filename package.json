@@ -21,7 +21,7 @@
     "coverage:open": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
     "test:coverage": "jest --coverage",
     "generate-coverage-assets": "node ./scripts/generate-coverage-assets.js",
-    "validate:commit": "npm run lint:all && npm run test:related",
+    "validate:commit": "npm run fix:all && npm run test:related",
     "validate:push": "npm run lint:all && npm run test",
     "validate:pr": "npm run lint:all && npm run test:coverage",
     "prepare": "husky",

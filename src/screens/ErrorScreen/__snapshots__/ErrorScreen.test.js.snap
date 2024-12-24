@@ -152,6 +152,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
               {},
             ]
           }
+          testID="linear-gradient"
         />
         <View
           collapsable={false}
@@ -198,6 +199,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
                 {},
               ]
             }
+            testID="linear-gradient"
           />
         </View>
       </View>
