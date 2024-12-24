@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityOverlay Component - Snapshot Tests matches snapshot with custom props 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.5)",
+        "bottom": 0,
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+      {
+        "zIndex": 30,
+      },
+    ]
+  }
+>
+  <ActivityIndicator
+    color="green"
+    size="small"
+    testID="ActivityIndicator"
+  />
+</View>
+`;
+
+exports[`ActivityOverlay Component - Snapshot Tests matches snapshot with default props 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.5)",
+        "bottom": 0,
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+      {
+        "zIndex": 10,
+      },
+    ]
+  }
+>
+  <ActivityIndicator
+    color="white"
+    size="large"
+    testID="ActivityIndicator"
+  />
+</View>
+`;
+
+exports[`ActivityOverlay Component does not render when isVisible is false 1`] = `null`;
+
+exports[`ActivityOverlay Component renders correctly when isVisible is true 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.5)",
+        "bottom": 0,
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+      {
+        "zIndex": 20,
+      },
+    ]
+  }
+>
+  <ActivityIndicator
+    color="blue"
+    size="small"
+    testID="ActivityIndicator"
+  />
+</View>
+`;

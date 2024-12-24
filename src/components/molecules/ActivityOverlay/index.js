@@ -9,7 +9,7 @@ const ActivityOverlay = ({ isVisible = false, color = 'white', size = 'large', z
 
   return (
     <View style={[styles.overlay, { zIndex }]}>
-      <ActivityIndicator size={size} color={color} />
+      <ActivityIndicator testID="ActivityIndicator" size={size} color={color} />
     </View>
   );
 };

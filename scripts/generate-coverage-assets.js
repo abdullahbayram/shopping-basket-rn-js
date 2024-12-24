@@ -13,7 +13,6 @@ const coverageHTMLPath = './coverage/lcov-report/index.html';
 // Ensure badges directory exists
 if (!fs.existsSync(badgeDir)) {
   fs.mkdirSync(badgeDir);
-  console.log('Created badges directory');
 }
 
 // Generate badges
@@ -41,7 +40,6 @@ metrics.forEach(async (metric) => {
 // Generate coverage summary image
 (async () => {
   if (!fs.existsSync(coverageHTMLPath)) {
-    console.error('Coverage report not found at', coverageHTMLPath);
     process.exit(1);
   }
 
@@ -51,7 +49,6 @@ metrics.forEach(async (metric) => {
   await page.screenshot({ path: `${badgeDir}/coverage-summary.png`, fullPage: true });
 
   await browser.close();
-  console.log(`Generated coverage summary image: ${badgeDir}/coverage-summary.png`);
 
   // Update README
   const badges = metrics.map((metric) => `![${metric}](./${badgeDir}/${metric}.svg)`).join('\n');
@@ -64,5 +61,4 @@ metrics.forEach(async (metric) => {
   );
 
   fs.writeFileSync(readmePath, updatedReadme);
-  console.log('README.md updated with coverage badges and summary image!');
 })();

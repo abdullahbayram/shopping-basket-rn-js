@@ -360,7 +360,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -379,7 +379,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -390,7 +390,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -805,7 +805,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -824,7 +824,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -835,7 +835,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -1269,7 +1269,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -1288,7 +1288,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -1299,7 +1299,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -1714,7 +1714,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -1733,7 +1733,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -1744,7 +1744,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -2178,7 +2178,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -2197,7 +2197,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -2208,7 +2208,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -2623,7 +2623,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -2642,7 +2642,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -2653,7 +2653,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -3087,7 +3087,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -3106,7 +3106,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -3117,7 +3117,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -3532,7 +3532,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                               "shadowRadius": 3,
                             }
                           }
-                          testID="card-container-outer-layer"
+                          testID="product-card-container-outer-layer"
                         >
                           <View
                             collapsable={false}
@@ -3551,7 +3551,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                 "shadowRadius": 4,
                               }
                             }
-                            testID="card-container"
+                            testID="product-card-container"
                           >
                             <View
                               style={
@@ -3562,7 +3562,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                   undefined,
                                 ]
                               }
-                              testID="card"
+                              testID="product-card"
                             >
                               <View
                                 style={
@@ -4275,6 +4275,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                       ],
                     ]
                   }
+                  testID="toggle-switch"
                   tintColor="#004f6b"
                   value={false}
                 />

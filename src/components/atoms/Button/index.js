@@ -11,10 +11,12 @@ const Button = ({
   style = {},
   textColor,
   buttonColor,
+  testID,
 }) => {
   const theme = useTheme();
   return (
     <PaperButton
+      testID={testID}
       style={style}
       onPress={onPress}
       textColor={textColor || theme.colors.tertiary}
@@ -37,6 +39,7 @@ Button.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   textColor: PropTypes.string,
   buttonColor: PropTypes.string,
+  testID: PropTypes.string,
 };
 
 export default Button;
