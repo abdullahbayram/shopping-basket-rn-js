@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelperText Component should match the snapshot when visible is false 1`] = `
+<Text
+  collapsable={false}
+  maxFontSizeMultiplier={1.5}
+  onLayout={[Function]}
+  style={
+    {
+      "color": "red",
+      "fontFamily": "System",
+      "fontSize": 12,
+      "fontWeight": "400",
+      "letterSpacing": 0.25,
+      "lineHeight": 20,
+      "opacity": 0,
+      "paddingHorizontal": 12,
+      "paddingVertical": 4,
+      "textAlign": "left",
+      "transform": [],
+      "writingDirection": "ltr",
+    }
+  }
+>
+  Hidden helper text
+</Text>
+`;
+
+exports[`HelperText Component should match the snapshot when visible is true 1`] = `
+<Text
+  collapsable={false}
+  maxFontSizeMultiplier={1.5}
+  onLayout={[Function]}
+  style={
+    {
+      "color": "red",
+      "fontFamily": "System",
+      "fontSize": 12,
+      "fontWeight": "400",
+      "letterSpacing": 0.25,
+      "lineHeight": 20,
+      "opacity": 1,
+      "paddingHorizontal": 12,
+      "paddingVertical": 4,
+      "textAlign": "left",
+      "transform": [],
+      "writingDirection": "ltr",
+    }
+  }
+>
+  Visible helper text
+</Text>
+`;
