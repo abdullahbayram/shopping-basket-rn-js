@@ -1,40 +1,51 @@
-name: Update Coverage Badges and Summary
+name: CI Workflow
 
-# Trigger the workflow on pushes to the main branch
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
 
 jobs:
-  update-assets:
+  validate-pr:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-22.04
-
     steps:
-      # Step 1: Check out the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.2.0
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests and generate coverage report
-      - name: Run test coverage
-        run: npm run test:coverage
+      - name: Validate PR
+        run: npm run validate:pr
 
-      # Step 5: Generate coverage assets (badges and summary)
-      - name: Generate coverage assets
+  post-merge-assets:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.2.0
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Coverage Assets
         run: npm run generate-coverage-assets
 
-      # Step 6: Commit and push updated assets
-      - name: Commit and push changes
+      - name: Commit and Push Coverage Assets
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"

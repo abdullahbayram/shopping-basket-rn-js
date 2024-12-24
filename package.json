@@ -3,32 +3,35 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "help": "echo 'Validation scripts:\n - validate:commit: Validate staged files.\n - validate:push: Validate entire codebase before push.\n - validate:pr: Validate pull request with coverage.'",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "clean": "npx rimraf node_modules && npm install",
+    "check:husky": "ls -l .husky/",
     "lint": "eslint .",
     "prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
     "fix:lint": "eslint . --fix",
     "fix:all": "npm run fix:prettier && npm run fix:lint",
+    "lint:all": "npm run lint && npm run prettier",
     "test": "jest",
     "test:related": "jest --bail --findRelatedTests --passWithNoTests",
     "coverage:open": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
     "test:coverage": "jest --coverage",
     "generate-coverage-assets": "node ./scripts/generate-coverage-assets.js",
-    "validate:coverage": "npm run fix:all && npm run test:coverage",
+    "validate:commit": "npm run lint:all && npm run test:related",
+    "validate:push": "npm run lint:all && npm run test",
+    "validate:pr": "npm run lint:all && npm run test:coverage",
+    "prepare": "husky",
     "watch": "jest --watch",
     "watch-all": "jest --watchAll",
     "clear-jest": "jest --clearCache",
     "test detect": "jest --runInBand --detectOpenHandles",
-    "validate": "npm run fix:all && npm run test:related",
-    "prepare": "husky",
     "logcat": "adb logcat | grep 'shopping-basket'",
     "devices": "adb devices",
     "list-ios": "xcrun simctl list devices",
-    "check:husky": "ls -l .husky/",
     "clear-npm": "npm cache clean",
     "clear-npm-force": "npm cache clean --force",
     "cross-env": "npx cross-env NODE_ENV=development expo start -c"
@@ -84,7 +87,13 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run validate"
+      "npm run validate:commit"
+    ],
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
     ]
   },
   "private": true

@@ -4,8 +4,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Run linting, tests, and coverage validation
 echo "Running code validation and coverage checks..."
-npm run validate:coverage
-
-# Generate coverage badges, update report, and README
-echo "Updating coverage badges, report, and README..."
-npm run generate-coverage-assets
+npm run validate:push

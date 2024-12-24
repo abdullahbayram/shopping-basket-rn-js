@@ -234,13 +234,10 @@ Test coverage reports are automatically generated in the `coverage` directory fo
 
 ## Test Coverage
 
-![statements](././badges/statements.svg)
-![branches](././badges/branches.svg)
-![functions](././badges/functions.svg)
+![statements](././badges/statements.svg) ![branches](././badges/branches.svg) ![functions](././badges/functions.svg)
 ![lines](././badges/lines.svg)
 
 ![Coverage Report](././badges/coverage-summary.png)
-
 
 ## 🌟 Contributing
 
