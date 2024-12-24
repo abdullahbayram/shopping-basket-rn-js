@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinearGradient Component matches the snapshot with custom start and end props 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4279383126,
+      4289449455,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      1,
+    ]
+  }
+  startPoint={
+    [
+      0.5,
+      0.5,
+    ]
+  }
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {},
+    ]
+  }
+  testID="linear-gradient"
+/>
+`;
+
+exports[`LinearGradient Component matches the snapshot with custom styles 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4279383126,
+      4289449455,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      1,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
+    ]
+  }
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "margin": 10,
+      },
+    ]
+  }
+  testID="linear-gradient"
+/>
+`;
+
+exports[`LinearGradient Component matches the snapshot with default props 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4278190080,
+      4294967295,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      1,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
+    ]
+  }
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {},
+    ]
+  }
+  testID="linear-gradient"
+/>
+`;

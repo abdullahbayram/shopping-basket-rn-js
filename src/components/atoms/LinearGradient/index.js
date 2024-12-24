@@ -4,7 +4,7 @@ import { LinearGradient as Gradient } from 'expo-linear-gradient';
 import globalStyles from '../../../globalStyles';
 
 const LinearGradient = ({ colors, start = { x: 0, y: 0 }, end = { x: 1, y: 1 }, style = {} }) => (
-  <Gradient colors={colors} start={start} end={end} style={[globalStyles.flex, style]} />
+  <Gradient testID="linear-gradient" colors={colors} start={start} end={end} style={[globalStyles.flex, style]} />
 );
 
 LinearGradient.propTypes = {

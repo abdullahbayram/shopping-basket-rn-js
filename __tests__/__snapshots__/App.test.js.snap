@@ -117,6 +117,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                   {},
                 ]
               }
+              testID="linear-gradient"
             />
           </View>
           <View
