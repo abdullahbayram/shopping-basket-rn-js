@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appbar renders correctly 1`] = `
+<View
+  collapsable={false}
+  style={
+    {
+      "backgroundColor": "rgba(255, 251, 254, 1)",
+      "height": 64,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 0,
+        "width": 0,
+      },
+      "shadowOpacity": 0,
+      "shadowRadius": 0,
+    }
+  }
+  testID="surface-outer-layer"
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(255, 251, 254, 1)",
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingBottom": undefined,
+        "paddingHorizontal": 4,
+        "paddingLeft": undefined,
+        "paddingRight": undefined,
+        "paddingTop": undefined,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 0,
+          "width": 0,
+        },
+        "shadowOpacity": 0,
+        "shadowRadius": 0,
+      }
+    }
+    testID="surface"
+  />
+</View>
+`;

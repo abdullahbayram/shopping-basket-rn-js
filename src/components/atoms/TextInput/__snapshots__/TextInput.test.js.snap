@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "rgba(231, 224, 236, 1)",
+        "borderTopLeftRadius": 4,
+        "borderTopRightRadius": 4,
+      },
+      {},
+    ]
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "rgba(73, 69, 79, 1)",
+        "bottom": 0,
+        "height": 1,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "transform": [
+          {
+            "scaleY": 0.5,
+          },
+        ],
+        "zIndex": 1,
+      }
+    }
+    testID="text-input-underline"
+  />
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flexGrow": 1,
+          "paddingBottom": 0,
+          "paddingTop": 0,
+        },
+        {
+          "minHeight": 56,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="none"
+      style={
+        [
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          {
+            "overflow": "hidden",
+          },
+        ]
+      }
+    >
+      <View
+        collapsable={false}
+        pointerEvents="none"
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transform": [
+              {
+                "translateX": 4,
+              },
+            ],
+            "width": 750,
+            "zIndex": 3,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "width": 97.33333333333333,
+            }
+          }
+        >
+          <Text
+            collapsable={false}
+            maxFontSizeMultiplier={1.5}
+            numberOfLines={1}
+            onLayout={[Function]}
+            onTextLayout={[Function]}
+            style={
+              {
+                "color": "rgba(103, 80, 164, 1)",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "fontWeight": undefined,
+                "left": 0,
+                "letterSpacing": 0.15,
+                "lineHeight": undefined,
+                "maxWidth": 97.33333333333333,
+                "opacity": 0,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": 30,
+                "transform": [
+                  {
+                    "translateX": 0,
+                  },
+                  {
+                    "translateY": -12,
+                  },
+                  {
+                    "scale": 0.75,
+                  },
+                ],
+                "writingDirection": "ltr",
+              }
+            }
+            testID="text-input-flat-label-active"
+          >
+            Label
+          </Text>
+          <Text
+            collapsable={false}
+            maxFontSizeMultiplier={1.5}
+            numberOfLines={1}
+            style={
+              {
+                "color": "rgba(73, 69, 79, 1)",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "fontWeight": undefined,
+                "left": 0,
+                "letterSpacing": 0.15,
+                "lineHeight": undefined,
+                "maxWidth": 97.33333333333333,
+                "opacity": 0,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": 30,
+                "transform": [
+                  {
+                    "translateX": 0,
+                  },
+                  {
+                    "translateY": -12,
+                  },
+                  {
+                    "scale": 0.75,
+                  },
+                ],
+                "writingDirection": "ltr",
+              }
+            }
+            testID="text-input-flat-label-inactive"
+          >
+            Label
+          </Text>
+        </View>
+      </View>
+    </View>
+    <TextInput
+      cursorColor="rgba(103, 80, 164, 1)"
+      editable={true}
+      maxFontSizeMultiplier={1.5}
+      maxLength={16}
+      multiline={false}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=" "
+      placeholderTextColor="rgba(73, 69, 79, 1)"
+      selectionColor="rgba(103, 80, 164, 1)"
+      style={
+        [
+          {
+            "flexGrow": 1,
+            "margin": 0,
+          },
+          {},
+          {
+            "paddingBottom": 4,
+            "paddingTop": 24,
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": undefined,
+            "letterSpacing": 0.15,
+            "lineHeight": undefined,
+            "minWidth": 65,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "textAlign": "left",
+            "textAlignVertical": "center",
+          },
+          false,
+          [
+            {},
+          ],
+          undefined,
+        ]
+      }
+      testID="text-input-flat"
+      underlineColorAndroid="transparent"
+      value="Value"
+    />
+  </View>
+</View>
+`;

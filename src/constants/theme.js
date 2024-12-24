@@ -4,7 +4,7 @@ export const sharedColors = {
   overlayBackgroundColor: 'rgba(0,0,0,0.5)',
 };
 
-const lightColors = {
+export const lightColors = {
   primary: '#3498db',
   secondary: '#FED034',
   tertiary: '#34300F',
@@ -33,7 +33,7 @@ const lightColors = {
   progressBar: '#76c7c0',
 };
 
-const darkColors = {
+export const darkColors = {
   primary: '#2980b9',
   secondary: '#E0A800',
   tertiary: '#FFF',

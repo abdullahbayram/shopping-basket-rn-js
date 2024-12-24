@@ -9,7 +9,7 @@ import { BaseScreen } from '@components/templates';
 import { clearBasket, clearDiscount } from '@redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '@redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';
-import showToast from '@utils/showToast';
+import { showToast } from '@utils';
 import { toastMessages, strings } from '@constants';
 import { checkCreditCardWithCardValidator, validationRules, validateBasket } from '@validate';
 import styles from './PaymentScreen.style';
