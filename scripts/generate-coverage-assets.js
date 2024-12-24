@@ -1,5 +1,7 @@
 const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
+const puppeteer = require('puppeteer');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const fetch = require('node-fetch');
 const path = require('path');
 
@@ -7,21 +9,6 @@ const badgeDir = './badges';
 const readmePath = './README.md';
 const coveragePath = './coverage/coverage-summary.json';
 const coverageHTMLPath = './coverage/lcov-report/index.html';
-// eslint-disable-next-line import/no-extraneous-dependencies
-const puppeteer = require('puppeteer');
-
-(async () => {
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], // Add these flags
-  });
-
-  const page = await browser.newPage();
-  await page.goto(`file://${path.resolve('./coverage/lcov-report/index.html')}`);
-  await page.screenshot({ path: './badges/coverage-summary.png', fullPage: true });
-
-  await browser.close();
-  console.log('Generated coverage summary image: ./badges/coverage-summary.png');
-})();
 
 // Ensure badges directory exists
 if (!fs.existsSync(badgeDir)) {
