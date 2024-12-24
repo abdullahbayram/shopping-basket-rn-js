@@ -25,6 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Install required dependencies for Puppeteer
+      - name: Install Chromium dependencies
+        run: |
+              sudo apt-get update
+              sudo apt-get install -y libnss3 libatk1.0-0 libx11-xcb1 libcups2 fonts-liberation
+              sudo apt-get install -y libxshmfence1 libgbm1 libasound2 libxcomposite1 libxrandr2 libgtk-3-0 libpangocairo-1.0-0
+
       # Step 4: Run tests and generate coverage report
       - name: Run test coverage
         run: npm run test:coverage
