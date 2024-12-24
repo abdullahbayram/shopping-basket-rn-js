@@ -49,7 +49,6 @@ const PaymentScreen = ({ navigation }) => {
   const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
-    console.log(err, 'err1');
     let errorMessage = strings.payment.unexpectedError;
 
     try {
@@ -82,7 +81,6 @@ const PaymentScreen = ({ navigation }) => {
         expirationDate: data.expirationDate,
         cvv: data.cvv,
       }).unwrap();
-      console.log(response, 'response');
       if (response) {
         dispatch(clearBasket());
         dispatch(clearDiscount());

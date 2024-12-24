@@ -10,6 +10,4 @@ if (__DEV__ && process.env.NODE_ENV !== 'test' && isWhyDidYouRenderEnabled) {
     collapseGroups: true,
     exclude: [/Pressable/, /VirtualizedList/],
   });
-
-  console.log('whyDidYouRender enabled');
 }
