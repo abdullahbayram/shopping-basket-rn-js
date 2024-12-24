@@ -42,6 +42,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Check and Generate Coverage
+        run: |
+          if [ ! -f ./coverage/coverage-summary.json ]; then
+            echo "Coverage summary not found. Running tests to generate it..."
+            npm run test:coverage
+          else
+            echo "Coverage summary found. Proceeding..."
+          fi
+
       - name: Generate Coverage Assets
         run: npm run generate-coverage-assets
 
@@ -54,3 +63,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
