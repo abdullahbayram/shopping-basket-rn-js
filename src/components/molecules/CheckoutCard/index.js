@@ -49,13 +49,13 @@ const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButt
 
       <View style={styles.bottomSection}>
         <View style={styles.quantityContainer}>
-          <Button onPress={handleDecrease} style={styles.quantityButton}>
+          <Button testID="decrease-button" onPress={handleDecrease} style={styles.quantityButton}>
             <MaterialIcons name={isQuantityEqualsToOne ? 'delete' : 'remove'} size={18} color={colors.buttonBorder} />
           </Button>
           <View style={styles.quantityTextContainer}>
             <Text style={styles.quantityText}>{product.quantity}</Text>
           </View>
-          <Button onPress={handleIncrease} style={styles.quantityButton}>
+          <Button testID="increase-button" onPress={handleIncrease} style={styles.quantityButton}>
             <MaterialIcons name="add" size={18} color={colors.buttonBorder} />
           </Button>
         </View>
