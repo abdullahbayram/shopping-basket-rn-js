@@ -17,4 +17,19 @@ export default {
     }
     return isValid ? icons[`${field}Check`] : icons[field]; // Dynamically map field to valid/invalid icons
   },
+  parseErrorMessage: (err) => {
+    try {
+      if (typeof err.msg === 'string') {
+        const parsedError = JSON.parse(err.msg);
+        if (Array.isArray(parsedError?.errors) && parsedError.errors.length > 0) {
+          return parsedError.errors[0].msg;
+        }
+      } else if (Array.isArray(err?.errors) && err.errors.length > 0) {
+        return err.errors[0].msg;
+      }
+    } catch (e) {
+      console.error(strings.devErrors.parseErrorMessage, e);
+    }
+    return strings.payment.unexpectedError;
+  },
 };
