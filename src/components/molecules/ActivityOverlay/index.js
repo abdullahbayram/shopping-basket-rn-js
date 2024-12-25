@@ -15,7 +15,7 @@ const ActivityOverlay = ({ isVisible = false, color = 'white', size = 'large', z
 };
 
 ActivityOverlay.propTypes = {
-  isVisible: PropTypes.bool,
+  isVisible: PropTypes.bool.isRequired,
   color: PropTypes.string,
   size: PropTypes.oneOf(['small', 'large']),
   zIndex: PropTypes.number,

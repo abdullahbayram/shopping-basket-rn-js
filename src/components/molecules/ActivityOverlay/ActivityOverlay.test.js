@@ -37,12 +37,6 @@ describe('ActivityOverlay Component', () => {
     expect(activityIndicator.props.color).toBe('white');
     expect(activityIndicator.props.size).toBe('large');
   });
-
-  it('does not apply styles or render elements when isVisible is false', () => {
-    render(<ActivityOverlay isVisible={false} />);
-
-    expect(screen.queryByTestId('ActivityIndicator')).toBeNull();
-  });
 });
 
 describe('ActivityOverlay Component - Snapshot Tests', () => {

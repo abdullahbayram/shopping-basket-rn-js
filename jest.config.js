@@ -8,6 +8,15 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   coverageThreshold: { global: { branches: 50, functions: 65, lines: 70, statements: 70 } },
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    'src/components/atoms/index.js',
+    'src/components/molecules/index.js',
+    'src/components/organisms/index.js',
+    'src/components/templates/index.js',
+    'src/screens/index.js',
+    'wdyr.js',
+  ],
   testPathIgnorePatterns: ['/__tests__/mocks/', '/__tests__/utils/'],
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',

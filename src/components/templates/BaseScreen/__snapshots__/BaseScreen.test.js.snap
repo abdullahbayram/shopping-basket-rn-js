@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Screen /> renders correctly and matches the snapshot 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFF",
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 9,
+      "paddingTop": 10,
+    }
+  }
+  testID="base-screen"
+>
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "writingDirection": "ltr",
+        },
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          [
+            {
+              "color": "#34300F",
+            },
+            undefined,
+          ],
+        ],
+      ]
+    }
+  >
+    Test Content
+  </Text>
+</View>
+`;

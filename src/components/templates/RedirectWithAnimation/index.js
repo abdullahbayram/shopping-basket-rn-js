@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Animated, BackHandler, StyleSheet } from 'react-native';
+import { View, Animated, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import { useTheme } from 'react-native-paper';
@@ -7,14 +7,20 @@ import { spacing } from '@constants/theme';
 import { strings } from '@constants';
 import { Button, Text, LinearGradient } from '../../atoms';
 import createStyles from './RedirectWithAnimation.style';
+import useBackHandler from '../../../hooks/useBackHandler';
 
-const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'ProductList' }) => {
+const ANIMATION_DURATION = 1500;
+const REDIRECT_DURATION = 5000;
+
+const RedirectWithAnimation = ({ message, duration = REDIRECT_DURATION, redirectTo = 'ProductList' }) => {
   const { colors } = useTheme();
   const styles = createStyles(colors, spacing);
   const navigation = useNavigation();
   const [seconds, setSeconds] = useState(Math.max(duration / 1000, 1));
   const progress = useRef(new Animated.Value(0)).current;
   const shimmerPosition = useRef(new Animated.Value(-1)).current; // For the shimmer effect
+
+  useBackHandler(() => true);
 
   const resetNavigation = useCallback(() => {
     navigation.reset({
@@ -24,29 +30,23 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
   }, [navigation, redirectTo]);
 
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
-
     Animated.timing(progress, {
       toValue: 1,
       duration,
       useNativeDriver: false,
     }).start();
 
-    Animated.loop(
+    const shimmerAnimation = Animated.loop(
       Animated.timing(shimmerPosition, {
         toValue: 1,
-        duration: 1500,
+        duration: ANIMATION_DURATION,
         useNativeDriver: false,
       }),
-    ).start();
+    );
+    shimmerAnimation.start();
 
     const interval = setInterval(() => {
-      setSeconds((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-        }
-        return Math.max(prev - 1, 0);
-      });
+      setSeconds((prev) => Math.max(prev - 1, 0));
     }, 1000);
 
     const timer = setTimeout(() => {
@@ -54,7 +54,7 @@ const RedirectWithAnimation = ({ message, duration = 5000, redirectTo = 'Product
     }, duration);
 
     return () => {
-      backHandler.remove();
+      shimmerAnimation.stop();
       clearInterval(interval);
       clearTimeout(timer);
     };
