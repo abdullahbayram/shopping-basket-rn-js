@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BasketSummary /> renders correctly and matches the snapshot 1`] = `
+<View>
+  <Text
+    variant="titleSmall"
+  >
+    Items in the basket: 
+     
+    14
+  </Text>
+  <View
+    style={
+      {
+        "marginVertical": 16,
+      }
+    }
+  >
+    <Text
+      variant="titleSmall"
+    >
+      Total:
+       $
+      2648.01
+    </Text>
+  </View>
+</View>
+`;
