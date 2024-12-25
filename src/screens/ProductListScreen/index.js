@@ -12,7 +12,7 @@ import { validateBasket } from '@validate';
 import showToast from '@utils/showToast';
 import { toastMessages, strings } from '@constants';
 import styles from './ProductListScreen.style';
-import globalStyles from '../../globalStyles';
+import globalStyles from '../../global.style';
 
 const ProductListScreen = ({ navigation }) => {
   const { colors } = useTheme();

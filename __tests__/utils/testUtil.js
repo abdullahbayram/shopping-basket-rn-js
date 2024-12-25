@@ -6,7 +6,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 const mockStore = configureStore({
   getState: () => {},
   reducer: {
-    counter: counterReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware), // Add RTK Query middleware
