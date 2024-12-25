@@ -1,23 +1,28 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
 import { Button, Text, TextInput } from '@components/atoms';
-import { Input, ActivityOverlay } from '@components/molecules';
+import { ActivityOverlay, ControlledInput } from '@components/molecules';
 import { BaseScreen } from '@components/templates';
 import { clearBasket, clearDiscount } from '@redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '@redux/api/apiSlice';
 import { selectBasketItems, selectTotalItemCount, selectTotalPrice } from '@redux/selectors/basketSelector';
-import { showToast } from '@utils';
+import { showToast, paymentUtils } from '@utils';
 import { toastMessages, strings } from '@constants';
 import { checkCreditCardWithCardValidator, validationRules, validateBasket } from '@validate';
 import styles from './PaymentScreen.style';
 
-const CREDIT_CARD_CHECK = 'credit-card-check';
-const CREDIT_CARD = 'credit-card';
+const DEFAULT_FORM_VALUES = {
+  creditCardNumber: '',
+  cardholderName: '',
+  expirationDate: '',
+  cvv: '',
+};
 
 const PaymentScreen = ({ navigation }) => {
+  const { navigate } = navigation;
   const { colors } = useTheme();
   const {
     control,
@@ -26,13 +31,16 @@ const PaymentScreen = ({ navigation }) => {
     watch,
     reset,
   } = useForm({
-    defaultValues: {
-      creditCardNumber: '',
-      cardholderName: '',
-      expirationDate: '',
-      cvv: '',
-    },
+    defaultValues: DEFAULT_FORM_VALUES,
   });
+
+  const navigateToError = (errorMessage) => {
+    navigate(strings.screens.error, { errorMessage });
+  };
+
+  const navigateToSuccess = () => {
+    navigate(strings.screens.success);
+  };
 
   const { basketItems, totalCount, total } = useSelector((state) => ({
     basketItems: selectBasketItems(state),
@@ -45,8 +53,6 @@ const PaymentScreen = ({ navigation }) => {
   const isCreditCardValid = useMemo(() => checkCreditCardWithCardValidator(watch('creditCardNumber')), [watch]);
 
   const [placeOrder, { isLoading }] = usePlaceOrderMutation();
-
-  const filterNumericInput = (text) => text.replace(/[^0-9]/g, '');
 
   const handleOrderError = (err) => {
     let errorMessage = strings.payment.unexpectedError;
@@ -65,7 +71,7 @@ const PaymentScreen = ({ navigation }) => {
       console.log(strings.devErrors.parseErrorMessage, e);
     }
 
-    navigation.navigate(strings.screens.error, { errorMessage });
+    navigateToError(errorMessage);
   };
 
   const onPlaceOrder = async (data) => {
@@ -85,29 +91,12 @@ const PaymentScreen = ({ navigation }) => {
         dispatch(clearBasket());
         dispatch(clearDiscount());
         reset();
-        navigation.navigate(strings.screens.success);
+        navigateToSuccess();
       }
     } catch (err) {
       console.log(err, 'err2');
       handleOrderError(err);
     }
-  };
-
-  const formatExpirationDate = (value) => {
-    const sanitized = value.replace(/[^0-9]/g, '');
-    if (sanitized.length <= 2) return sanitized;
-    return `${sanitized.slice(0, 2)}/${sanitized.slice(2, 4)}`;
-  };
-
-  const getIcon = (field) => {
-    if (field === 'creditCardNumber') return isCreditCardValid ? CREDIT_CARD_CHECK : CREDIT_CARD;
-    const isValid = !errors[field];
-    const iconMap = {
-      cardholderName: isValid ? strings.icons.accountCheck : strings.icons.account,
-      expirationDate: isValid ? strings.icons.calendarCheck : strings.icons.calendarAlert,
-      cvv: isValid ? strings.icons.shieldCheck : strings.icons.shieldAlert,
-    };
-    return iconMap[field];
   };
 
   return (
@@ -123,95 +112,72 @@ const PaymentScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.formContainer}>
-        <Controller
+        <ControlledInput
           control={control}
           rules={validationRules.cardholderName}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              value={value}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              label={strings.payment.cardholderName}
-              placeholder={strings.payment.cardholderNamePlaceholder}
-              errorObject={errors.cardholderName}
-              right={
-                <TextInput.Icon
-                  icon={getIcon('cardholderName', errors)}
-                  color={errors.cardholderName ? colors.error : colors.primary}
-                />
-              }
-            />
-          )}
           name="cardholderName"
+          label={strings.payment.cardholderName}
+          placeholder={strings.payment.cardholderNamePlaceholder}
+          errorObject={errors.cardholderName}
+          right={
+            <TextInput.Icon
+              icon={paymentUtils.getIcon('cardholderName', errors)}
+              color={errors.cardholderName ? colors.error : colors.primary}
+            />
+          }
         />
 
-        <Controller
+        <ControlledInput
           control={control}
           rules={validationRules.creditCardNumber}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              value={value}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              label={strings.payment.creditCardNumber}
-              placeholder={strings.payment.creditCardPlaceholder}
-              maxLength={16}
-              keyboardType="numeric"
-              errorObject={errors.creditCardNumber}
-              right={
-                <TextInput.Icon
-                  icon={getIcon('creditCardNumber', errors)}
-                  color={errors.creditCardNumber ? colors.error : colors.primary}
-                />
-              }
-            />
-          )}
           name="creditCardNumber"
+          label={strings.payment.creditCardNumber}
+          placeholder={strings.payment.creditCardPlaceholder}
+          errorObject={errors.creditCardNumber}
+          maxLength={16}
+          keyboardType="numeric"
+          right={
+            <TextInput.Icon
+              icon={paymentUtils.getIcon('creditCardNumber', errors, isCreditCardValid)}
+              color={errors.creditCardNumber ? colors.error : colors.primary}
+            />
+          }
         />
 
-        <Controller
+        <ControlledInput
           control={control}
           rules={validationRules.expirationDate}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              value={value}
-              onBlur={onBlur}
-              onChangeText={(text) => onChange(formatExpirationDate(text))}
-              label={strings.payment.expirationDate}
-              placeholder={strings.payment.expirationDatePlaceholder}
-              maxLength={5}
-              keyboardType="numeric"
-              errorObject={errors.expirationDate}
-              right={
-                <TextInput.Icon
-                  icon={getIcon('expirationDate', errors)}
-                  color={errors.expirationDate ? colors.error : colors.primary}
-                />
-              }
-            />
-          )}
           name="expirationDate"
+          label={strings.payment.expirationDate}
+          placeholder={strings.payment.expirationDatePlaceholder}
+          errorObject={errors.expirationDate}
+          maxLength={5}
+          keyboardType="numeric"
+          formatValue={paymentUtils.formatExpirationDate}
+          right={
+            <TextInput.Icon
+              icon={paymentUtils.getIcon('expirationDate', errors)}
+              color={errors.expirationDate ? colors.error : colors.primary}
+            />
+          }
         />
 
-        <Controller
+        <ControlledInput
           control={control}
           rules={validationRules.cvv}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              value={value}
-              onBlur={onBlur}
-              onChangeText={(text) => onChange(filterNumericInput(text))}
-              label={strings.payment.cvv}
-              placeholder={strings.payment.cvv}
-              maxLength={3}
-              keyboardType="numeric"
-              errorObject={errors.cvv}
-              right={
-                <TextInput.Icon icon={getIcon('cvv', errors)} color={errors.cvv ? colors.error : colors.primary} />
-              }
-            />
-          )}
           name="cvv"
+          label={strings.payment.cvv}
+          placeholder={strings.payment.cvv}
+          errorObject={errors.cvv}
+          maxLength={3}
+          keyboardType="numeric"
+          formatValue={paymentUtils.filterNumericInput}
+          right={
+            <TextInput.Icon
+              icon={paymentUtils.getIcon('cvv', errors)}
+              color={errors.cvv ? colors.error : colors.primary}
+            />
+          }
         />
       </View>
 

@@ -1,11 +1,13 @@
 export default {
   icons: {
-    accountCheck: 'account-check',
-    account: 'account',
-    calendarCheck: 'calendar-check',
-    calendarAlert: 'calendar-alert',
-    shieldCheck: 'shield-check',
-    shieldAlert: 'shield-alert',
+    cardholderName: 'account',
+    cardholderNameCheck: 'account-check',
+    expirationDate: 'calendar-alert',
+    expirationDateCheck: 'calendar-check',
+    cvv: 'shield-alert',
+    cvvCheck: 'shield-check',
+    creditCardNumber: 'credit-card',
+    creditCardNumberCheck: 'credit-card-check',
   },
   screens: {
     success: 'Success',
