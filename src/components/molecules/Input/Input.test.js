@@ -5,27 +5,27 @@ import TextInput from '../../atoms/TextInput';
 import Input from '.';
 import { lightColors } from '../../../constants/theme';
 
+const mockOnChangeText = jest.fn();
+const mockOnBlur = jest.fn();
+const mockOnEndEditing = jest.fn();
+
+const renderInput = ({ label = 'Default Label', icon = null, maxLength, value = '', errorObject = null, style }) => {
+  return render(
+    <Input
+      label={label}
+      icon={icon}
+      maxLength={maxLength}
+      value={value}
+      onChangeText={mockOnChangeText}
+      onBlur={mockOnBlur}
+      onEndEditing={mockOnEndEditing}
+      errorObject={errorObject}
+      style={style}
+    />,
+  );
+};
+
 describe('<Input />', () => {
-  const mockOnChangeText = jest.fn();
-  const mockOnBlur = jest.fn();
-  const mockOnEndEditing = jest.fn();
-
-  const renderInput = ({ label = 'Default Label', icon = null, maxLength, value = '', errorObject = null, style }) => {
-    return render(
-      <Input
-        label={label}
-        icon={icon}
-        maxLength={maxLength}
-        value={value}
-        onChangeText={mockOnChangeText}
-        onBlur={mockOnBlur}
-        onEndEditing={mockOnEndEditing}
-        errorObject={errorObject}
-        style={style}
-      />,
-    );
-  };
-
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -100,11 +100,34 @@ describe('<Input />', () => {
 
     expect(mockOnChangeText).toHaveBeenCalledWith('123456789012345'); // maxLength of 10
   });
+});
 
-  it('handles empty or undefined value gracefully', () => {
+describe('<Input /> edge cases for value prop', () => {
+  it('handles null value gracefully', () => {
+    renderInput({ value: null });
+
+    const inputElement = screen.getByTestId('text-input-flat');
+    expect(inputElement.props.value).toBe(''); // Null should be converted to an empty string
+  });
+
+  it('handles undefined value gracefully', () => {
     renderInput({ value: undefined });
 
     const inputElement = screen.getByTestId('text-input-flat');
-    expect(inputElement.props.value).toBe('');
+    expect(inputElement.props.value).toBe(''); // Undefined should be converted to an empty string
+  });
+
+  it('handles empty string value gracefully', () => {
+    renderInput({ value: '' });
+
+    const inputElement = screen.getByTestId('text-input-flat');
+    expect(inputElement.props.value).toBe(''); // Empty string remains as is
+  });
+
+  it('handles numeric value gracefully', () => {
+    renderInput({ value: 123 });
+
+    const inputElement = screen.getByTestId('text-input-flat');
+    expect(inputElement.props.value).toBe('123'); // Number should be converted to a string
   });
 });
