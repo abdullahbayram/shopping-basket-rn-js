@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> matches the snapshot 1`] = `
+exports[`<Button /> matches the snapshot with custom props 1`] = `
 <View
   collapsable={false}
   style={
@@ -169,7 +169,7 @@ exports[`<Button /> matches the snapshot 1`] = `
 </View>
 `;
 
-exports[`<Button /> matches the snapshot(defaultProps) 1`] = `
+exports[`<Button /> matches the snapshot with default props 1`] = `
 <View
   collapsable={false}
   style={

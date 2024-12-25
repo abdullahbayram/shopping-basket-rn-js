@@ -11,6 +11,7 @@ exports[`CheckoutScreen should match the snapshot 1`] = `
       "paddingTop": 10,
     }
   }
+  testID="base-screen"
 >
   <View
     style={

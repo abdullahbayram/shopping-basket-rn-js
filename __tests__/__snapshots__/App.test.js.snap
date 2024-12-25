@@ -154,6 +154,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                     "paddingTop": 10,
                   }
                 }
+                testID="base-screen"
               >
                 <Text
                   style={

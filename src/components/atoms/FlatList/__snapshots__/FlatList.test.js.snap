@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlatList Component renders correctly with default props (snapshot) 1`] = `
+<RCTScrollView
+  data={[]}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={5}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  stickyHeaderIndices={[]}
+  style={
+    {
+      "backgroundColor": "white",
+    }
+  }
+  testID="custom-flatlist"
+  viewabilityConfigCallbackPairs={[]}
+  windowSize={10}
+>
+  <View />
+</RCTScrollView>
+`;

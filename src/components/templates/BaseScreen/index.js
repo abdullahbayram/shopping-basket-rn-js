@@ -8,7 +8,11 @@ import createStyles from './BaseScreen.style';
 const Screen = ({ children }) => {
   const { colors } = useTheme();
   const styles = createStyles(colors, spacing);
-  return <View style={styles.container}>{children}</View>;
+  return (
+    <View testID="base-screen" style={styles.container}>
+      {children}
+    </View>
+  );
 };
 
 export default Screen;
