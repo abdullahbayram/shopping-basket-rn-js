@@ -36,7 +36,7 @@ export default {
     order: 'ORDER',
     promoCodePlaceholder: 'Enter your promo code',
     promoCode: 'Promo Code',
-    promoCodeRequiredMessage: 'Promo code can not be empty',
+    promoCodeRequired: 'Promo code can not be empty',
     promoCodeNotValid: 'This promo code is not valid',
     applyPromo: 'APPLY PROMO CODE',
     emptyBasket: 'Your basket is empty.',

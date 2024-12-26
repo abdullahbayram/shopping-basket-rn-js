@@ -5,6 +5,7 @@ import { Input } from '@components/molecules';
 import { useTheme } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { strings } from '../../../../constants';
 
 const PromoCodeInput = ({ control, errors, handleSubmit, onApplyPromoCode, register, isApplyButtonDisabled }) => {
   const { colors } = useTheme();
@@ -16,8 +17,8 @@ const PromoCodeInput = ({ control, errors, handleSubmit, onApplyPromoCode, regis
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
             {...register('promoCode', {
-              required: 'Promo code is required',
-              pattern: { value: /^A([\d]{1,2})$/, message: 'Promo code is invalid' },
+              required: strings.checkout.promoCodeRequired,
+              pattern: { value: /^A([\d]{1,2})$/, message: strings.checkout.promoCodeNotValid },
             })}
             value={value}
             onChangeText={onChange}

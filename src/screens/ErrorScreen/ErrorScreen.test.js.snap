@@ -64,6 +64,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
             ],
           ]
         }
+        testID="text"
       >
         Snapshot Error Test
       </Text>
@@ -97,6 +98,7 @@ exports[`ErrorScreen Component should match the snapshot 1`] = `
             ],
           ]
         }
+        testID="text"
       >
         Redirecting to product list in 
         10

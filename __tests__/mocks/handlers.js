@@ -188,4 +188,13 @@ export const handlers = [
   http.post('/checkout', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ success: true }));
   }),
+
+  http.post('http://localhost:9001/promocode', async (req, res, ctx) => {
+    try {
+      return HttpResponse.json({ discountType: 'percent', amount: 10 });
+    } catch (error) {
+      console.error('Error:', error);
+      return res(ctx.status(400), ctx.json({ message: 'Invalid promo code' }));
+    }
+  }),
 ];

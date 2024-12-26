@@ -596,6 +596,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   109.95
@@ -1041,6 +1042,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   22.30
@@ -1505,6 +1507,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   55.99
@@ -1950,6 +1953,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   15.99
@@ -2414,6 +2418,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   695.00
@@ -2859,6 +2864,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   168.00
@@ -3323,6 +3329,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   9.99
@@ -3768,6 +3775,7 @@ exports[`<App /> Text renders correctly on App 1`] = `
                                       ],
                                     ]
                                   }
+                                  testID="text"
                                 >
                                   €
                                   10.99

@@ -58,6 +58,7 @@ describe('<Button />', () => {
     });
     const button = screen.getByText(BUTTON_TEXT_PRESS_ME);
     fireEvent.press(button);
+    expect(button).toBeDisabled();
     expect(mockOnPress).not.toHaveBeenCalled();
   });
 

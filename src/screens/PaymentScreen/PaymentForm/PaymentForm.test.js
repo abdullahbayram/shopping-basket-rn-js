@@ -1,8 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react-native';
-import { useForm, FormProvider } from 'react-hook-form';
 import { strings } from '@constants';
-import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
+import renderInFormProvider from '@testUtils/renderInFormProvider';
 import PaymentForm from './index';
 
 jest.mock('@utils', () => ({
@@ -14,12 +13,6 @@ jest.mock('@utils', () => ({
 }));
 
 describe('<PaymentForm />', () => {
-  // eslint-disable-next-line react/prop-types
-  const Wrapper = ({ children }) => {
-    const methods = useForm();
-    return <FormProvider {...methods}>{children}</FormProvider>;
-  };
-
   const mockErrors = {
     cardholderName: false,
     creditCardNumber: false,
@@ -28,11 +21,7 @@ describe('<PaymentForm />', () => {
   };
 
   it('renders all inputs with correct labels', () => {
-    renderInThemeProvider(
-      <Wrapper>
-        <PaymentForm errors={mockErrors} isCreditCardValid />
-      </Wrapper>,
-    );
+    renderInFormProvider(<PaymentForm errors={mockErrors} isCreditCardValid />);
 
     expect(screen.getAllByText(strings.payment.cardholderName).length).toBe(2);
     expect(screen.getAllByText(strings.payment.creditCardNumber).length).toBe(2);

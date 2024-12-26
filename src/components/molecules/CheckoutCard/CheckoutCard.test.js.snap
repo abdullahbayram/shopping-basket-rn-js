@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
-<View>
+<View
+  testID="checkout-card"
+>
   <View>
     <Image
       source={
@@ -40,6 +42,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
             ],
           ]
         }
+        testID="text"
       >
         Test Product
       </Text>
@@ -72,6 +75,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
             ],
           ]
         }
+        testID="text"
       >
         This is a test product.
       </Text>
@@ -102,6 +106,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
             ],
           ]
         }
+        testID="text"
       >
         $
         20.00
@@ -286,6 +291,7 @@ exports[`CheckoutCard renders correctly and matches the snapshot 1`] = `
               ],
             ]
           }
+          testID="product-quantity"
         >
           2
         </Text>

@@ -9,7 +9,13 @@ const TotalSummary = ({ totalPrice, totalItemCount, isOrderButtonDisabled, onOrd
     <Text style={styles.totalPrice} variant="titleSmall">
       Total: ${Number.isNaN(totalPrice) ? '0.00' : totalPrice.toFixed(2)}
     </Text>
-    <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isOrderButtonDisabled}>
+    <Button
+      testID="order-button"
+      icon="cart-arrow-down"
+      mode="contained"
+      onPress={onOrderPress}
+      disabled={isOrderButtonDisabled}
+    >
       Order ({totalItemCount} items)
     </Button>
   </View>

@@ -52,6 +52,7 @@ exports[`<RedirectWithAnimation /> renders correctly and matches snapshot 1`] = 
           ],
         ]
       }
+      testID="text"
     >
       Test message
     </Text>
@@ -85,6 +86,7 @@ exports[`<RedirectWithAnimation /> renders correctly and matches snapshot 1`] = 
           ],
         ]
       }
+      testID="text"
     >
       Redirecting to product list in 
       5

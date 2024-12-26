@@ -28,6 +28,7 @@ exports[`<Text /> matches the snapshot 1`] = `
       ],
     ]
   }
+  testID="text"
 >
   Hello, World!
 </Text>

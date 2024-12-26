@@ -262,6 +262,7 @@ exports[`<ProductCard /> matches the snapshot 1`] = `
               ],
             ]
           }
+          testID="text"
         >
           €
           19.99
