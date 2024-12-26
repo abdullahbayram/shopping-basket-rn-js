@@ -101,7 +101,7 @@ Click the image above to view the demo video.
 - ✅ Run only necessary tests with `--findRelatedTests` flag with husky pre-commit hook.
 - ✅ Use aliases for paths in imports.
 - ✅ Generate automated test coverage reports and badges.
-- 🟡 Aim for a test coverage threshold of 80%.
+- ✅ Ensure test coverage remains at or above 80%.
 
 ---
 
@@ -207,7 +207,7 @@ src/
 
 To ensure the robustness of the application, the following testing strategies and practices are implemented:
 
-- **🟢 Unit Testing**: All components and utility functions are covered with unit tests to ensure correctness of
+- **✅ Unit Testing**: All components and utility functions are covered with unit tests to ensure correctness of
   individual units of code.
 - **🟡 Integration Testing**: Critical workflows, such as adding items to the basket, applying promo codes, and
   navigating between screens, are tested to validate seamless interaction between components.
