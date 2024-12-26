@@ -9,7 +9,6 @@ const initialState = { basket: { items: sampleBasket } };
 
 // integration test with msw
 describe('CheckoutScreen', () => {
-  // Integration test with msw, //TODO split into separate file
   it('should apply a promo code and update the total price', async () => {
     // console.log('Rendering CheckoutScreen...');
     renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });

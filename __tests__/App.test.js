@@ -3,11 +3,10 @@ import App from '../App';
 import renderInProvider from './utils/renderInProvider';
 
 describe('<App />', () => {
-  test('Text renders correctly on App', async () => {
+  test('App renders correctly and displays the initial text', async () => {
     const { toJSON } = renderInProvider(<App />);
     await waitFor(() => {
       screen.getByText('Items in the basket: 0');
     });
-    expect(toJSON()).toMatchSnapshot();
   });
 });

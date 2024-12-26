@@ -80,7 +80,7 @@ describe('<PaymentScreen />', () => {
       expect(screen.getByText(strings.payment.invalidCard)).toBeTruthy();
     });
   });
-  it('show feedback messages about required fields when pressed pay and order button without filling inputs', async () => {
+  it('show feedback messages about required fields when pressed pay and order button with filling invalid inputs', async () => {
     renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
