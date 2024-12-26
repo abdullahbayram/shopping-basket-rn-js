@@ -60,7 +60,7 @@ describe('<PaymentScreen />', () => {
       initialState,
     });
 
-    const orderButton = screen.getByText(strings.buttons.payAndorder);
+    const orderButton = screen.getByText(strings.buttons.payAndOrder);
     fireEvent.press(orderButton);
 
     expect(mockOnPress).not.toHaveBeenCalled();
@@ -73,7 +73,7 @@ describe('<PaymentScreen />', () => {
     const cardNumberInput = screen.getAllByText(strings.payment.creditCardNumber)[0];
     fireEvent.changeText(cardNumberInput, '1234');
 
-    const orderButton = screen.getByText(strings.buttons.payAndorder);
+    const orderButton = screen.getByText(strings.buttons.payAndOrder);
     fireEvent.press(orderButton);
 
     await waitFor(() => {
@@ -92,7 +92,7 @@ describe('<PaymentScreen />', () => {
     const expirationInput = screen.getAllByText(strings.payment.expirationDate)[0];
     fireEvent.changeText(expirationInput, '07');
 
-    const orderButton = screen.getByText(strings.buttons.payAndorder);
+    const orderButton = screen.getByText(strings.buttons.payAndOrder);
     fireEvent.press(orderButton);
     await waitFor(() => {
       expect(screen.getAllByText(strings.payment.cardHolderMinLength)[0]).toBeTruthy();
@@ -105,7 +105,7 @@ describe('<PaymentScreen />', () => {
       initialState,
     });
 
-    const orderButton = screen.getByText(strings.buttons.payAndorder);
+    const orderButton = screen.getByText(strings.buttons.payAndOrder);
     fireEvent.press(orderButton);
 
     await waitFor(() => {

@@ -22,13 +22,14 @@ export default {
     retry: 'Retry',
     checkout: 'CHECKOUT',
     order: 'ORDER',
-    payAndorder: 'PAY AND ORDER',
+    payAndOrder: 'PAY AND ORDER',
     gotoProducts: 'Go to Products',
   },
   productList: {
     basketItemCount: 'Items in the basket: ',
     loading: 'Loading products...',
     errorLoading: 'Unable to load products. Please try again.',
+    limitReached: 'You reached the max quantity per product!',
   },
   checkout: {
     total: 'Total:',

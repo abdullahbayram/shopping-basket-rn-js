@@ -79,7 +79,7 @@ const PaymentScreen = () => {
       <PaymentForm control={control} errors={errors} isCreditCardValid={isCreditCardValid} />
       <View style={styles.bottomContainer}>
         <Button icon="cart-arrow-down" mode="contained" onPress={handleSubmit(onPlaceOrder)} disabled={isOrderDisabled}>
-          {strings.buttons.payAndorder}
+          {strings.buttons.payAndOrder}
         </Button>
       </View>
     </BaseScreen>

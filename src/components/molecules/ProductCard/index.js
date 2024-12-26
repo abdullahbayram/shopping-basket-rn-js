@@ -5,6 +5,7 @@ import { useTheme } from 'react-native-paper';
 import { spacing } from '@constants/theme';
 import { Card, Button, Text, HelperText } from '../../atoms';
 import createStyles from './ProductCard.style';
+import { strings } from '../../../constants';
 
 const leftCardMargin = { marginRight: 5 };
 const rightCardMargin = { marginLeft: 5 };
@@ -35,7 +36,7 @@ const ProductCard = ({ product, onButtonPress, isMaxQuantityPerProductReached, i
           </Button>
         ) : (
           <HelperText type="error" visible>
-            You reached the max quantity per product!
+            {strings.productList.limitReached}
           </HelperText>
         )}
       </View>
