@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { LinearGradient as Gradient } from 'expo-linear-gradient';
-import globalStyles from '../../../globalStyles';
+import globalStyles from '../../../global.style';
 
 const LinearGradient = ({ colors, start = { x: 0, y: 0 }, end = { x: 1, y: 1 }, style = {} }) => (
   <Gradient testID="linear-gradient" colors={colors} start={start} end={end} style={[globalStyles.flex, style]} />

@@ -9,7 +9,6 @@ const renderInProvider = (
   ui,
   {
     initialState = {
-      counter: { count: 0 },
       basket: { items: [] },
     }, // Default initial state if not provided
   } = {},

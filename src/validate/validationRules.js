@@ -1,26 +1,27 @@
 import checkCreditCardWithCardValidator from './checkCreditCardWithCardValidator';
+import { strings } from '../constants';
 
 const validationRules = {
   cardholderName: {
-    required: 'Cardholder name is required',
-    minLength: { value: 3, message: 'Name must be at least 3 characters' },
+    required: strings.payment.cardHolderRequired,
+    minLength: { value: 3, message: strings.payment.cardHolderMinLength },
   },
   creditCardNumber: {
-    required: 'Credit card number is required',
+    required: strings.payment.creditCardRequired,
     validate: {
-      isValidCreditCard: (value) => checkCreditCardWithCardValidator(value) || 'Invalid credit card number',
+      isValidCreditCard: (value) => checkCreditCardWithCardValidator(value) || strings.payment.invalidCard,
     },
   },
   expirationDate: {
-    required: 'Expiration date is required',
+    required: strings.payment.expirationDateRequired,
     pattern: {
       value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
-      message: 'Invalid expiration date (MM/YY)',
+      message: strings.payment.invalidExpirationDate,
     },
   },
   cvv: {
-    required: 'CVV is required',
-    minLength: { value: 3, message: 'CVV must be 3 digits' },
+    required: strings.payment.cvvRequired,
+    minLength: { value: 3, message: strings.payment.cvvLength },
   },
 };
 
