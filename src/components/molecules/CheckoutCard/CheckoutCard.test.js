@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
 import { showToast } from '@utils';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider';
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
 import CheckoutCard from '.';
 
 jest.mock('@utils', () => ({

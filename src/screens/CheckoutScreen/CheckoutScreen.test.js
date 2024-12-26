@@ -1,25 +1,37 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
+import { useNavigation } from '@react-navigation/native';
+import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
+import { sampleBasket } from '@mocks/handlers';
+import mockNavigation from '@mocks/navigation';
 import CheckoutScreen from '.';
-import renderInProvider from '../../../__tests__/utils/renderInProvider';
-import { sampleBasket } from '../../../__tests__/mocks/handlers';
-import mockNavigation from '../../../__tests__/mocks/navigation';
 
 const initialState = { basket: { items: sampleBasket } };
 
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: jest.fn(),
+}));
+
+const navigateMock = jest.fn();
+
+useNavigation.mockReturnValue({
+  navigate: navigateMock,
+});
+
 describe('CheckoutScreen', () => {
   it('should render CheckoutScreen correctly', () => {
-    renderInProvider(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
     expect(screen.getByText('Mens Casual Premium Slim Fit T-Shirts')).toBeTruthy();
     // expect(screen.getByText('Remove Item')).toBeTruthy();
     // expect(screen.getByText('ORDER')).toBeTruthy(); + (14 items)
   });
   it('should match the snapshot', () => {
-    renderInProvider(<CheckoutScreen navigation={mockNavigation} />);
+    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should update credit card input value', () => {
-    renderInProvider(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
 
     // const creditCardInput = screen.getByLabelText('Credit Card');
     // const creditCardInput = screen.getByPlaceholderText('Enter your credit card number');

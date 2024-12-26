@@ -2,8 +2,8 @@ import React from 'react';
 import { screen } from '@testing-library/react-native';
 import { useForm, FormProvider } from 'react-hook-form';
 import { strings } from '@constants';
-import PaymentForm from '.';
-import { renderInThemeProvider } from '../../../../../__tests__/utils/renderInThemeProvider';
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
+import PaymentForm from './index';
 
 jest.mock('@utils', () => ({
   paymentUtils: {

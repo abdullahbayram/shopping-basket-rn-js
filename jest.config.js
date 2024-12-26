@@ -31,10 +31,13 @@ module.exports = {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@constants/(.*)$': '<rootDir>/src/constants/$1',
     '^@context/(.*)$': '<rootDir>/src/context/$1',
+    '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@redux/(.*)$': '<rootDir>/src/redux/$1',
     '^@screens/(.*)$': '<rootDir>/src/screens/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@validate/(.*)$': '<rootDir>/src/validate/$1',
+    '^@testUtils/(.*)$': '<rootDir>/__tests__/utils/$1',
+    '^@mocks/(.*)$': '<rootDir>/__tests__/mocks/$1',
   },
   coverageReporters: ['json', 'json-summary', 'text', 'lcov'],
 };

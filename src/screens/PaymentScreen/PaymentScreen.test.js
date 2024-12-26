@@ -1,9 +1,21 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 import { strings } from '@constants';
+import { useNavigation } from '@react-navigation/native';
+import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
+import { sampleBasket } from '@mocks/handlers';
 import PaymentScreen from '.';
-import renderInProvider from '../../../__tests__/utils/renderInProvider';
-import { sampleBasket } from '../../../__tests__/mocks/handlers';
+
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: jest.fn(),
+}));
+
+const navigateMock = jest.fn();
+
+useNavigation.mockReturnValue({
+  navigate: navigateMock,
+});
 
 const initialState = {
   basket: {
@@ -19,7 +31,7 @@ describe('<PaymentScreen />', () => {
   });
 
   it('displays the correct basket summary', () => {
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
     const itemCountText = screen.getByText('Items in the basket:  14');
@@ -32,7 +44,7 @@ describe('<PaymentScreen />', () => {
   });
 
   it('renders PaymentForm', () => {
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
@@ -44,7 +56,7 @@ describe('<PaymentScreen />', () => {
 
   it('disables the order button when basket is empty', () => {
     const mockOnPress = jest.fn();
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
@@ -54,7 +66,7 @@ describe('<PaymentScreen />', () => {
     expect(mockOnPress).not.toHaveBeenCalled();
   });
   it('validates credit card input', async () => {
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
@@ -69,7 +81,7 @@ describe('<PaymentScreen />', () => {
     });
   });
   it('show feedback messages about required fields when pressed pay and order button without filling inputs', async () => {
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
@@ -89,7 +101,7 @@ describe('<PaymentScreen />', () => {
     expect(screen.getAllByText(strings.payment.invalidExpirationDate)[0]).toBeTruthy();
   });
   it('show feedback messages about required fields when pressed pay and order button without filling inputs', async () => {
-    renderInProvider(<PaymentScreen navigation={navigation} />, {
+    renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
@@ -101,6 +113,8 @@ describe('<PaymentScreen />', () => {
     });
     expect(screen.getAllByText(strings.payment.cvvRequired)[0]).toBeTruthy();
     expect(screen.getAllByText(strings.payment.expirationDateRequired)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.creditCardRequired)[0]).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getAllByText(strings.payment.creditCardRequired)[0]).toBeTruthy();
+    });
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
 import strings from '@constants/strings';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider';
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
 import CheckoutList from '.';
 
 describe('<CheckoutList />', () => {
