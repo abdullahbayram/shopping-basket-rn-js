@@ -30,10 +30,10 @@ const CheckoutScreen = ({ navigation }) => {
     },
   });
 
-  const { basketItems, totalCount, total } = useSelector((state) => ({
+  const { basketItems, totalItemCount, totalPrice } = useSelector((state) => ({
     basketItems: selectBasketItems(state),
-    totalCount: selectTotalItemCount(state),
-    total: selectTotalPrice(state),
+    totalItemCount: selectTotalItemCount(state),
+    totalPrice: selectTotalPrice(state),
   }));
 
   const isBasketEmpty = basketItems.length === 0;
@@ -76,14 +76,14 @@ const CheckoutScreen = ({ navigation }) => {
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
       <View style={styles.totalContainer}>
         <Text variant="titleSmall">
-          {strings.checkout.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+          {strings.checkout.total} ${Number.isNaN(totalPrice) ? '0.00' : totalPrice.toFixed(2)}
         </Text>
       </View>
 
       <View style={styles.topContainer}>
         <View style={styles.orderButtonContainer}>
           <Button icon="cart-arrow-down" mode="contained" onPress={onOrderPress} disabled={isBasketEmpty}>
-            {strings.checkout.order} ({totalCount} items)
+            {strings.checkout.order} ({totalItemCount} items)
           </Button>
         </View>
 

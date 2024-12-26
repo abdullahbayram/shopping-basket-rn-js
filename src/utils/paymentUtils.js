@@ -8,7 +8,6 @@ export default {
     return `${sanitized.slice(0, 2)}/${sanitized.slice(2, 4)}`;
   },
   getIcon: (field, errors, isCreditCardValid) => {
-    console.log(errors, 'errors');
     const { icons } = strings; // Extract icons from strings
     let isValid = !errors[field]; // Check if the field is valid
 

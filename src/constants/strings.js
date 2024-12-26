@@ -22,6 +22,7 @@ export default {
     retry: 'Retry',
     checkout: 'CHECKOUT',
     order: 'ORDER',
+    payAndorder: 'PAY AND ORDER',
     gotoProducts: 'Go to Products',
   },
   productList: {
@@ -52,6 +53,14 @@ export default {
     cvvPlaceholder: '123',
     unexpectedError: 'An unexpected error occurred. Please try again later.',
     unexpectedErrorShort: 'Unexpected Error',
+    invalidCard: 'Invalid credit card number',
+    cardHolderRequired: 'Cardholder name is required',
+    creditCardRequired: 'Credit card number is required',
+    expirationDateRequired: 'Expiration date is required',
+    cvvRequired: 'CVV is required',
+    invalidExpirationDate: 'Invalid expiration date (MM/YY)',
+    cvvLength: 'CVV must be 3 digits',
+    cardHolderMinLength: 'Cardholder name must be at least 3 characters',
     success: `
 Thank you!
 Your order has been placed successfully.

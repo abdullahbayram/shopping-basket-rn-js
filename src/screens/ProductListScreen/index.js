@@ -2,12 +2,13 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
-import { ActivityIndicator, Button, Text, HelperText } from '@components/atoms';
+import { ActivityIndicator, Button, HelperText } from '@components/atoms';
+import { BasketSummary } from '@components/molecules';
 import { ProductList } from '@components/organisms';
 import { BaseScreen } from '@components/templates';
 import { addItemToBasket } from '@redux/slices/basketSlice';
 import { useGetProductsQuery } from '@redux/api/apiSlice';
-import { selectTotalItemCount } from '@redux/selectors/basketSelector';
+import { selectTotalItemCount, selectBasketItems, selectTotalPrice } from '@redux/selectors/basketSelector';
 import { validateBasket } from '@validate';
 import showToast from '@utils/showToast';
 import { toastMessages, strings } from '@constants';
@@ -17,8 +18,11 @@ import globalStyles from '../../global.style';
 const ProductListScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  const totalCount = useSelector(selectTotalItemCount);
-  const basketItems = useSelector((state) => state.basket.items);
+  const { basketItems, totalItemCount, totalPrice } = useSelector((state) => ({
+    basketItems: selectBasketItems(state),
+    totalItemCount: selectTotalItemCount(state),
+    totalPrice: selectTotalPrice(state),
+  }));
   const { data: products, error, isLoading, refetch } = useGetProductsQuery();
 
   const basketItemsMap = useMemo(() => new Map(basketItems.map((item) => [item.id, item])), [basketItems]);
@@ -58,9 +62,7 @@ const ProductListScreen = ({ navigation }) => {
               </Button>
             </View>
           ) : (
-            <Text variant="titleSmall">
-              {strings.productList.basketItemCount} {totalCount}
-            </Text>
+            <BasketSummary totalItemCount={totalItemCount} totalPrice={totalPrice} />
           )}
           {!error && (
             <ProductList

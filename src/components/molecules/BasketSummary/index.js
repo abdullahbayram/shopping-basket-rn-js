@@ -4,15 +4,15 @@ import { Text, View } from 'react-native';
 import { strings } from '@constants';
 import styles from './BasketSummary.style';
 
-const BasketSummary = ({ totalCount, total }) => {
+const BasketSummary = ({ totalItemCount, totalPrice }) => {
   return (
     <View>
       <Text variant="titleSmall">
-        {strings.payment.basketItemCount} {totalCount}
+        {strings.payment.basketItemCount} {totalItemCount}
       </Text>
       <View style={styles.totalContainer}>
         <Text variant="titleSmall">
-          {strings.payment.total} ${Number.isNaN(total) ? '0.00' : total.toFixed(2)}
+          {strings.payment.total} ${Number.isNaN(totalPrice) ? '0.00' : totalPrice.toFixed(2)}
         </Text>
       </View>
     </View>
@@ -20,8 +20,8 @@ const BasketSummary = ({ totalCount, total }) => {
 };
 
 BasketSummary.propTypes = {
-  totalCount: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
+  totalItemCount: PropTypes.number.isRequired,
+  totalPrice: PropTypes.number.isRequired,
 };
 
 export default BasketSummary;

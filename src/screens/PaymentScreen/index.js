@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useTheme } from 'react-native-paper';
 import { Button } from '@components/atoms';
-import { ActivityOverlay } from '@components/molecules';
+import { ActivityOverlay, BasketSummary } from '@components/molecules';
 import { BaseScreen } from '@components/templates';
 import { clearBasket, clearDiscount } from '@redux/slices/basketSlice';
 import { usePlaceOrderMutation } from '@redux/api/apiSlice';
@@ -13,10 +13,10 @@ import { showToast, paymentUtils } from '@utils';
 import { toastMessages, strings } from '@constants';
 import { checkCreditCardWithCardValidator, validateBasket } from '@validate';
 import styles from './PaymentScreen.style';
-import { BasketSummary, PaymentForm } from './components';
+import PaymentForm from './components/PaymentForm';
 
 const DEFAULT_FORM_VALUES = {
-  creditCardNumber: '5566561551349323',
+  creditCardNumber: '',
   cardholderName: '',
   expirationDate: '',
   cvv: '',
@@ -36,10 +36,10 @@ const PaymentScreen = ({ navigation }) => {
     defaultValues: DEFAULT_FORM_VALUES,
   });
 
-  const { basketItems, totalCount, total } = useSelector((state) => ({
+  const { basketItems, totalItemCount, totalPrice } = useSelector((state) => ({
     basketItems: selectBasketItems(state),
-    totalCount: selectTotalItemCount(state),
-    total: selectTotalPrice(state),
+    totalItemCount: selectTotalItemCount(state),
+    totalPrice: selectTotalPrice(state),
   }));
 
   const [placeOrder, { isLoading }] = usePlaceOrderMutation();
@@ -87,11 +87,11 @@ const PaymentScreen = ({ navigation }) => {
   return (
     <BaseScreen>
       <ActivityOverlay isVisible={isLoading} color={colors.secondary} />
-      <BasketSummary totalCount={totalCount} total={total} />
+      <BasketSummary totalItemCount={totalItemCount} totalPrice={totalPrice} />
       <PaymentForm control={control} errors={errors} isCreditCardValid={isCreditCardValid} />
       <View style={styles.bottomContainer}>
         <Button icon="cart-arrow-down" mode="contained" onPress={handleSubmit(onPlaceOrder)} disabled={isOrderDisabled}>
-          {strings.buttons.order}
+          {strings.buttons.payAndorder}
         </Button>
       </View>
     </BaseScreen>
