@@ -40,4 +40,5 @@ module.exports = {
     '^@mocks/(.*)$': '<rootDir>/__tests__/mocks/$1',
   },
   coverageReporters: ['json', 'json-summary', 'text', 'lcov'],
+  snapshotResolver: './scripts/snapshotResolver.js',
 };
