@@ -15,8 +15,4 @@ export default StyleSheet.create({
   orderButtonContainer: {
     flex: 4,
   },
-  promoContainer: {
-    flex: 6,
-    marginBottom: spacing.sm,
-  },
 });

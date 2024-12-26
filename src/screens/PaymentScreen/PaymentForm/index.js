@@ -86,8 +86,8 @@ const PaymentForm = ({ control, errors, isCreditCardValid }) => {
 };
 
 PaymentForm.propTypes = {
-  control: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  errors: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  control: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
   isCreditCardValid: PropTypes.bool.isRequired,
 };
 

@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-const path = require('path');
-
 module.exports = {
   resolveSnapshotPath: (testPath, snapshotExtension) => testPath + snapshotExtension, // Place snapshots next to the test file
   resolveTestPath: (snapshotPath, snapshotExtension) => snapshotPath.slice(0, -snapshotExtension.length), // Match snapshots with test files
