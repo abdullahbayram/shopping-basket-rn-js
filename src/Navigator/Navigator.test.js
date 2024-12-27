@@ -18,9 +18,10 @@ describe('Navigator Component', () => {
     let buttons;
     let button;
     await waitFor(() => {
-      button = screen.getByText('CHECKOUT');
+      button = screen.getByText('CHECKOUT (0)');
       buttons = screen.getAllByRole('button');
     });
+
     expect(button).toBeTruthy();
     expect(buttons.length).toBe(9);
   });
@@ -28,7 +29,7 @@ describe('Navigator Component', () => {
   it('should navigate to CheckoutScreen when CHECKOUT button is pressed', async () => {
     renderWithThemeProvider(<Navigator />, { initialState });
 
-    const checkoutButton = await screen.findByText('CHECKOUT');
+    const checkoutButton = await screen.findByText('CHECKOUT (14)');
     fireEvent.press(checkoutButton);
     let buttons;
     await waitFor(() => {

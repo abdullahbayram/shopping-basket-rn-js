@@ -6,7 +6,7 @@ describe('<App />', () => {
   test('App renders correctly and displays the initial text', async () => {
     const { toJSON } = renderInProvider(<App />);
     await waitFor(() => {
-      screen.getByText('Items in the basket: 0');
+      screen.getByText('CHECKOUT (0)');
     });
   });
 });

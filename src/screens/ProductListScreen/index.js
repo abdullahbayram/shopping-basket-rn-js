@@ -36,7 +36,7 @@ const ProductListScreen = () => {
 
   return (
     <BaseScreen>
-      {isBasketSummaryVisible && <BasketSummary totalItemCount={totalItemCount} totalPrice={totalPrice} />}
+      {isBasketSummaryVisible && <BasketSummary totalPrice={totalPrice} />}
       {!error && (
         <ProductList products={products || []} basketItems={basketItems} onAddItem={onAddToBasket} refetch={refetch} />
       )}
@@ -48,7 +48,7 @@ const ProductListScreen = () => {
             mode="contained"
             onPress={onCheckoutPress}
           >
-            {strings.buttons.checkout}
+            {`${strings.buttons.checkout} (${totalItemCount})`}
           </Button>
         </View>
       )}

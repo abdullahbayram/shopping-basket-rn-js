@@ -99,7 +99,7 @@ describe('ProductListScreen', () => {
     });
     renderWithProvidersAndNavigation(<ProductListScreen />, { initialState: { basket: { items: sampleBasket } } });
 
-    const checkoutButton = await screen.findByText('CHECKOUT');
+    const checkoutButton = await screen.findByText('CHECKOUT (14)');
     fireEvent.press(checkoutButton);
 
     await waitFor(() => {
@@ -116,7 +116,7 @@ describe('ProductListScreen', () => {
     });
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
-    const checkoutButton = screen.getByText('CHECKOUT');
+    const checkoutButton = screen.getByText('CHECKOUT (0)');
     fireEvent.press(checkoutButton);
     expect(navigateMock).toHaveBeenCalledTimes(0);
   });
@@ -131,7 +131,7 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     // Initial totalItemCount
-    expect(screen.getByText('Items in the basket: 0')).toBeTruthy();
+    expect(screen.getByText('CHECKOUT (0)')).toBeTruthy();
 
     // Simulate adding the first product to the basket
     const addToBasketButton = screen.getAllByText('Add to basket')[0];
@@ -139,7 +139,7 @@ describe('ProductListScreen', () => {
 
     // Updated totalItemCount
     await waitFor(() => {
-      expect(screen.getByText('Items in the basket: 1')).toBeTruthy();
+      expect(screen.getByText('CHECKOUT (1)')).toBeTruthy();
     });
     expect(screen.getByText('Total: $109.95')).toBeTruthy();
   });
@@ -157,7 +157,7 @@ describe('ProductListScreen', () => {
     const addToBasketButton = within(firstProductCard).getByText('Add to basket');
 
     // Initial assertions
-    expect(screen.getByText('Items in the basket: 0')).toBeTruthy(); // Basket starts empty
+    expect(screen.getByText('CHECKOUT (0)')).toBeTruthy(); // Basket starts empty
     expect(screen.queryByText(strings.productList.limitReached)).toBeFalsy();
 
     // Add the same product to the basket five times
@@ -167,7 +167,7 @@ describe('ProductListScreen', () => {
 
     // Check total item count and total price updated
     await waitFor(() => {
-      expect(screen.getByText('Items in the basket: 5')).toBeTruthy();
+      expect(screen.getByText('CHECKOUT (5)')).toBeTruthy();
     });
     expect(screen.getByText('Total: $549.75')).toBeTruthy(); // Ensure total price is updated correctly
 
@@ -178,6 +178,6 @@ describe('ProductListScreen', () => {
     expect(screen.getByText(strings.productList.limitReached)).toBeTruthy();
 
     // TotalItemCount should still be 5, not updated further
-    expect(screen.getByText('Items in the basket: 5')).toBeTruthy();
+    expect(screen.getByText('CHECKOUT (5)')).toBeTruthy();
   });
 });
