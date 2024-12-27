@@ -6,7 +6,7 @@ import { spacing } from '@constants/theme';
 import styles from './Toggle.style';
 import { Switch, Icon } from '../../atoms';
 
-const Toggle = ({ isDarkMode, toggleTheme }) => {
+const Toggle = ({ isDarkMode, toggleTheme, testID = 'toggle-switch' }) => {
   const { colors } = useTheme();
 
   return (
@@ -19,7 +19,7 @@ const Toggle = ({ isDarkMode, toggleTheme }) => {
         ios_backgroundColor={isDarkMode ? colors.textPrimary : colors.textSecondary}
         value={isDarkMode}
         onValueChange={toggleTheme}
-        testID="toggle-switch"
+        testID={testID}
       />
     </View>
   );
@@ -28,6 +28,7 @@ const Toggle = ({ isDarkMode, toggleTheme }) => {
 Toggle.propTypes = {
   isDarkMode: PropTypes.bool.isRequired,
   toggleTheme: PropTypes.func.isRequired,
+  testID: PropTypes.string,
 };
 
 export default Toggle;

@@ -10,7 +10,9 @@ import { ThemeContext } from '@context/ThemeContext';
 const Stack = createNativeStackNavigator();
 
 const HeaderBackgroundFunc = () => <HeaderBackground />;
-const ToggleDark = (isDarkMode, toggleTheme) => <Toggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />;
+const ToggleDark = (isDarkMode, toggleTheme) => (
+  <Toggle testID="toggle-dark-mode" isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+);
 
 const HeaderBackground = () => {
   const { colors } = useTheme();

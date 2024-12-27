@@ -1,9 +1,17 @@
 import React from 'react';
-import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import { waitFor } from '@testing-library/react-native';
 import { strings } from '@constants';
 import { useNavigation } from '@react-navigation/native';
 import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
 import { sampleBasket } from '@mocks/handlers';
+import {
+  fillPaymentInputs,
+  verifyPaymentInputsFilled,
+  verifyExistenceOfPaymentInputs,
+  changeText,
+  pressButton,
+  verifyExistenceByText,
+} from '@testUtils/testUtil';
 import PaymentScreen from '.';
 
 jest.mock('@react-navigation/native', () => ({
@@ -34,13 +42,8 @@ describe('<PaymentScreen />', () => {
     renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
-    const itemCountText = screen.getByText('Items in the basket:  14');
-    const totalText = screen.getByText('Total: $2648.01');
-    // const itemCountText = screen.getByText(/Items in the basket:/i);
-    // const totalText = screen.getByText(/Total:/i);
-
-    expect(itemCountText).toBeTruthy();
-    expect(totalText).toBeTruthy();
+    verifyExistenceByText('Items in the basket:  14');
+    verifyExistenceByText('Total: $2648.01');
   });
 
   it('renders PaymentForm', () => {
@@ -48,10 +51,7 @@ describe('<PaymentScreen />', () => {
       initialState,
     });
 
-    expect(screen.getAllByText(strings.payment.cardholderName)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.creditCardNumber)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.expirationDate)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.cvv)[0]).toBeTruthy();
+    verifyExistenceOfPaymentInputs();
   });
 
   it('disables the order button when basket is empty', () => {
@@ -60,61 +60,61 @@ describe('<PaymentScreen />', () => {
       initialState,
     });
 
-    const orderButton = screen.getByText(strings.buttons.payAndOrder);
-    fireEvent.press(orderButton);
+    pressButton(strings.buttons.payAndOrder);
 
     expect(mockOnPress).not.toHaveBeenCalled();
   });
+
   it('validates credit card input', async () => {
     renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
-    const cardNumberInput = screen.getAllByText(strings.payment.creditCardNumber)[0];
-    fireEvent.changeText(cardNumberInput, '1234');
-
-    const orderButton = screen.getByText(strings.buttons.payAndOrder);
-    fireEvent.press(orderButton);
+    changeText('Credit Card Number', '1234');
+    pressButton(strings.buttons.payAndOrder);
 
     await waitFor(() => {
-      expect(screen.getByText(strings.payment.invalidCard)).toBeTruthy();
+      verifyExistenceByText(strings.payment.invalidCard);
     });
   });
+
   it('show feedback messages about required fields when pressed pay and order button with filling invalid inputs', async () => {
     renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
-    const cardholderNameInput = screen.getAllByText(strings.payment.cardholderName)[0];
-    fireEvent.changeText(cardholderNameInput, 'AB');
-    const cvvInput = screen.getAllByText(strings.payment.cvv)[0];
-    fireEvent.changeText(cvvInput, '12');
-    const expirationInput = screen.getAllByText(strings.payment.expirationDate)[0];
-    fireEvent.changeText(expirationInput, '07');
+    const cardDetails = {
+      cardholderName: 'AB',
+      cardNumber: '5566561551349323', // Valid card
+      expirationDate: '07',
+      cvv: '12',
+    };
 
-    const orderButton = screen.getByText(strings.buttons.payAndOrder);
-    fireEvent.press(orderButton);
+    fillPaymentInputs(cardDetails);
+    verifyPaymentInputsFilled(cardDetails);
+
+    pressButton(strings.buttons.payAndOrder);
     await waitFor(() => {
-      expect(screen.getAllByText(strings.payment.cardHolderMinLength)[0]).toBeTruthy();
+      verifyExistenceByText(strings.payment.cardHolderMinLength);
     });
-    expect(screen.getAllByText(strings.payment.cvvLength)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.invalidExpirationDate)[0]).toBeTruthy();
+
+    verifyExistenceByText(strings.payment.invalidExpirationDate);
+    verifyExistenceByText(strings.payment.invalidExpirationDate);
+    verifyExistenceByText(strings.payment.cvvLength);
   });
+
   it('show feedback messages about required fields when pressed pay and order button without filling inputs', async () => {
     renderWithProvidersAndNavigation(<PaymentScreen navigation={navigation} />, {
       initialState,
     });
 
-    const orderButton = screen.getByText(strings.buttons.payAndOrder);
-    fireEvent.press(orderButton);
+    pressButton(strings.buttons.payAndOrder);
 
     await waitFor(() => {
-      expect(screen.getAllByText(strings.payment.cardHolderRequired)[0]).toBeTruthy();
+      verifyExistenceByText(strings.payment.cardHolderRequired);
     });
-    expect(screen.getAllByText(strings.payment.cvvRequired)[0]).toBeTruthy();
-    expect(screen.getAllByText(strings.payment.expirationDateRequired)[0]).toBeTruthy();
-    await waitFor(() => {
-      expect(screen.getAllByText(strings.payment.creditCardRequired)[0]).toBeTruthy();
-    });
+    verifyExistenceByText(strings.payment.cvvRequired);
+    verifyExistenceByText(strings.payment.expirationDateRequired);
+    verifyExistenceByText(strings.payment.creditCardRequired);
   });
 });

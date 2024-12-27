@@ -1,13 +1,19 @@
 import React from 'react';
-import { fireEvent, screen, waitFor, within } from '@testing-library/react-native';
 import { useNavigation } from '@react-navigation/native';
+import { screen, waitFor, fireEvent, within } from '@testing-library/react-native';
 import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
+import {
+  mockBasketState,
+  verifyCheckoutScreenContents,
+  verifyInExistenceByText,
+  verifyExistenceByText,
+  pressButton,
+  changeText,
+  getFirstOfItemsByTestId,
+} from '@testUtils/testUtil';
 import { sampleBasket } from '@mocks/handlers';
-import mockNavigation from '@mocks/navigation';
+import { strings } from '@constants';
 import CheckoutScreen from '.';
-import { strings } from '../../constants';
-
-const initialState = { basket: { items: sampleBasket } };
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
@@ -20,70 +26,79 @@ useNavigation.mockReturnValue({
   navigate: navigateMock,
 });
 
+// Apply promo code is in the integration test
 describe('CheckoutScreen', () => {
-  it('should render CheckoutScreen correctly', () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
-
-    expect(screen.getByText('Mens Casual Premium Slim Fit T-Shirts')).toBeTruthy();
-
-    expect(screen.getByText('Total: $2648.01')).toBeTruthy();
-    expect(screen.getByText(/Order\s*\(\s*14\s*items\s*\)/)).toBeTruthy();
-
-    expect(screen.getAllByText('Promo Code')[0]).toBeTruthy();
-    expect(screen.getByText('Apply')).toBeTruthy();
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
+
+  const initialState = mockBasketState;
+
+  it('renders CheckoutScreen correctly', () => {
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
+
+    verifyCheckoutScreenContents({
+      totalPrice: '2648.01',
+      totalItemCount: 14,
+      titleOfAnItem: sampleBasket[0].title,
+    });
+  });
+
   it('should remove an item from the basket when "Remove Item" is pressed', async () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
 
     // Get the checkoutcard and its 'Remove Item' button
-    const firstCheckoutCard = screen.getAllByTestId('checkout-card')[0];
+    const firstCheckoutCard = getFirstOfItemsByTestId('checkout-card');
     const removeItemButton = within(firstCheckoutCard).getByText('Remove Item');
 
     // Initial assertions
-    expect(screen.getByText(sampleBasket[0].title)).toBeTruthy();
-    expect(screen.getByText(/Order\s*\(\s*14\s*items\s*\)/)).toBeTruthy(); // Basket starts with 14 item
-    expect(screen.getByText('Total: $2648.01')).toBeTruthy();
+    verifyCheckoutScreenContents({
+      totalPrice: '2648.01',
+      totalItemCount: 14, // Basket starts with 14 item
+      titleOfAnItem: sampleBasket[0].title,
+    });
 
     fireEvent.press(removeItemButton); // there were 3 items of removed product
 
     // Check total item count and total price updated
-    expect(screen.queryByText(sampleBasket[0].title)).toBeFalsy();
-    expect(screen.getByText(/Order\s*\(\s*11\s*items\s*\)/)).toBeTruthy();
-    expect(screen.getByText('Total: $2318.16')).toBeTruthy();
+    verifyInExistenceByText(sampleBasket[0].title);
+    verifyExistenceByText(/Order\s*\(\s*11\s*items\s*\)/);
+    verifyExistenceByText('Total: $2318.16');
   });
-  it('should navigate to Payment screen when the ORDER button is pressed', () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+
+  it('should navigate to Payment screen when ORDER button is pressed', async () => {
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
 
     // Press the "ORDER" button
-    const orderButton = screen.getByText(/Order\s*\(\s*14\s*items\s*\)/);
-    fireEvent.press(orderButton);
+    pressButton(/Order\s*\(\s*14\s*items\s*\)/);
 
-    // Assert that navigation is called
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-    expect(navigateMock).toHaveBeenCalledWith('Payment'); // Replace with the actual route name
-  });
-  it('should show an error message when an invalid promo code is applied', async () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
-    const applyButton = screen.getByText('Apply');
-    fireEvent.press(applyButton);
     await waitFor(() => {
-      expect(screen.getByText(strings.checkout.promoCodeRequired)).toBeTruthy();
+      expect(navigateMock).toHaveBeenCalledWith('Payment');
+    });
+  });
+
+  it('should show an error message when an invalid promo code or empty code is applied ', async () => {
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
+
+    pressButton('Apply');
+
+    await waitFor(() => {
+      verifyExistenceByText(strings.checkout.promoCodeRequired);
     });
 
-    const promoInput = screen.getAllByText('Promo Code')[0];
-    fireEvent.changeText(promoInput, 'INVALIDCODE');
+    changeText('Promo Code', 'INVALIDCODE');
 
-    fireEvent.press(applyButton);
+    pressButton('Apply');
     await waitFor(() => {
-      expect(screen.getByText(strings.checkout.promoCodeNotValid)).toBeTruthy();
+      verifyExistenceByText(strings.checkout.promoCodeNotValid);
     });
   });
   it('should disable order and promo buttons if the basket is empty', () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, {
+    renderWithProvidersAndNavigation(<CheckoutScreen />, {
       initialState: { basket: { items: [] } },
     });
 
-    expect(screen.getByText(strings.checkout.emptyBasket)).toBeTruthy();
+    verifyExistenceByText(strings.checkout.emptyBasket);
     const orderButton = screen.getByTestId('order-button');
     const applyPromoButton = screen.getByText('Apply');
 
@@ -91,60 +106,69 @@ describe('CheckoutScreen', () => {
     expect(applyPromoButton).toBeDisabled();
   });
   it('should increase unit quantity, total count, and total price on "+" button press', async () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
 
-    const firstCheckoutCard = screen.getAllByTestId('checkout-card')[0];
+    const firstCheckoutCard = getFirstOfItemsByTestId('checkout-card');
     const increaseQuantityButton = within(firstCheckoutCard).getByTestId('increase-button');
 
     // Check initial state
-    expect(screen.getByText(/Order\s*\(\s*14\s*items\s*\)/)).toBeTruthy();
-    expect(screen.getByText('Total: $2648.01')).toBeTruthy();
+    verifyCheckoutScreenContents({
+      totalPrice: '2648.01',
+      totalItemCount: 14,
+      titleOfAnItem: sampleBasket[0].title,
+    });
 
     // Press "+" button
     fireEvent.press(increaseQuantityButton);
 
     // Assertions after increment
     await waitFor(() => {
-      expect(screen.getByText(/Order\s*\(\s*15\s*items\s*\)/)).toBeTruthy();
+      verifyExistenceByText(/Order\s*\(\s*15\s*items\s*\)/);
     });
-    expect(screen.getByText('Total: $2757.96')).toBeTruthy(); // Adjusted for increased item
+    verifyExistenceByText('Total: $2757.96'); // Updated for increased item
   });
   it('should decrease unit quantity, total count, and total price on "-" button press', async () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
 
-    const firstCheckoutCard = screen.getAllByTestId('checkout-card')[0];
+    const firstCheckoutCard = getFirstOfItemsByTestId('checkout-card');
     const decreaseQuantityButton = within(firstCheckoutCard).getByTestId('decrease-button');
 
     // Check initial state
-    expect(screen.getByText(/Order\s*\(\s*14\s*items\s*\)/)).toBeTruthy();
-    expect(screen.getByText('Total: $2648.01')).toBeTruthy();
+    verifyCheckoutScreenContents({
+      totalPrice: '2648.01',
+      totalItemCount: 14,
+      titleOfAnItem: sampleBasket[0].title,
+    });
 
     // Press "-" button
     fireEvent.press(decreaseQuantityButton);
 
     // Assertions after decrement
     await waitFor(() => {
-      expect(screen.getByText(/Order\s*\(\s*13\s*items\s*\)/)).toBeTruthy();
+      verifyExistenceByText(/Order\s*\(\s*13\s*items\s*\)/);
     });
-    expect(screen.getByText('Total: $2538.06')).toBeTruthy(); // Adjusted for decreased item
+    verifyExistenceByText('Total: $2538.06'); // Adjusted for decreased item
   });
   it('should remove an item from the basket if quantity is 1 on delete icon press', async () => {
-    renderWithProvidersAndNavigation(<CheckoutScreen navigation={mockNavigation} />, { initialState });
+    renderWithProvidersAndNavigation(<CheckoutScreen />, { initialState });
 
-    const firstCheckoutCard = screen.getAllByTestId('checkout-card')[0]; // first card in the basket
+    const firstCheckoutCard = getFirstOfItemsByTestId('checkout-card');
     const decreaseQuantityButton = within(firstCheckoutCard).getByTestId('decrease-button');
     const quantityText = within(firstCheckoutCard).getByTestId('product-quantity');
 
     // Check initial state
-    expect(screen.getByText(/Order\s*\(\s*14\s*items\s*\)/)).toBeTruthy();
-    expect(screen.getByText('Total: $2648.01')).toBeTruthy();
-    expect(screen.getByText(sampleBasket[0].title)).toBeTruthy(); // title of first item in the basket
+    verifyCheckoutScreenContents({
+      totalPrice: '2648.01',
+      totalItemCount: 14,
+      titleOfAnItem: sampleBasket[0].title,
+    });
+
     expect(within(quantityText).getByText('3')).toBeTruthy(); // count of first item in the basket is 3
     expect(within(firstCheckoutCard).queryByTestId('delete-button')).toBeFalsy(); // delete button is not present
 
-    fireEvent.press(decreaseQuantityButton); // product count descrased to 2
+    fireEvent.press(decreaseQuantityButton); // product count decreased to 2
     // await waitFor(() => {});
-    fireEvent.press(decreaseQuantityButton); // product count descrased to 1
+    fireEvent.press(decreaseQuantityButton); // product count decreased to 1
 
     expect(within(quantityText).getByText('1')).toBeTruthy(); // check product count is 1
     expect(within(firstCheckoutCard).queryByTestId('decrease-button')).toBeFalsy(); // decrease button is removed namely changed to delete button
@@ -154,9 +178,9 @@ describe('CheckoutScreen', () => {
 
     // Check item removed
     await waitFor(() => {
-      expect(screen.queryByText(sampleBasket[0].title)).toBeFalsy(); // first item in the basket removed
+      verifyInExistenceByText(sampleBasket[0].title); // first item in the basket removed
     });
-    expect(screen.getByText(/Order\s*\(\s*11\s*items\s*\)/)).toBeTruthy();
-    expect(screen.getByText('Total: $2318.16')).toBeTruthy();
+    verifyExistenceByText(/Order\s*\(\s*11\s*items\s*\)/);
+    verifyExistenceByText('Total: $2318.16');
   });
 });

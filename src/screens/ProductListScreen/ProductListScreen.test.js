@@ -1,11 +1,21 @@
 import React from 'react';
-import { fireEvent, screen, waitFor, within } from '@testing-library/react-native';
+import { fireEvent, waitFor, within } from '@testing-library/react-native';
 import { useNavigation } from '@react-navigation/native';
 import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
 import { sampleBasket, sampleResponse } from '@mocks/handlers';
 import { strings } from '@constants';
 import { useGetProductsQuery } from '@redux/api/apiSlice';
 import ProductListScreen from '.';
+import {
+  verifyExistenceByTestId,
+  verifyInExistenceByText,
+  verifyInExistenceByTestId,
+  pressButton,
+  verifyExistenceByText,
+  getFirstOfItemsByText,
+  getFirstOfItemsByTestId,
+  pressButtonAsync,
+} from '../../../__tests__/utils/testUtil';
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
@@ -38,8 +48,8 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     // Ensure the loading indicator is visible and error message is not
-    expect(screen.getByTestId('loading-state')).toBeTruthy();
-    expect(screen.queryByText(strings.productList.errorLoading)).toBeFalsy();
+    verifyExistenceByTestId('loading-state');
+    verifyInExistenceByText(strings.productList.errorLoading);
   });
 
   it('should render the error state when there is an error', async () => {
@@ -55,8 +65,8 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     // Ensure the error message is visible and  Loading state is not
-    expect(screen.getByText(strings.productList.errorLoading)).toBeTruthy();
-    expect(screen.queryByText('loading-state')).toBeFalsy();
+    verifyExistenceByText(strings.productList.errorLoading);
+    verifyInExistenceByTestId('loading-state');
   });
 
   it('should call refetch when Retry pressed in error state', async () => {
@@ -71,9 +81,7 @@ describe('ProductListScreen', () => {
 
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
-    const retryButton = screen.getByText('Retry');
-    fireEvent.press(retryButton);
-
+    pressButton('Retry');
     expect(refetchMock).toHaveBeenCalledTimes(1);
   });
 
@@ -86,9 +94,9 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     await waitFor(() => {
-      expect(screen.getByText(anItem.title)).toBeTruthy();
+      verifyExistenceByText(anItem.title);
     });
-    expect(screen.getByText('Mens Casual Premium Slim Fit T-Shirts ')).toBeTruthy();
+    verifyExistenceByText('Mens Casual Premium Slim Fit T-Shirts ');
   });
 
   it('navigates to Checkout screen when checkout button is pressed', async () => {
@@ -99,13 +107,11 @@ describe('ProductListScreen', () => {
     });
     renderWithProvidersAndNavigation(<ProductListScreen />, { initialState: { basket: { items: sampleBasket } } });
 
-    const checkoutButton = await screen.findByText('CHECKOUT (14)');
-    fireEvent.press(checkoutButton);
+    await pressButtonAsync('CHECKOUT (14)');
 
     await waitFor(() => {
-      expect(navigateMock).toHaveBeenCalledTimes(1);
+      expect(navigateMock).toHaveBeenCalledWith('Checkout');
     });
-    expect(navigateMock).toHaveBeenCalledWith('Checkout'); // Replace with the actual route name if necessary
   });
 
   it('should disable the checkout button when the basket is invalid', () => {
@@ -116,8 +122,7 @@ describe('ProductListScreen', () => {
     });
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
-    const checkoutButton = screen.getByText('CHECKOUT (0)');
-    fireEvent.press(checkoutButton);
+    pressButton('CHECKOUT (0)');
     expect(navigateMock).toHaveBeenCalledTimes(0);
   });
 
@@ -131,17 +136,17 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     // Initial totalItemCount
-    expect(screen.getByText('CHECKOUT (0)')).toBeTruthy();
+    verifyExistenceByText('CHECKOUT (0)');
 
     // Simulate adding the first product to the basket
-    const addToBasketButton = screen.getAllByText('Add to basket')[0];
+    const addToBasketButton = getFirstOfItemsByText('Add to basket');
     fireEvent.press(addToBasketButton);
 
     // Updated totalItemCount
     await waitFor(() => {
-      expect(screen.getByText('CHECKOUT (1)')).toBeTruthy();
+      verifyExistenceByText('CHECKOUT (1)');
     });
-    expect(screen.getByText('Total: $109.95')).toBeTruthy();
+    verifyExistenceByText('Total: $109.95');
   });
   it('should not allow adding the same product to the basket more than five times', async () => {
     useGetProductsQuery.mockReturnValue({
@@ -153,12 +158,13 @@ describe('ProductListScreen', () => {
     renderWithProvidersAndNavigation(<ProductListScreen />);
 
     // Get the first product's Card and its "Add to basket" button
-    const firstProductCard = screen.getAllByTestId('product-card')[0];
+    const firstProductCard = getFirstOfItemsByTestId('product-card');
     const addToBasketButton = within(firstProductCard).getByText('Add to basket');
 
     // Initial assertions
-    expect(screen.getByText('CHECKOUT (0)')).toBeTruthy(); // Basket starts empty
-    expect(screen.queryByText(strings.productList.limitReached)).toBeFalsy();
+    verifyExistenceByText('CHECKOUT (0)'); // Basket starts empty
+    verifyExistenceByText('Total: $0.00'); // Total price starts at 0
+    verifyInExistenceByText(strings.productList.limitReached);
 
     // Add the same product to the basket five times
     for (let i = 0; i < 5; i += 1) {
@@ -167,17 +173,18 @@ describe('ProductListScreen', () => {
 
     // Check total item count and total price updated
     await waitFor(() => {
-      expect(screen.getByText('CHECKOUT (5)')).toBeTruthy();
+      verifyExistenceByText('CHECKOUT (5)');
     });
-    expect(screen.getByText('Total: $549.75')).toBeTruthy(); // Ensure total price is updated correctly
+    // Ensure total price is updated correctly
+    verifyExistenceByText('Total: $549.75');
 
     // Ensure the "Add to basket" button is removed after reaching the limit
     expect(within(firstProductCard).queryByText('Add to basket')).toBeFalsy();
 
     // Ensure the limit message is displayed
-    expect(screen.getByText(strings.productList.limitReached)).toBeTruthy();
+    verifyExistenceByText(strings.productList.limitReached);
 
     // TotalItemCount should still be 5, not updated further
-    expect(screen.getByText('CHECKOUT (5)')).toBeTruthy();
+    verifyExistenceByText('CHECKOUT (5)');
   });
 });

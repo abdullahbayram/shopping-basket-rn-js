@@ -1,8 +1,7 @@
 import React from 'react';
-import { screen } from '@testing-library/react-native';
-import { strings } from '@constants';
 import renderInFormProvider from '@testUtils/renderInFormProvider';
 import PaymentForm from './index';
+import { verifyExistenceOfPaymentInputs } from '../../../../__tests__/utils/testUtil';
 
 jest.mock('@utils', () => ({
   paymentUtils: {
@@ -23,9 +22,6 @@ describe('<PaymentForm />', () => {
   it('renders all inputs with correct labels', () => {
     renderInFormProvider(<PaymentForm errors={mockErrors} isCreditCardValid />);
 
-    expect(screen.getAllByText(strings.payment.cardholderName).length).toBe(2);
-    expect(screen.getAllByText(strings.payment.creditCardNumber).length).toBe(2);
-    expect(screen.getAllByText(strings.payment.expirationDate).length).toBe(2);
-    expect(screen.getAllByText(strings.payment.cvv).length).toBe(2);
+    verifyExistenceOfPaymentInputs();
   });
 });

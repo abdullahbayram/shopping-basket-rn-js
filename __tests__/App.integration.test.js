@@ -3,101 +3,214 @@ import App from '../App';
 import renderInProvider from './utils/renderInProvider';
 import { sampleResponse } from './mocks/handlers';
 import { strings } from '../src/constants';
+import {
+  changeText,
+  fillPaymentInputs,
+  getXthOfItemsByText,
+  pressButton,
+  verifyCheckoutScreenContents,
+  verifyExistenceByText,
+  verifyItemCount,
+  verifyPaymentInputsFilled,
+} from './utils/testUtil';
+import { darkTheme, lightTheme } from '../src/constants/theme';
 
 const anItem = sampleResponse[1]; // 2nd item in the sampleResponse
 
+// Helper functions
+const addItemToBasket = async () => {
+  const addToBasketButton = getXthOfItemsByText('Add to basket', 1);
+  fireEvent.press(addToBasketButton);
+
+  await waitFor(() => {
+    verifyExistenceByText('CHECKOUT (1)');
+  });
+
+  // Verify updated basket summary
+  verifyExistenceByText('Total: $22.30');
+};
+
+const navigateToCheckoutScreen = async () => {
+  pressButton('CHECKOUT (1)');
+
+  let orderButton;
+  await waitFor(() => {
+    orderButton = screen.getByText(/Order\s*\(\s*1\s*items\s*\)/);
+  });
+
+  // Verify checkout screen static and dynamic contents
+  await verifyCheckoutScreenContents({
+    totalPrice: '22.30',
+    totalItemCount: 1,
+    titleOfAnItem: anItem.title,
+  });
+
+  // Verify the item in the basket and in the checkout card
+  const checkoutCard = screen.getByTestId('checkout-card');
+  expect(within(checkoutCard).getByText(anItem.title)).toBeTruthy();
+
+  return orderButton;
+};
+
+const applyPromoCodeAndVerifyApplied = async (promoCode) => {
+  changeText('Promo Code', promoCode);
+  pressButton('Apply');
+
+  await waitFor(() => {
+    verifyExistenceByText('Total: $22.30');
+  });
+
+  // Verify the discount is applied
+  verifyExistenceByText('Total: $2.23');
+};
+
+const submitPayment = async (cardDetails) => {
+  fillPaymentInputs(cardDetails);
+  verifyPaymentInputsFilled(cardDetails);
+  pressButton(strings.buttons.payAndOrder);
+};
+
+const verifyPaymentScreenContents = (payAndOrderButton) => {
+  expect(payAndOrderButton).toBeTruthy();
+  verifyExistenceByText('Items in the basket:  1');
+  verifyExistenceByText('Total: $2.23');
+};
+
 describe('<App />', () => {
-  renderInProvider(<App />);
-  test('user expected journey', async () => {
-    // Initial state in ProductListScreen
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('user expected journey (success)', async () => {
+    renderInProvider(<App />);
+
+    // Verify initial state in ProductListScreen
     await waitFor(() => {
-      screen.getByText('CHECKOUT (0)');
+      verifyExistenceByText('CHECKOUT (0)');
     });
-    expect(screen.getAllByText('Add to basket').length).toBe(20); // 20 items in the list
-    // add 2nd item in the sampleResponse
-    const addToBasketButton = screen.getAllByText('Add to basket')[1];
-    fireEvent.press(addToBasketButton);
+    verifyItemCount('Add to basket', 8); // 8 items in the list
 
-    // Updated totalItemCount
-    await waitFor(() => {
-      expect(screen.getByText('CHECKOUT (1)')).toBeTruthy();
-    });
-    expect(screen.getByText('Total: $22.30')).toBeTruthy();
-    const checkoutButton = await screen.findByText('CHECKOUT (1)');
-    fireEvent.press(checkoutButton);
+    // Add item to basket and navigate
+    await addItemToBasket();
+    const orderButton = await navigateToCheckoutScreen();
 
-    // check navigates to CheckoutScreen
-    let orderButton;
-    await waitFor(() => {
-      orderButton = screen.getByText(/Order\s*\(\s*1\s*items\s*\)/);
-    });
-    expect(orderButton).toBeTruthy();
-    const promoInput = screen.getAllByText('Promo Code')[0];
-    expect(promoInput).toBeTruthy();
-    const applyButton = screen.getByText('Apply');
-    expect(applyButton).toBeTruthy();
+    // Apply promo code
+    await applyPromoCodeAndVerifyApplied('A90');
 
-    // check item in the basket
-    const checkoutCard = screen.getByTestId('checkout-card');
-    expect(within(checkoutCard).getByText(anItem.title)).toBeTruthy();
-
-    //apply promo code
-    fireEvent.changeText(promoInput, 'A90');
-    fireEvent.press(applyButton);
-    await waitFor(() => {
-      expect(screen.queryByText('Total: $22.30')).toBeFalsy();
-    });
-    expect(screen.queryByText('Total: $2.23')).toBeTruthy();
-
-    // check navigates to PaymentScreen
+    // Navigate to PaymentScreen
     fireEvent.press(orderButton);
 
     let payAndOrderButton;
     await waitFor(() => {
       payAndOrderButton = screen.getByText(strings.buttons.payAndOrder);
     });
-    expect(payAndOrderButton).toBeTruthy();
 
-    const itemCountText = screen.getByText('Items in the basket:  1');
-    const totalText = screen.getByText('Total: $2.23');
-    const cardholderNameInput = screen.getAllByText(strings.payment.cardholderName)[0];
-    const cardNumberInput = screen.getAllByText(strings.payment.creditCardNumber)[0];
-    const cvvInput = screen.getAllByText(strings.payment.cvv)[0];
-    fireEvent.changeText(cvvInput, '12');
-    const expirationInput = screen.getAllByText(strings.payment.expirationDate)[0];
-    fireEvent.changeText(expirationInput, '07');
-
-    expect(itemCountText).toBeTruthy();
-    expect(totalText).toBeTruthy();
-    expect(cardholderNameInput).toBeTruthy();
-    expect(cvvInput).toBeTruthy();
-    expect(expirationInput).toBeTruthy();
-    expect(cardNumberInput).toBeTruthy();
-
-    // Fill in valid inputs
-    fireEvent.changeText(cardholderNameInput, 'James Bond');
-    fireEvent.changeText(cardNumberInput, '5566561551349323'); // Successful card
-    fireEvent.changeText(expirationInput, '12/28');
-    fireEvent.changeText(cvvInput, '156');
+    verifyPaymentScreenContents(payAndOrderButton);
 
     // Submit payment
-    fireEvent.press(screen.getByText(strings.buttons.payAndOrder));
-
-    // Assert navigation to Success screen
-    await waitFor(() => {
-      expect(screen.getByText(strings.payment.success)).toBeTruthy();
+    await submitPayment({
+      cardholderName: 'James Bond',
+      cardNumber: '5566561551349323', // Valid card for success
+      expirationDate: '12/28',
+      cvv: '156',
     });
 
-    expect(screen.getByText('Redirecting to product list in 5 seconds...')).toBeTruthy();
+    // Verify navigation to SuccessScreen
+    await waitFor(() => {
+      verifyExistenceByText(strings.payment.success);
+    });
+    verifyExistenceByText('Redirecting to product list in 5 seconds...');
 
     act(() => {
       jest.advanceTimersByTime(5000);
     });
 
-    // check navigates to ProductListScreen after 5 seconds
+    // Verify navigation back to ProductListScreen
     await waitFor(() => {
-      screen.getByText('CHECKOUT (0)');
+      verifyExistenceByText('CHECKOUT (0)');
     });
-    expect(screen.getAllByText('Add to basket').length).toBe(20); // 20 items in the list
+    verifyItemCount('Add to basket', 8); // 8 items in the list
   }, 10000);
+
+  test('user expected journey (error)', async () => {
+    renderInProvider(<App />);
+
+    // Verify initial state in ProductListScreen
+    await waitFor(() => {
+      verifyExistenceByText('CHECKOUT (0)');
+    });
+    verifyItemCount('Add to basket', 8); // 8 items in the list
+
+    // Add item to basket and navigate
+    await addItemToBasket();
+    const orderButton = await navigateToCheckoutScreen();
+
+    // Apply promo code
+    await applyPromoCodeAndVerifyApplied('A90');
+
+    // Navigate to PaymentScreen
+    fireEvent.press(orderButton);
+
+    let payAndOrderButton;
+    await waitFor(() => {
+      payAndOrderButton = screen.getByText(strings.buttons.payAndOrder);
+    });
+
+    verifyPaymentScreenContents(payAndOrderButton);
+
+    // Submit payment with failing card
+    await submitPayment({
+      cardholderName: 'James Bond',
+      cardNumber: '5249045959484101', // Failing card
+      expirationDate: '12/28',
+      cvv: '156',
+    });
+
+    // Verify navigation to ErrorScreen
+    await waitFor(() => {
+      verifyExistenceByText('Card can not be processed');
+    });
+    verifyExistenceByText('Redirecting to product list in 10 seconds...');
+
+    act(() => {
+      jest.advanceTimersByTime(10000);
+    });
+
+    // Verify navigation back to ProductListScreen
+    await waitFor(() => {
+      verifyExistenceByText('CHECKOUT (1)'); // Basket still contains the item after failure
+    });
+    verifyItemCount('Add to basket', 8); // 8 items in the list
+  }, 10000);
+  test('toggle dark mode', async () => {
+    renderInProvider(<App />);
+
+    // Verify light mode is enabled by default
+    await waitFor(() => {
+      expect(screen.getByTestId('base-screen')).toHaveStyle({
+        backgroundColor: lightTheme.colors.background,
+      });
+    });
+
+    // Locate and toggle dark mode
+    const toggleButton = await waitFor(() => screen.getByTestId('toggle-dark-mode'));
+    fireEvent(toggleButton, 'valueChange', true);
+
+    // Verify dark mode is enabled
+    await waitFor(() => {
+      expect(screen.getByTestId('base-screen')).toHaveStyle({
+        backgroundColor: darkTheme.colors.background,
+      });
+    });
+
+    // Toggle back to light mode
+    fireEvent(toggleButton, 'valueChange', false);
+
+    // Verify light mode is enabled
+    await waitFor(() => {
+      expect(screen.getByTestId('base-screen')).toHaveStyle({
+        backgroundColor: lightTheme.colors.background,
+      });
+    });
+  });
 });
