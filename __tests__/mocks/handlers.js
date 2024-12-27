@@ -184,21 +184,34 @@ export const handlers = [
     return HttpResponse.json(sampleResponse);
   }),
 
-  // Mock the /checkout API endpoint
-  http.post('http://localhost:9001/checkout', async (req, res, ctx) => {
-    try {
-      return HttpResponse.json({ msg: 'The transaction was completed successfully.' });
-    } catch (error) {
-      console.error('Error processing /checkout:', error);
+  http.post('http://localhost:9001/checkout', async ({ request, params }) => {
+    const newPost = await request.json();
+    const { cardNumber } = newPost;
+    if (cardNumber !== '5249045959484101') {
+      // always throw an error with this card number
+      return HttpResponse.json(newPost, { status: 200 });
+      // return res(ctx.status(200), ctx.json({ msg: 'The transaction was completed successfully.' }));
+    } else {
+      return HttpResponse.json({ errors: [{ msg: 'Card can not be processed' }] }, { status: 400 });
+      // return res(ctx.status(400), ctx.json({ msg: 'Payment failed' }));
     }
   }),
 
-  http.post('http://localhost:9001/promocode', async (req, res, ctx) => {
+  http.post('http://localhost:9001/promocode', async ({ request }) => {
     try {
-      return HttpResponse.json({ discountType: 'percent', amount: 10 });
+      const newPost = await request.json();
+      const { promoCode } = newPost;
+      let amount = 0;
+      if (promoCode) {
+        const match = promoCode.match(/^A([\d]{1,2})$/);
+        if (match != null) {
+          amount = parseInt(match[1], 10);
+        }
+      }
+      return HttpResponse.json({ discountType: 'percent', amount });
     } catch (error) {
       console.error('Error:', error);
-      return res(ctx.status(400), ctx.json({ message: 'Invalid promo code' }));
+      return HttpResponse.json({ errors: [{ msg: 'Invalid promo code' }] }, { status: 400 });
     }
   }),
 

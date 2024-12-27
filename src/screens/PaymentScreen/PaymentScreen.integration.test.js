@@ -19,31 +19,44 @@ useNavigation.mockReturnValue({
   navigate: navigateMock,
 });
 
-// integration test with msw
 describe('PaymentScreen', () => {
-  it('should navigate SuccessScreen when filled valid inputs and PAY and ORDER button press', async () => {
-    // console.log('Rendering CheckoutScreen...');
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should navigate to SuccessScreen on valid input and successful payment', async () => {
     renderWithProvidersAndNavigation(<PaymentScreen />, { initialState });
 
-    const cardHolderNameInput = screen.getAllByText(strings.payment.cardholderName)[0];
-    fireEvent.changeText(cardHolderNameInput, 'James Bond');
+    // Fill in valid inputs
+    fireEvent.changeText(screen.getAllByText(strings.payment.cardholderName)[0], 'James Bond');
+    fireEvent.changeText(screen.getAllByText(strings.payment.creditCardNumber)[0], '5566561551349323'); // Successful card
+    fireEvent.changeText(screen.getAllByText(strings.payment.expirationDate)[0], '12/28');
+    fireEvent.changeText(screen.getAllByText(strings.payment.cvv)[0], '156');
 
-    const creditCardInput = screen.getAllByText(strings.payment.creditCardNumber)[0];
-    fireEvent.changeText(creditCardInput, '5566561551349323');
+    // Submit payment
+    fireEvent.press(screen.getByText(strings.buttons.payAndOrder));
 
-    const expirationInput = screen.getAllByText(strings.payment.expirationDate)[0];
-    fireEvent.changeText(expirationInput, '12/28');
-
-    const cvvInput = screen.getAllByText(strings.payment.cvv)[0];
-    fireEvent.changeText(cvvInput, '156');
-
-    const payAndOrder = screen.getByText(strings.buttons.payAndOrder);
-    fireEvent.press(payAndOrder);
-
+    // Assert navigation to Success screen
     await waitFor(() => {
       expect(navigateMock).toHaveBeenCalledWith('Success');
     });
   }, 10000);
 
-  // TODO Error case
+  it('should navigate to ErrorScreen on valid input but failed payment', async () => {
+    renderWithProvidersAndNavigation(<PaymentScreen />, { initialState });
+
+    // Fill in valid inputs with a failing card
+    fireEvent.changeText(screen.getAllByText(strings.payment.cardholderName)[0], 'James Bond');
+    fireEvent.changeText(screen.getAllByText(strings.payment.creditCardNumber)[0], '5249045959484101'); // Failing card
+    fireEvent.changeText(screen.getAllByText(strings.payment.expirationDate)[0], '12/28');
+    fireEvent.changeText(screen.getAllByText(strings.payment.cvv)[0], '156');
+
+    // Submit payment
+    fireEvent.press(screen.getByText(strings.buttons.payAndOrder));
+
+    // Assert navigation to Error screen
+    await waitFor(() => {
+      expect(navigateMock).toHaveBeenCalledWith('Error', { errorMessage: 'Card can not be processed' });
+    });
+  }, 10000);
 });

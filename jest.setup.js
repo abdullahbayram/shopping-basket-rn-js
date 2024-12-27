@@ -4,10 +4,6 @@ import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 import { server } from './__tests__/mocks/server';
 
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
-/* jest.mock('@welldone-software/why-did-you-render', () => ({
-  __esModule: true,
-  default: () => {},
-})); */
 
 jest.useFakeTimers('modern');
 
@@ -18,6 +14,9 @@ beforeAll(() => {
   // Log unhandled requests during testing
   server.events.on('request:unhandled', (req) => {
     console.warn(`Unhandled request to ${req.url.href}`);
+  });
+  server.events.on('request:start', ({ request }) => {
+    console.log('MSW intercepted:', request.method, request.url);
   });
 });
 
