@@ -7,9 +7,11 @@ import styles from './BasketSummary.style';
 const BasketSummary = ({ totalItemCount, totalPrice }) => {
   return (
     <View>
-      <Text variant="titleSmall">
-        {strings.payment.basketItemCount} {totalItemCount}
-      </Text>
+      {totalItemCount && (
+        <Text variant="titleSmall">
+          {strings.payment.basketItemCount} {totalItemCount}
+        </Text>
+      )}
       <View style={styles.totalContainer}>
         <Text variant="titleSmall">
           {strings.payment.total} ${Number.isNaN(totalPrice) ? '0.00' : totalPrice.toFixed(2)}
@@ -20,7 +22,7 @@ const BasketSummary = ({ totalItemCount, totalPrice }) => {
 };
 
 BasketSummary.propTypes = {
-  totalItemCount: PropTypes.number.isRequired,
+  totalItemCount: PropTypes.number,
   totalPrice: PropTypes.number.isRequired,
 };
 
