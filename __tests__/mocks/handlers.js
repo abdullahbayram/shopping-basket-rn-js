@@ -185,7 +185,29 @@ export const handlers = [
   }),
 
   // Mock the /checkout API endpoint
-  http.post('/checkout', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ success: true }));
+  http.post('http://localhost:9001/checkout', async (req, res, ctx) => {
+    try {
+      return HttpResponse.json({ msg: 'The transaction was completed successfully.' });
+    } catch (error) {
+      console.error('Error processing /checkout:', error);
+    }
+  }),
+
+  http.post('http://localhost:9001/promocode', async (req, res, ctx) => {
+    try {
+      return HttpResponse.json({ discountType: 'percent', amount: 10 });
+    } catch (error) {
+      console.error('Error:', error);
+      return res(ctx.status(400), ctx.json({ message: 'Invalid promo code' }));
+    }
+  }),
+
+  http.post('http://localhost:9001/checkout', async (req, res, ctx) => {
+    try {
+      return HttpResponse.json({ msg: 'The transaction was completed successfully.' });
+    } catch (error) {
+      console.error('Error:', error);
+      return res(ctx.status(400), ctx.json({ message: 'Invalid promo code' }));
+    }
   }),
 ];

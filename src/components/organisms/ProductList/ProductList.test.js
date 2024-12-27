@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider'; // Utility for ThemeProvider wrapping
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider'; // Utility for ThemeProvider wrapping
 import ProductList from '.';
 
 describe('<ProductList />', () => {

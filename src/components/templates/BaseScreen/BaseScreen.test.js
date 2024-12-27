@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react-native';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider';
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
 import Screen from '.';
 import Text from '../../atoms/Text';
 

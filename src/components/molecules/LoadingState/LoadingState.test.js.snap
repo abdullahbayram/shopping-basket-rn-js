@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingState Component matches the snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+    ]
+  }
+  testID="loading-state"
+>
+  <ActivityIndicator
+    color="blue"
+    size="large"
+  />
+</View>
+`;

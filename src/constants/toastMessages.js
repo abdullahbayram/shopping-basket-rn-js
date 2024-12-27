@@ -1,6 +1,6 @@
 const messages = {
   basket: {
-    limitReached: { title: 'Limit Reached', msg: 'You can only add a maximum of 15 units per item.' },
+    limitReached: { title: 'Limit Reached', msg: 'You can only add a maximum of 5 units per item.' },
     empty: { title: 'Empty Basket', msg: 'Please add items to your basket before placing an order.' },
     invalidQuantity: { title: 'Invalid Quantity', msg: 'Quantity must be between 1 and 5.' },
   },

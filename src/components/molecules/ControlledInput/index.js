@@ -36,16 +36,16 @@ const ControlledInput = ({
 );
 
 ControlledInput.propTypes = {
-  control: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  control: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   maxLength: PropTypes.number,
   keyboardType: PropTypes.string,
-  errorObject: PropTypes.oneOfType([PropTypes.object]),
+  errorObject: PropTypes.object,
   right: PropTypes.node,
   formatValue: PropTypes.func,
-  rules: PropTypes.oneOfType([PropTypes.object]),
+  rules: PropTypes.object,
 };
 
 export default ControlledInput;

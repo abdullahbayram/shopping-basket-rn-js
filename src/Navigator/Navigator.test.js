@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import renderInProvider from '@testUtils/renderInProvider';
+import { sampleBasket } from '@mocks/handlers';
 import Navigator from './Navigator';
-import renderInProvider from '../../__tests__/utils/renderInProvider';
-import { sampleBasket } from '../../__tests__/mocks/handlers';
 import { ThemeProvider } from '../context/ThemeContext'; // Import ThemeProvider
 
 const initialState = { basket: { items: sampleBasket } };

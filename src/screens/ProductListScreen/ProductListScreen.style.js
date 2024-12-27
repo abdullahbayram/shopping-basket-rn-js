@@ -9,6 +9,5 @@ export default StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
   },
-  errorText: { alignSelf: 'center' },
-  avtivityIndicator: { marginBottom: 72 },
+  activityIndicator: { marginBottom: 72 },
 });

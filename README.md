@@ -101,7 +101,7 @@ Click the image above to view the demo video.
 - ✅ Run only necessary tests with `--findRelatedTests` flag with husky pre-commit hook.
 - ✅ Use aliases for paths in imports.
 - ✅ Generate automated test coverage reports and badges.
-- ✅ Ensure test coverage remains at or above 80%.
+- ✅ Ensure test coverage remains at or above 90%.
 
 ---
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider'; // Import the utility function
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider'; // Import the utility function
 import Toggle from '.';
 import { darkTheme, lightTheme } from '../../../constants/theme';
 

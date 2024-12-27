@@ -1,11 +1,11 @@
 import React from 'react';
 import { screen, act, fireEvent } from '@testing-library/react-native';
 import { strings } from '@constants';
-import { renderInThemeProvider } from '../../../../__tests__/utils/renderInThemeProvider';
+import { renderInThemeProvider } from '@testUtils/renderInThemeProvider';
 import RedirectWithAnimation from '.';
-import useBackHandler from '../../../hooks/useBackHandler';
+import { useBackHandler } from '../../../hooks';
 
-jest.mock('../../../hooks/useBackHandler', () => jest.fn());
+jest.mock('../../../hooks/useBackHandler/useBackHandler', () => jest.fn());
 
 jest.useFakeTimers();
 

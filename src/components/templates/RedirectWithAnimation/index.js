@@ -7,7 +7,7 @@ import { spacing } from '@constants/theme';
 import { strings } from '@constants';
 import { Button, Text, LinearGradient } from '../../atoms';
 import createStyles from './RedirectWithAnimation.style';
-import useBackHandler from '../../../hooks/useBackHandler';
+import useBackHandler from '../../../hooks/useBackHandler/useBackHandler';
 
 const ANIMATION_DURATION = 1500;
 const REDIRECT_DURATION = 5000;
