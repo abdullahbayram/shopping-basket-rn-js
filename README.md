@@ -209,10 +209,8 @@ To ensure the robustness of the application, the following testing strategies an
 
 - **✅ Unit Testing**: All components and utility functions are covered with unit tests to ensure correctness of
   individual units of code.
-- **🟡 Integration Testing**: Critical workflows, such as adding items to the basket, applying promo codes, and
+- **✅ Integration Testing**: Critical workflows, such as adding items to the basket, applying promo codes, and
   navigating between screens, are tested to validate seamless interaction between components.
-- **🟡 Mock API Testing**: Using `mock-service-worker`, API calls are simulated to test application behavior under
-  various response scenarios.
 - **✅ Code Coverage**: Coverage reports are generated with Jest, with a minimum threshold enforced to maintain code
   quality.
 

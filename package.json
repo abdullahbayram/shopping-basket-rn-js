@@ -81,7 +81,7 @@
     "jest-coverage-badges": "^1.1.2",
     "jest-expo": "^51.0.4",
     "lint-staged": "^15.2.10",
-    "msw": "^2.4.9",
+    "msw": "2.4.11",
     "node-fetch": "^2.7.0",
     "prettier": "^3.3.3",
     "puppeteer": "^23.11.1",

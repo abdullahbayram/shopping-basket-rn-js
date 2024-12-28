@@ -1,7 +1,7 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react-native';
-import App from '../App';
+import AppRoot from '../AppRoot';
 import renderInProvider from './utils/renderInProvider';
-import { sampleResponse } from './mocks/handlers';
+import { sampleResponse } from '@mocks/handlers';
 import { strings } from '../src/constants';
 import {
   changeText,
@@ -76,13 +76,13 @@ const verifyPaymentScreenContents = (payAndOrderButton) => {
   verifyExistenceByText('Total: $2.23');
 };
 
-describe('<App />', () => {
+describe('<AppRoot />', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test('user expected journey (success)', async () => {
-    renderInProvider(<App />);
+    renderInProvider(<AppRoot />);
 
     // Verify initial state in ProductListScreen
     await waitFor(() => {
@@ -133,7 +133,7 @@ describe('<App />', () => {
   }, 10000);
 
   test('user expected journey (error)', async () => {
-    renderInProvider(<App />);
+    renderInProvider(<AppRoot />);
 
     // Verify initial state in ProductListScreen
     await waitFor(() => {
@@ -183,7 +183,7 @@ describe('<App />', () => {
     verifyItemCount('Add to basket', 8); // 8 items in the list
   }, 10000);
   test('toggle dark mode', async () => {
-    renderInProvider(<App />);
+    renderInProvider(<AppRoot />);
 
     // Verify light mode is enabled by default
     await waitFor(() => {

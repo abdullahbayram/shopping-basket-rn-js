@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { http, HttpResponse } from 'msw';
 
 export const sampleResponse = [
@@ -184,17 +185,16 @@ export const handlers = [
     return HttpResponse.json(sampleResponse);
   }),
 
-  http.post('http://localhost:9001/checkout', async ({ request, params }) => {
+  http.post('http://localhost:9001/checkout', async ({ request }) => {
     const newPost = await request.json();
     const { cardNumber } = newPost;
     if (cardNumber !== '5249045959484101') {
       // always throw an error with this card number
       return HttpResponse.json(newPost, { status: 200 });
       // return res(ctx.status(200), ctx.json({ msg: 'The transaction was completed successfully.' }));
-    } else {
-      return HttpResponse.json({ errors: [{ msg: 'Card can not be processed' }] }, { status: 400 });
-      // return res(ctx.status(400), ctx.json({ msg: 'Payment failed' }));
     }
+    return HttpResponse.json({ errors: [{ msg: 'Card can not be processed' }] }, { status: 400 });
+    // return res(ctx.status(400), ctx.json({ msg: 'Payment failed' }));
   }),
 
   http.post('http://localhost:9001/promocode', async ({ request }) => {

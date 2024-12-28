@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import '@testing-library/react-native/extend-expect';
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
-import { server } from './__tests__/mocks/server';
+import { server } from '@mocks/server';
 
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 

@@ -24,7 +24,7 @@ module.exports = function (api) {
             '@utils': './src/utils',
             '@validate': './src/validate',
             '@testUtils': './__tests__/utils',
-            '@mocks': './__tests__/mocks',
+            '@mocks': './mocks',
           },
         },
       ],
