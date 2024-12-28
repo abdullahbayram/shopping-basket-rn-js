@@ -24,8 +24,8 @@ const useCheckout = () => {
         showToast(toastMessages.promo.invalid);
       }
     } catch (err) {
-      const errorMsg = err?.msg || toastMessages.promo.error;
-      showToast({ ...toastMessages.promo.error, msg: errorMsg });
+      const errorMsg = err?.message || toastMessages.promo.error;
+      showToast({ ...toastMessages.promo.error, message: errorMsg });
     }
   };
 

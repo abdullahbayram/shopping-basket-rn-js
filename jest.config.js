@@ -11,6 +11,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '__tests__',
+    'mocks',
     '\\.style\\.js$',
     'src/components/atoms/index.js',
     'src/components/atoms/ActivityIndicator/index.js',

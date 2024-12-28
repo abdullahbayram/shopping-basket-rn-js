@@ -1,33 +1,37 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { TextInput, HelperText } from '../../atoms';
 import styles from './Input.style';
 
-const Input = ({ label, onChangeText, maxLength, style, value = '', onBlur, onEndEditing, right, errorObject }) => {
-  return (
-    <View style={styles.container}>
-      <TextInput
-        maxLength={maxLength}
-        style={style}
-        label={label}
-        onChangeText={onChangeText}
-        value={value !== null && value !== undefined ? String(value) : ''}
-        onBlur={onBlur}
-        onEndEditing={onEndEditing}
-        right={right}
-        error={!!errorObject}
-      />
-      {errorObject ? (
-        <HelperText type="error" visible={!!errorObject}>
-          {errorObject?.message}
-        </HelperText>
-      ) : (
-        <View style={styles.invisibleHeight} />
-      )}
-    </View>
-  );
-};
+// Wrap TextInput in React.forwardRef
+const Input = forwardRef(
+  ({ label, onChangeText, maxLength, style, value = '', onBlur, onEndEditing, right, errorObject }, ref) => {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          ref={ref} // Attach ref here
+          maxLength={maxLength}
+          style={style}
+          label={label}
+          onChangeText={onChangeText}
+          value={value !== null && value !== undefined ? String(value) : ''}
+          onBlur={onBlur}
+          onEndEditing={onEndEditing}
+          right={right}
+          error={!!errorObject}
+        />
+        {errorObject ? (
+          <HelperText type="error" visible={!!errorObject}>
+            {errorObject?.message}
+          </HelperText>
+        ) : (
+          <View style={styles.invisibleHeight} />
+        )}
+      </View>
+    );
+  },
+);
 
 Input.propTypes = {
   label: PropTypes.string,

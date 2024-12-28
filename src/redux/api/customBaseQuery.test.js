@@ -51,7 +51,7 @@ describe('customBaseQuery', () => {
     expect(result).toEqual({
       error: {
         status: 400,
-        msg: 'Error occurred',
+        message: 'Error occurred',
       },
     });
   });
@@ -64,7 +64,7 @@ describe('customBaseQuery', () => {
     expect(result).toEqual({
       error: {
         status: 'FETCH_ERROR',
-        msg: 'Network Error',
+        message: 'Network Error',
       },
     });
   });

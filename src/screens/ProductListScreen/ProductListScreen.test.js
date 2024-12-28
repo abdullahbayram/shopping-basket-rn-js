@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, waitFor, within } from '@testing-library/react-native';
 import { useNavigation } from '@react-navigation/native';
 import renderWithProvidersAndNavigation from '@testUtils/renderInProvidersAndNavigation';
-import { sampleBasket, sampleResponse } from '@mocks/handlers';
+import { sampleBasket } from '@mocks/handlers';
 import { strings } from '@constants';
 import { useGetProductsQuery } from '@redux/api/apiSlice';
 import ProductListScreen from '.';
@@ -16,6 +16,7 @@ import {
   getFirstOfItemsByTestId,
   pressButtonAsync,
 } from '../../../__tests__/utils/testUtil';
+import { products } from '../../../mocks/fixtures';
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
@@ -32,7 +33,7 @@ useNavigation.mockReturnValue({
   navigate: navigateMock,
 });
 
-const anItem = sampleResponse[0];
+const anItem = products[0];
 
 describe('ProductListScreen', () => {
   afterEach(() => {
@@ -87,7 +88,7 @@ describe('ProductListScreen', () => {
 
   it('should render the first two items from the product list', async () => {
     useGetProductsQuery.mockReturnValue({
-      data: sampleResponse,
+      data: products,
       error: false,
       isLoading: false,
     });
@@ -101,7 +102,7 @@ describe('ProductListScreen', () => {
 
   it('navigates to Checkout screen when checkout button is pressed', async () => {
     useGetProductsQuery.mockReturnValue({
-      data: sampleResponse,
+      data: products,
       error: false,
       isLoading: false,
     });
@@ -116,7 +117,7 @@ describe('ProductListScreen', () => {
 
   it('should disable the checkout button when the basket is invalid', () => {
     useGetProductsQuery.mockReturnValue({
-      data: sampleResponse,
+      data: products,
       error: false,
       isLoading: false,
     });
@@ -128,7 +129,7 @@ describe('ProductListScreen', () => {
 
   it('should add a product to the basket and update totalItemCount and total price', async () => {
     useGetProductsQuery.mockReturnValue({
-      data: sampleResponse,
+      data: products,
       error: false,
       isLoading: false,
     });
@@ -150,7 +151,7 @@ describe('ProductListScreen', () => {
   });
   it('should not allow adding the same product to the basket more than five times', async () => {
     useGetProductsQuery.mockReturnValue({
-      data: sampleResponse,
+      data: products,
       error: false,
       isLoading: false,
     });

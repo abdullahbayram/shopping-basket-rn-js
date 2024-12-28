@@ -54,14 +54,14 @@ describe('paymentUtils', () => {
   describe('parseErrorMessage', () => {
     it('returns the first error message from parsed JSON string', () => {
       const error = {
-        msg: JSON.stringify({ errors: [{ msg: 'Card declined' }] }),
+        message: JSON.stringify({ errors: [{ message: 'Card declined' }] }),
       };
       expect(paymentUtils.parseErrorMessage(error)).toBe('Card declined');
     });
 
     it('returns the first error message from the errors array', () => {
       const error = {
-        errors: [{ msg: 'Invalid card number' }],
+        errors: [{ message: 'Invalid card number' }],
       };
       expect(paymentUtils.parseErrorMessage(error)).toBe('Invalid card number');
     });
@@ -73,7 +73,7 @@ describe('paymentUtils', () => {
 
     it('handles invalid JSON gracefully and returns unexpectedError', () => {
       const error = {
-        msg: 'Invalid JSON',
+        message: 'Invalid JSON',
       };
       expect(paymentUtils.parseErrorMessage(error)).toBe(strings.payment.unexpectedError);
     });

@@ -1,7 +1,6 @@
 import { act, fireEvent, screen, waitFor, within } from '@testing-library/react-native';
 import AppRoot from '../AppRoot';
 import renderInProvider from './utils/renderInProvider';
-import { sampleResponse } from '@mocks/handlers';
 import { strings } from '../src/constants';
 import {
   changeText,
@@ -14,8 +13,9 @@ import {
   verifyPaymentInputsFilled,
 } from './utils/testUtil';
 import { darkTheme, lightTheme } from '../src/constants/theme';
+import { products } from '../mocks/fixtures';
 
-const anItem = sampleResponse[1]; // 2nd item in the sampleResponse
+const anItem = products[1]; // 2nd item in the sampleResponse
 
 // Helper functions
 const addItemToBasket = async () => {
@@ -88,7 +88,7 @@ describe('<AppRoot />', () => {
     await waitFor(() => {
       verifyExistenceByText('CHECKOUT (0)');
     });
-    verifyItemCount('Add to basket', 8); // 8 items in the list
+    verifyItemCount('Add to basket', 20); // 20 items in the list
 
     // Add item to basket and navigate
     await addItemToBasket();
@@ -129,8 +129,8 @@ describe('<AppRoot />', () => {
     await waitFor(() => {
       verifyExistenceByText('CHECKOUT (0)');
     });
-    verifyItemCount('Add to basket', 8); // 8 items in the list
-  }, 10000);
+    verifyItemCount('Add to basket', 20); // 20 items in the list
+  }, 15000);
 
   test('user expected journey (error)', async () => {
     renderInProvider(<AppRoot />);
@@ -139,7 +139,7 @@ describe('<AppRoot />', () => {
     await waitFor(() => {
       verifyExistenceByText('CHECKOUT (0)');
     });
-    verifyItemCount('Add to basket', 8); // 8 items in the list
+    verifyItemCount('Add to basket', 20); // 20 items in the list
 
     // Add item to basket and navigate
     await addItemToBasket();
@@ -168,7 +168,7 @@ describe('<AppRoot />', () => {
 
     // Verify navigation to ErrorScreen
     await waitFor(() => {
-      verifyExistenceByText('Card can not be processed');
+      verifyExistenceByText('Card can not be processed.');
     });
     verifyExistenceByText('Redirecting to product list in 10 seconds...');
 
@@ -180,8 +180,8 @@ describe('<AppRoot />', () => {
     await waitFor(() => {
       verifyExistenceByText('CHECKOUT (1)'); // Basket still contains the item after failure
     });
-    verifyItemCount('Add to basket', 8); // 8 items in the list
-  }, 10000);
+    verifyItemCount('Add to basket', 20); // 20 items in the list
+  }, 15000);
   test('toggle dark mode', async () => {
     renderInProvider(<AppRoot />);
 
