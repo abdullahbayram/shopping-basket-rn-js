@@ -1,10 +1,10 @@
 import { screen, waitFor } from '@testing-library/react-native';
-import App from '../App';
+import AppRoot from '../AppRoot';
 import renderInProvider from './utils/renderInProvider';
 
-describe('<App />', () => {
-  test('App renders correctly and displays the initial text', async () => {
-    const { toJSON } = renderInProvider(<App />);
+describe('<AppRoot />', () => {
+  test('AppRoot renders correctly and displays the initial text', async () => {
+    const { toJSON } = renderInProvider(<AppRoot />);
     await waitFor(() => {
       screen.getByText('CHECKOUT (0)');
     });

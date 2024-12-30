@@ -38,8 +38,8 @@ Thumbs.db
 *.tsbuildinfo
 build/
 
-# IDE
-/.idea
+# IDE idea/
+.idea/
 .vscode/
 *.swp
 
@@ -49,3 +49,9 @@ build/
 
 # Jest
 /coverage
+
+# Ignore environment-specific config files
+*.local.jsconfig
+*.local.tsconfig
+tsconfig.build.json
+

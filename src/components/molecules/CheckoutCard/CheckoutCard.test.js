@@ -80,7 +80,7 @@ describe('CheckoutCard', () => {
     const increaseButton = screen.getByTestId('increase-button');
     fireEvent.press(increaseButton);
 
-    expect(showToast).toHaveBeenCalledWith({ msg: 'Quantity must be between 1 and 5.', title: 'Invalid Quantity' });
+    expect(showToast).toHaveBeenCalledWith({ message: 'Quantity must be between 1 and 5.', title: 'Invalid Quantity' });
   });
 
   it('calls onRemoveButtonPress when Remove Item button is pressed', () => {

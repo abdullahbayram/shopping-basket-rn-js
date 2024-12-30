@@ -17,7 +17,7 @@ export default async (args) => {
       return {
         error: {
           status: response.status,
-          msg: await response.text(),
+          message: await response.text(),
         },
       };
     }
@@ -26,7 +26,7 @@ export default async (args) => {
     return {
       error: {
         status: 'FETCH_ERROR',
-        msg: error.message,
+        message: error.message,
       },
     };
   }

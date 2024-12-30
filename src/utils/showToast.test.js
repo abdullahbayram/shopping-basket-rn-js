@@ -20,19 +20,19 @@ describe('showToast', () => {
 
   it('should call Alert.alert with provided title and message', () => {
     const title = 'Custom Title';
-    const msg = 'Custom Message';
+    const message = 'Custom Message';
 
-    showToast({ title, msg });
+    showToast({ title, message });
 
-    expect(Alert.alert).toHaveBeenCalledWith(title, msg);
+    expect(Alert.alert).toHaveBeenCalledWith(title, message);
   });
 
   it('should call Alert.alert with default title when only message is provided', () => {
-    const msg = 'Only Message';
+    const message = 'Only Message';
 
-    showToast({ msg });
+    showToast({ message });
 
-    expect(Alert.alert).toHaveBeenCalledWith('Notice', msg);
+    expect(Alert.alert).toHaveBeenCalledWith('Notice', message);
   });
 
   it('should call Alert.alert with default message when only title is provided', () => {
@@ -46,10 +46,10 @@ describe('showToast', () => {
   it('should not call Alert.alert and log an error when both title and message are empty', () => {
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
 
-    showToast({ title: '', msg: '' });
+    showToast({ title: '', message: '' });
 
     expect(Alert.alert).not.toHaveBeenCalled();
-    expect(consoleSpy).toHaveBeenCalledWith('Invalid input: title and msg cannot both be empty');
+    expect(consoleSpy).toHaveBeenCalledWith('Invalid input: title and message cannot both be empty');
 
     consoleSpy.mockRestore();
   });

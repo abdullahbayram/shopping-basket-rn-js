@@ -3,11 +3,11 @@ import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 import renderInProvider from '@testUtils/renderInProvider';
 import { sampleBasket } from '@mocks/handlers';
 import Navigator from './Navigator';
-import { ThemeProvider } from '../context/ThemeContext'; // Import ThemeProvider
+import { ThemeProvider } from '../context/ThemeContext';
+import { verifyExistenceByText } from '../../__tests__/utils/testUtil';
 
 const initialState = { basket: { items: sampleBasket } };
 
-// TODO centralize
 const renderWithThemeProvider = (ui, options = {}) => {
   return renderInProvider(<ThemeProvider>{ui}</ThemeProvider>, options);
 };
@@ -23,7 +23,7 @@ describe('Navigator Component', () => {
     });
 
     expect(button).toBeTruthy();
-    expect(buttons.length).toBe(9);
+    expect(buttons.length).toBe(21); // 20 products + 1 checkout button
   });
 
   it('should navigate to CheckoutScreen when CHECKOUT button is pressed', async () => {
@@ -35,6 +35,7 @@ describe('Navigator Component', () => {
     await waitFor(() => {
       buttons = screen.getAllByRole('button');
     });
-    expect(buttons).toBeTruthy(); // "ORDER" exists on CheckoutScreen, TODO getByText(Order(1 items))
+    verifyExistenceByText(/Order\s*\(\s*14\s*items\s*\)/);
+    expect(buttons).toBeTruthy(); // "ORDER(14)" exists on CheckoutScreen,
   });
 });

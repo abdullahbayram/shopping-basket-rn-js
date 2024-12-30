@@ -11,6 +11,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '__tests__',
+    'mocks',
     '\\.style\\.js$',
     'src/components/atoms/index.js',
     'src/components/atoms/ActivityIndicator/index.js',
@@ -38,7 +39,7 @@ module.exports = {
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@validate/(.*)$': '<rootDir>/src/validate/$1',
     '^@testUtils/(.*)$': '<rootDir>/__tests__/utils/$1',
-    '^@mocks/(.*)$': '<rootDir>/__tests__/mocks/$1',
+    '^@mocks/(.*)$': '<rootDir>/mocks/$1',
   },
   coverageReporters: ['json', 'json-summary', 'text', 'lcov'],
   snapshotResolver: './scripts/snapshotResolver.js',

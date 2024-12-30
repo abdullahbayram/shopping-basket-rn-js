@@ -56,7 +56,7 @@ describe('PaymentScreen', () => {
 
     // Assert navigation to Error screen
     await waitFor(() => {
-      expect(navigateMock).toHaveBeenCalledWith('Error', { errorMessage: 'Card can not be processed' });
+      expect(navigateMock).toHaveBeenCalledWith('Error', { errorMessage: 'Card can not be processed.' });
     });
   }, 10000);
 });

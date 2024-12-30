@@ -1,11 +1,11 @@
 import { Alert } from 'react-native';
 
-const showToast = ({ title = 'Notice', msg = 'Something happened' } = {}) => {
-  if (!title && !msg) {
-    console.log('Invalid input: title and msg cannot both be empty');
+const showToast = ({ title = 'Notice', message = 'Something happened' } = {}) => {
+  if (!title && !message) {
+    console.log('Invalid input: title and message cannot both be empty');
     return;
   }
-  Alert.alert(title, msg);
+  Alert.alert(title, message);
 };
 
 export default showToast;

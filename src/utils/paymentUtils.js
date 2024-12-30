@@ -18,13 +18,13 @@ export default {
   },
   parseErrorMessage: (err) => {
     try {
-      if (typeof err.msg === 'string') {
-        const parsedError = JSON.parse(err.msg);
+      if (typeof err.message === 'string') {
+        const parsedError = JSON.parse(err.message);
         if (Array.isArray(parsedError?.errors) && parsedError.errors.length > 0) {
-          return parsedError.errors[0].msg;
+          return parsedError.errors[0].message;
         }
       } else if (Array.isArray(err?.errors) && err.errors.length > 0) {
-        return err.errors[0].msg;
+        return err.errors[0].message;
       }
     } catch (e) {
       console.error(strings.devErrors.parseErrorMessage, e);
