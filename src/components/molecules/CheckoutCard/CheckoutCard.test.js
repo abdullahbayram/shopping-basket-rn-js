@@ -80,7 +80,10 @@ describe('CheckoutCard', () => {
     const increaseButton = screen.getByTestId('increase-button');
     fireEvent.press(increaseButton);
 
-    expect(showToast).toHaveBeenCalledWith({ message: 'Quantity must be between 1 and 5.', title: 'Invalid Quantity' });
+    expect(showToast).toHaveBeenCalledWith({
+      message: 'You can only add a maximum of 5 units per item.',
+      title: 'Limit Reached',
+    });
   });
 
   it('calls onRemoveButtonPress when Remove Item button is pressed', () => {
