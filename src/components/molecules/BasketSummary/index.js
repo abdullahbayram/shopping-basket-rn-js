@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { strings } from '@constants';
+import { Text } from '@components/atoms';
 import styles from './BasketSummary.style';
 
 const BasketSummary = ({ totalItemCount, totalPrice }) => {

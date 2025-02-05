@@ -28,7 +28,7 @@ const CheckoutCard = ({ product, maxQuantity = 5, onQuantityChange, onRemoveButt
     if (product.quantity < maxQuantity) {
       onQuantityChange(product, product.quantity + 1);
     } else {
-      showToast(messages.basket.invalidQuantity);
+      showToast(messages.basket.limitReached);
     }
   };
 

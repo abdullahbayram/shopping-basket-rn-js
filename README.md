@@ -1,5 +1,8 @@
 # Shopping Basket
 
+🔗 **Quick Links**: [Demo](#-demo) | [Core Features](#-core-features) | [Development Standards](#-development-standards)
+| [Atomic Web Design](#-atomic-web-design) | [Installation](#-installation) | [Testing](#-testing)
+
 ![React Native](https://img.shields.io/badge/React%20Native-20232A?logo=react)
 ![Expo](https://img.shields.io/badge/Expo-000020?logo=expo)
 ![Redux](https://img.shields.io/badge/Redux-764ABC?logo=redux)
@@ -24,7 +27,7 @@ workflows powered by **GitHub Actions**.
 
 1. [Demo](#-demo)
 2. [Visuals](#-visuals)
-3. [Core Features](#-features)
+3. [Core Features](#-core-features)
 4. [Development Standards](#-development-standards)
 5. [Folder Structure](#-folder-structure)
 6. [Tech Stack](#-tech-stack)
@@ -43,7 +46,7 @@ workflows powered by **GitHub Actions**.
 
 Watch the app in action:
 
-[![Shopping Basket Demo](https://img.youtube.com/vi/bg9vKTF9HW8/1.jpg)](https://youtu.be/bg9vKTF9HW8)
+[![Shopping Basket Demo](https://img.youtube.com/vi/c2ne0OwzUzc/1.jpg)](https://youtu.be/c2ne0OwzUzc)
 
 Click the image above to view the demo video.
 
@@ -53,13 +56,11 @@ Click the image above to view the demo video.
 
 ### Light Theme
 
-![App Demo GIF](./assets/ss/light/screenshots.gif)
+<img src="./assets/ss/light/screenshots.gif" width="500" alt="Light Screenshots">
 
 ### Dark Theme
 
-![App Demo GIF](./assets/ss/dark/screenshots.gif)
-
----
+<img src="./assets/ss/dark/screenshots.gif" width="500" alt="Dark Screenshots">
 
 ## Status Legend
 
@@ -370,7 +371,7 @@ Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/new-feature`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
+3. Commit your changes (`git commit -m 'feat: Add some feature'`).
 4. Push to the branch (`git push origin feature/new-feature`).
 5. Open a pull request.
 
